@@ -9,6 +9,7 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <telerik:RadTreeListView
+        x:Name="RouteTreeList"
         AutoExpandItems="True"
         AutoGenerateColumns="False"
         CanUserSortColumns="False"

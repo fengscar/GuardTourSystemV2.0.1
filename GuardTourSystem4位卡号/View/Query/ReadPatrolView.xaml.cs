@@ -26,7 +26,7 @@ namespace GuardTourSystem.View
         public ReadPatrolView()
         {
             InitializeComponent();
-            this.DataContext =new ReadPatrolViewModel();
+            this.DataContext = new ReadPatrolViewModel();
         }
 
         private void Export_Button_Click(object sender, RoutedEventArgs e)

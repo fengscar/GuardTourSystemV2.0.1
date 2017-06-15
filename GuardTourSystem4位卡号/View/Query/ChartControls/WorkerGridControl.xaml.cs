@@ -12,17 +12,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GuardTourSystem.Print;
+using GuardTourSystem.Utils;
 
 namespace GuardTourSystem.View.Query.ChartControls
 {
     /// <summary>
     /// WorkerGridControl.xaml 的交互逻辑
     /// </summary>
-    public partial class WorkerGridControl : UserControl
+    public partial class WorkerGridControl : UserControl, IPrintable
     {
         public WorkerGridControl()
         {
             InitializeComponent();
+        }
+
+        public void PrintView()
+        {
+            this.WorkerGridView.Print();
+        }
+
+        public void ExportExcel()
+        {
+            ExcelExporter.TelerikControlExport(this.WorkerGridView, LanLoader.Load(LanKey.WorkerCountInfo));
         }
     }
 }

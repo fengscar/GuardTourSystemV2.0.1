@@ -57,7 +57,7 @@ namespace GuardTourSystem.Services.Database.DAL
         {
             string sql = "insert into T_User(ID,Password,RoleID) values(null,@PASSWORD,@ROLEID);";
 
-            var res = ConstantSQLiteHelper.Instance.ExecuteNonQuery(sql, new object[] {  user.Password, user.UserRole == Role.Manage ? 0 : 1 });
+            var res = ConstantSQLiteHelper.Instance.ExecuteNonQuery(sql, new object[] {  user.Password, user.UserRole == Role.Manager ? 0 : 1 });
 
             return res == 1;
         }

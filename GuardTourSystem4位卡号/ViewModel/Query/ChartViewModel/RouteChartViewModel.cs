@@ -1,5 +1,6 @@
 ﻿using GuardTourSystem.Database.Model;
 using GuardTourSystem.Model;
+using GuardTourSystem.Print;
 using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -122,6 +123,12 @@ namespace GuardTourSystem.ViewModel.Query.ChartViewModel
             {
                 SelectRoute = infos.First();
             }
+        }
+        public void Print()
+        {
+            var printData = new PrintData() { ContentList = RouteCountInfos.ToList(), Title = "路线统计信息", DataCount = RouteCountInfos.Count };
+            var printer = new Printer(new RouteGridChartDocument(printData));
+            printer.ShowPreviewWindow();
         }
     }
 }

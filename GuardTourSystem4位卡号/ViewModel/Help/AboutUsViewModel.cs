@@ -10,9 +10,9 @@ namespace GuardTourSystem.ViewModel.Popup
     class AboutUsViewModel : AbstractPopupNotificationViewModel
     {
 
-        public string SoftwareName { get; set; }
-        public string SoftwareVersion { get; set; }
-        public string CopyrightInfo { get; set; }
+        public string AppName { get; set; }
+        public string AppVersion { get; set; }
+        public string CompanyCopyright { get; set; }
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }
         public string CompanyTel { get; set; }
@@ -23,9 +23,9 @@ namespace GuardTourSystem.ViewModel.Popup
         {
             this.Title = "关于我们";
 
-            this.SoftwareName = AppSetting.Default.SoftwareName;
-            this.SoftwareVersion = AppSetting.Default.SoftwareVersion;
-            this.CopyrightInfo = AppSetting.Default.CopyrightInfo;
+            this.AppName = AppSetting.Default.SoftwareName;
+            this.AppVersion = AppSetting.Default.SoftwareVersion;
+            this.CompanyCopyright = AppSetting.Default.CopyrightInfo;
             this.CompanyName = AppSetting.Default.CompanyName;
             this.CompanyAddress = AppSetting.Default.CompanyAddress;
             this.CompanyTel = AppSetting.Default.CompanyTel;

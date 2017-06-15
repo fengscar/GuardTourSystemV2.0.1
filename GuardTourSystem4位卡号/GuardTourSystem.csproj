@@ -255,6 +255,7 @@
     <Compile Include="Print\Documents\AbstractDocument.cs" />
     <Compile Include="Print\Documents\EventDocument.cs" />
     <Compile Include="Print\Documents\HitDocument.cs" />
+    <Compile Include="Print\Documents\RouteGridChartDocument.cs" />
     <Compile Include="Print\HeaderFooterPaginator.cs" />
     <Compile Include="Print\PrintData.cs" />
     <Compile Include="Print\PrintExtensions.cs" />
@@ -452,6 +453,7 @@
       <DependentUpon>DataManageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Popup\CustomPopupWindowAction.cs" />
+    <Compile Include="View\Query\ChartControls\IPrintable.cs" />
     <Compile Include="View\Query\ChartControls\RouteBarControl.xaml.cs">
       <DependentUpon>RouteBarControl.xaml</DependentUpon>
     </Compile>

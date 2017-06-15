@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GuardTourSystem.Database.BLL
 {
@@ -130,7 +129,6 @@ namespace GuardTourSystem.Database.BLL
             this.SaveDuty(result);
             SQLiteHelper.Instance.CommitTransaction(); //提交事务
             error = null;
-
             return result.Count;
         }
 

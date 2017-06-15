@@ -10,7 +10,7 @@ using GuardTourSystem.Utils;
 
 namespace GuardTourSystem.ViewModel
 {
-      class AppShortcutViewModel : BindableBase
+    class AppShortcutViewModel : BindableBase
     {
         private static AppShortcutViewModel instance = null;
         public static AppShortcutViewModel Instance

@@ -230,8 +230,13 @@
     <s:String x:Key="Sunday">周天</s:String>
 
 
-    <s:String x:Key="APP_NAME">凯和电子智能巡检管理系统V0.1</s:String>
+    <s:String x:Key="APP_NAME">智能巡检管理系统</s:String>
+    <s:String x:Key="APP_VERSION">V2.4.0</s:String>
     <s:String x:Key="COMPANY_NAME">福州凯和电子有限公司</s:String>
+    <s:String x:Key="COMPANY_TEL">0591-83308208</s:String>
+    <s:String x:Key="COMPANY_ADDRESS">福建省福州市六一中路115号机械研究院2楼</s:String>
+    <s:String x:Key="COMPANY_WEBSITE">www.kai-he.com</s:String>
+    <s:String x:Key="COMPANY_COPYRIGHT">版权所有 2017</s:String>
 
 
     <s:String x:Key="LOGIN_WINDOW">用户登录</s:String>
@@ -268,7 +273,8 @@
     <s:String x:Key="Export_Event">巡检事件信息</s:String>
     <s:String x:Key="Export_Frequence">巡检班次信息</s:String>
 
-
+    <s:String x:Key="WorkerCountInfo">人员统计信息</s:String>
+    <s:String x:Key="RouteCountInfo">线路统计信息</s:String>
 
 
 

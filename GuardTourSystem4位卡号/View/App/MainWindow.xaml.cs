@@ -92,7 +92,6 @@ namespace GuardTourSystem.View
             {
                 return;
             }
-            AppSetting.Default.Save();
         }
 
         //恢复窗口的大小 . 如果窗口大过屏幕... 重新定位

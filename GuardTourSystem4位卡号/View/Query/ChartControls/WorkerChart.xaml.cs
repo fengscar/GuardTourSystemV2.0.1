@@ -12,17 +12,32 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 
 namespace GuardTourSystem.View.Query.ChartControls
 {
     /// <summary>
     /// WorkerChart.xaml 的交互逻辑
     /// </summary>
-    public partial class WorkerChart : UserControl
+    public partial class WorkerChart : UserControl, IPrintable
     {
         public WorkerChart()
         {
             InitializeComponent();
+        }
+
+        public void PrintView()
+        {
+            var tabItem = this.TabControl.SelectedItem as RadTabItem;
+            if (tabItem.Content is IPrintable)
+            {
+                var printalbe = tabItem.Content as IPrintable;
+                printalbe.PrintView();
+            }
+            else
+            {
+                throw new Exception("TabItem还未实现IPrintable接口");
+            }
         }
     }
 }

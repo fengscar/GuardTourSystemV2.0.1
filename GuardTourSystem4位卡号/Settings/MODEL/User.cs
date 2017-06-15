@@ -21,7 +21,7 @@ namespace GuardTourSystem.Model
 
         public User(int roleID)
         {
-            this.UserRole = roleID == 0 ? Role.Manage : Role.Operator;
+            this.UserRole = roleID == 0 ? Role.Manager : Role.Operator;
         }
         public User(string password, Role role)
         {
@@ -33,20 +33,20 @@ namespace GuardTourSystem.Model
         {
             //this.Name = username;
             this.Password = password;
-            this.UserRole = roleID == 0 ? Role.Manage : Role.Operator;
+            this.UserRole = roleID == 0 ? Role.Manager : Role.Operator;
         }
 
         public string UserName
         {
             get
             {
-                return LanLoader.Load(this.UserRole == Role.Manage ? LanKey.RoleManager : LanKey.RoleOperator);
+                return LanLoader.Load(this.UserRole == Role.Manager ? LanKey.RoleManager : LanKey.RoleOperator);
             }
         }
     }
     public enum Role
     {
-        Manage = 0,
+        Manager = 0,
         Operator = 1
     };
 

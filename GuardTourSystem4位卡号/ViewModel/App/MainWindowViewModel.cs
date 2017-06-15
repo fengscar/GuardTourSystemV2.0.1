@@ -77,7 +77,7 @@ namespace GuardTourSystem.ViewModel
             {
                 SetProperty(ref this.contentName, value);
                 OnPropertyChanged("WindowName");//提示WindowName改变
-   AppShortcutViewModel.Instance.ContentChange(value);
+                AppShortcutViewModel.Instance.ContentChange(value);
             }
         }
 

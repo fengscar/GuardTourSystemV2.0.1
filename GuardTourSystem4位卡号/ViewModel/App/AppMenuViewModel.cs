@@ -60,7 +60,7 @@ namespace GuardTourSystem.ViewModel
             var needPermission = true;
             if (MainWindowViewModel.Instance.User != null)
             {
-                needPermission = MainWindowViewModel.Instance.User.UserRole.Equals(Role.Manage);
+                needPermission = MainWindowViewModel.Instance.User.UserRole.Equals(Role.Manager);
             }
 
             MenuItem queryMenu = new MenuItem(LanLoader.Load(LanKey.MenuQuery), null, GetIconPath("Main_Query"));

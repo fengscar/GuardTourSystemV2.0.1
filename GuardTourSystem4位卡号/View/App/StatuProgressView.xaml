@@ -14,7 +14,7 @@
     </UserControl.Resources>
     <Grid Background="{StaticResource FlatYellowSolidBrush}" Visibility="{Binding IsShow, Converter={StaticResource VisibleConverter}}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="300"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>

@@ -16,7 +16,7 @@ namespace GuardTourSystem.Converter
             var user = value as User;
             if (user != null)
             {
-                string userRole = user.UserRole == Role.Manage ? "管理员" : "操作员";
+                string userRole = user.UserRole == Role.Manager ? "管理员" : "操作员";
                 //return userRole + ":" + user.Name;
                 return userRole;
             }

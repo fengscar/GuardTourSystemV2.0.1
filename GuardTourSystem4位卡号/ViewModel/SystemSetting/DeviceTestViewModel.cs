@@ -161,16 +161,14 @@ namespace GuardTourSystem.ViewModel
             NotifyMode = 0;
 
             this.InfoVM = new InfoViewModel();
-            this.Title = "巡检机管理";
+            this.Title =LanLoader.Load(LanKey.MenuSystemDeviceTest); 
             this.TestItems = new List<DeviceTestItemViewModel>();
 
             this.CStartTest = new DelegateCommand(StartTest, this.CanStartTest);
             this.CVerifyTime = new DelegateCommand(this.VerifyTime, () => !SerialPortManager.Instance.IsWritting);
             this.CSetDeviceID = new DelegateCommand(this.SetDeviceID, () => { return CanSetDeviceID() && !SerialPortManager.Instance.IsWritting; });
             this.CSetNotifyType = new DelegateCommand(this.SetNotifyType, () => !SerialPortManager.Instance.IsWritting);
-            //this.CClearDeviceWorker = new DelegateCommand(this.ClearDeviceWorker, () => !SerialPortManager.Instance.IsWritting);
-            //this.CClearDeviceRoute = new DelegateCommand(this.ClearDeviceRoute, () => !SerialPortManager.Instance.IsWritting);
-
+           
             InitTestItems();
         }
 
@@ -409,6 +407,7 @@ namespace GuardTourSystem.ViewModel
                 this.CVerifyTime.RaiseCanExecuteChanged();
                 this.CStartTest.RaiseCanExecuteChanged();
                 this.CSetDeviceID.RaiseCanExecuteChanged();
+                this.CSetNotifyType.RaiseCanExecuteChanged();
                 //this.CClearDeviceWorker.RaiseCanExecuteChanged();
                 //this.CClearDeviceRoute.RaiseCanExecuteChanged();
             }), null);

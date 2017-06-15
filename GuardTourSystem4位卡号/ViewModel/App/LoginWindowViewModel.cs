@@ -114,7 +114,7 @@ namespace GuardTourSystem.ViewModel
         {
             switch (this.User.UserRole)
             {
-                case Role.Manage:
+                case Role.Manager:
                     this.Password = User.DEF_PWD_ADMIN;
                     break;
                 case Role.Operator:
@@ -137,7 +137,7 @@ namespace GuardTourSystem.ViewModel
                 return;
             }
             //验证通过,保存信息
-            AppSetting.Default.LoginUser = this.User.UserRole == Role.Manage ? 0 : 1;
+            AppSetting.Default.LoginUser = this.User.UserRole == Role.Manager ? 0 : 1;
             AppSetting.Default.Save();
 
             //关闭登录窗口,并打开 主界面

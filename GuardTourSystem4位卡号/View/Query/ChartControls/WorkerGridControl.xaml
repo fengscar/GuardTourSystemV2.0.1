@@ -8,7 +8,10 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <telerik:RadGridView ItemsSource="{Binding}" Style="{StaticResource ContentGridView}">
+    <telerik:RadGridView
+        x:Name="WorkerGridView"
+        ItemsSource="{Binding}"
+        Style="{StaticResource ContentGridView}">
         <telerik:RadGridView.Columns>
             <telerik:GridViewDataColumn
                 Width="*"

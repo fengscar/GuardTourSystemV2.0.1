@@ -1,9 +1,13 @@
-﻿using System;
+﻿using GuardTourSystem.Utils;
+using GuardTourSystem.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Documents.FormatProviders.Html;
 using Telerik.Windows.Documents.Model;
@@ -18,17 +22,34 @@ namespace GuardTourSystem.Print
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="settings"></param>
-        public static void Print(this RadGridView grid, PrintSettings settings = null, PageOrientation orientation = PageOrientation.Portrait)
+       public static async void Print(this RadGridView grid, PrintSettings settings = null, PageOrientation orientation = PageOrientation.Portrait)
         {
-            var rtb = CreateRadRichTextBox(grid, settings, orientation);
+            AppStatusViewModel.Instance.ShowProgress(true, "正在载入打印数据,请稍等...");
+            var rtb = await CreateRadRichTextBox(grid, settings, orientation);
             var window = new RadWindow() { Height = 0, Width = 0, Opacity = 0, Content = rtb };
-            rtb.PrintCompleted += (s, e) => { window.Close(); };
+            rtb.PrintStarted += (s, e) =>
+            {
+                AppStatusViewModel.Instance.ShowProgress(true, "正在打印...");
+            };
+            rtb.PrintCompleted += (s, e) =>
+            {
+                AppStatusViewModel.Instance.ShowCompany();
+            };
+
             window.Show();
             if (settings == null)
             {
-                settings = new PrintSettings() { DocumentName = "打印" };
+                settings = new PrintSettings() { DocumentName = "打印", PrintMode = PrintMode.Native };
             }
+            AppStatusViewModel.Instance.ShowCompany();
             rtb.Print(settings);
+
+            //释放资源
+            rtb = null;
+            if (window != null)
+            {
+                window.Close();
+            }
         }
 
         ///打印预览
@@ -39,38 +60,58 @@ namespace GuardTourSystem.Print
         //window.ShowDialog();
         //}
 
-        private static RadRichTextBox CreateRadRichTextBox(RadGridView grid, PrintSettings settings, PageOrientation orientation)
+        private static async Task<RadRichTextBox> CreateRadRichTextBox(RadGridView grid, PrintSettings settings, PageOrientation orientation)
         {
+            DBug.w("正在创建富文本");
             var result = new RadRichTextBox()
             {
                 IsReadOnly = true,
                 LayoutMode = DocumentLayoutMode.Paged,
                 IsSelectionEnabled = false,
                 IsSpellCheckingEnabled = false,
-                Document = CreateDocument(grid)
+                FontSize = 6,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+
             };
+            //先设置方向,避免文档初始化完成后再去转换
             result.ChangeSectionPageOrientation(orientation);
+
+
+            DBug.w("正在创建文档");
+            var stream = new MemoryStream();
+            grid.ExportAsync(stream, new GridViewExportOptions()
+            {
+                Format = Telerik.Windows.Controls.ExportFormat.Html,
+                ShowColumnFooters = grid.ShowColumnFooters,
+                ShowColumnHeaders = grid.ShowColumnHeaders,
+                ShowGroupFooters = grid.ShowGroupFooters
+            }, false);
+
+
+            await Task.Run(() =>
+            {
+                long curSize = 0;
+                while (stream.CanRead)
+                {
+                    Thread.Sleep(1000);
+                    // 当stream大小不在改变时,将退出该循环.
+                    if (stream.Length <= curSize)
+                    {
+                        stream.Position = 0;
+                        break;
+                    }
+                    else
+                    {
+                        curSize = stream.Length;
+                    }
+                }
+            });
+
+            result.Document = new HtmlFormatProvider().Import(stream);
+            result.Document.SectionDefaultPageOrientation = orientation;
             return result;
         }
 
-        private static RadDocument CreateDocument(RadGridView grid)
-        {
-            RadDocument document = null;
-            using (var stream = new MemoryStream())
-            {
-                grid.Export(stream, new GridViewExportOptions()
-                {
-                    Format = Telerik.Windows.Controls.ExportFormat.Html,
-                    ShowColumnFooters = grid.ShowColumnFooters,
-                    ShowColumnHeaders = grid.ShowColumnHeaders,
-                    ShowGroupFooters = grid.ShowGroupFooters
-                });
-
-                stream.Position = 0;
-
-                document = new HtmlFormatProvider().Import(stream);
-            }
-            return document;
-        }
     }
 }

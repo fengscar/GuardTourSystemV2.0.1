@@ -114,507 +114,55 @@
 
             <telerik:RadGridView.Columns>
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1*"
                     DataMemberBinding="{Binding RouteName}"
                     Header="{DynamicResource Route}" />
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1*"
                     DataMemberBinding="{Binding FrequenceName}"
                     Header="{DynamicResource Frequence}" />
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1.5*"
                     DataMemberBinding="{Binding PlanTime}"
                     Header="计划时间" />
                 <!--  不需要合并的  -->
 
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1*"
                     DataMemberBinding="{Binding WorkerName}"
                     Header="巡检员"
                     IsCellMergingEnabled="False" />
 
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1*"
                     DataMemberBinding="{Binding PlaceName}"
                     Header="巡检点"
                     IsCellMergingEnabled="False" />
                 <telerik:GridViewDataColumn
-                    Width="*"
+                    Width="1.5*"
                     DataMemberBinding="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}"
                     Header="实巡时间"
                     IsCellMergingEnabled="False"
                     IsFilterable="False" />
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="0.75*"
                     DataMemberBinding="{Binding PatrolResult}"
                     Header="考核结果"
                     IsCellMergingEnabled="False" />
                 <telerik:GridViewDataColumn
-                    Width="Auto"
+                    Width="1*"
                     DataMemberBinding="{Binding EventName}"
                     Header="巡检事件"
                     IsCellMergingEnabled="False" />
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>
-        <!--<ListView
-            Grid.Row="1"
-            FontSize="14"
-            ItemsSource="{Binding Results}">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn
-                            Width="Auto"
-                            DisplayMemberBinding="{Binding RouteName}"
-                            Header="线路" />
-                        <GridViewColumn
-                            Width="Auto"
-                            DisplayMemberBinding="{Binding FrequenceName}"
-                            Header="班次" />
-                        <GridViewColumn
-                            DisplayMemberBinding="{Binding PlanTime}"
-                            Header="计划时间" />
-                        <GridViewColumn
-                            Width="Auto"
-                            DisplayMemberBinding="{Binding WorkerName}"
-                            Header="巡检员" />
-                        <GridViewColumn>
-                            <GridViewColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Stretch">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Label
-                                            Grid.Column="0"
-                                            Content="巡检点"
-                                            Style="{StaticResource TitleLabel}" />
-                                        <Label
-                                            Grid.Column="1"
-                                            Content="实巡时间"
-                                            Style="{StaticResource TitleLabel}" />
-                                        <Label
-                                            Grid.Column="2"
-                                            Content="考核结果"
-                                            Style="{StaticResource TitleLabel}" />
-                                        <Label
-                                            Grid.Column="3"
-                                            Content="巡检事件"
-                                            Style="{StaticResource TitleLabel}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </GridViewColumn.HeaderTemplate>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ItemsControl ItemsSource="{Binding Details}">
-                                        <ItemsControl.ItemTemplateSelector>
-                                            <DataTemplateSelector>
-
-                                            </DataTemplateSelector>
-                                        </ItemsControl.ItemTemplateSelector>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <DataTemplate.Resources>
-                                                    <Style TargetType="Border">
-                                                        <Setter Property="BorderBrush" Value="Gray" />
-                                                        <Setter Property="BorderThickness" Value="0.25" />
-                                                    </Style>
-                                                </DataTemplate.Resources>
-                                                <Border>
-                                                    <UniformGrid Columns="4">
-                                                        <Border>
-                                                            <TextBlock Text="{Binding PlaceName}" />
-                                                        </Border>
-                                                        <Border>
-                                                            <TextBlock Text="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}" />
-                                                        </Border>
-                                                        <Border>
-                                                            <TextBlock Text="{Binding PatrolResult}" />
-                                                        </Border>
-                                                        <Border>
-                                                            <TextBlock Text="{Binding EventName}" />
-                                                        </Border>
-                                                    </UniformGrid>
-                                                </Border>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-        <!--<DataGrid
-            x:Name="DataGrid"
-            Grid.Row="1"
-            EnableColumnVirtualization="True"
-            EnableRowVirtualization="True"
-            ItemsSource="{Binding Results}"
-            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-            Style="{StaticResource ContentDataGrid}">
-            <DataGrid.Resources>
-                <Style TargetType="ScrollBar">
-                    <Setter Property="Foreground" Value="{StaticResource FlatBlueSolidBrush}" />
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="Auto" Header="路线名称">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding RouteName}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto" Header="班次名称">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding FrequenceName}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="计划时间">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding PlanTime}"
-                                TextWrapping="Wrap" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto" Header="巡检员">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                Text="{Binding WorkerName}"
-                                TextWrapping="Wrap" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="4*">
-                    <DataGridTemplateColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label
-                                    Grid.Column="0"
-                                    Content="巡检点"
-                                    Style="{StaticResource TitleLabel}" />
-                                <Label
-                                    Grid.Column="1"
-                                    Content="实巡时间"
-                                    Style="{StaticResource TitleLabel}" />
-                                <Label
-                                    Grid.Column="2"
-                                    Content="考核结果"
-                                    Style="{StaticResource TitleLabel}" />
-                                <Label
-                                    Grid.Column="3"
-                                    Content="巡检事件"
-                                    Style="{StaticResource TitleLabel}" />
-                            </Grid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.HeaderTemplate>
-                    <DataGridTemplateColumn.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate>
-                                        <DataGrid
-                                            Margin="-1"
-                                            Background="Red"
-                                            HeadersVisibility="None"
-                                            ItemsSource="{Binding Details}"
-                                            Style="{StaticResource ContentDataGrid}">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Width="20*" Binding="{Binding PlaceName}" />
-                                                <DataGridTextColumn Width="45*" Binding="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}" />
-                                                <DataGridTextColumn Width="15*" Binding="{Binding PatrolResult}" />
-                                                <DataGridTextColumn Width="20*" Binding="{Binding EventName}" />
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-
-                    </DataGridTemplateColumn.CellStyle>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>-->
-
-        <!--<ListView
-            Grid.Row="1"
-            Background="{StaticResource customBlueBrushOpacity}"
-            ItemContainerStyle="{StaticResource noStyleToListboxItem}"
-            ItemsSource="{Binding Results}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            Style="{StaticResource calcyListbox}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="4*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="{Binding RouteName}" />
-                        <TextBlock
-                            Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="{Binding FrequenceName}" />
-                        <TextBlock
-                            Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="{Binding PlanTime}" />
-                        <TextBlock
-                            Grid.Column="3"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Text="{Binding WorkerName}" />
-                        <Border
-                            Grid.Column="0"
-                            BorderBrush="Black"
-                            BorderThickness="0.5,0.5,0.5,0.5" />
-                        <Border
-                            Grid.Column="1"
-                            BorderBrush="Black"
-                            BorderThickness="0.5,0.5,0.5,0.5" />
-                        <Border
-                            Grid.Column="2"
-                            BorderBrush="Black"
-                            BorderThickness="0.5,0.5,0.5,0.5" />
-                        <Border
-                            Grid.Column="3"
-                            BorderBrush="Black"
-                            BorderThickness="0.5,0.5,0.5,0.5" />
-        -->
-        <!--<ListBox
-                            Grid.Column="4"
-                            HorizontalContentAlignment="Stretch"
-                            Background="{StaticResource customBlueBrushOpacity}"
-                            BorderThickness="1,0,1,1"
-                            ItemsSource="{Binding Details}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-        -->
-        <!--<Border
-                                            Grid.Column="0"
-                                            Margin="-2"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25" />
-                                        <Border
-                                            Grid.Column="1"
-                                            Margin="-2"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25" />
-                                        <Border
-                                            Grid.Column="2"
-                                            Margin="-2"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25" />
-                                        <Border
-                                            Grid.Column="3"
-                                            Margin="-2"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25" />-->
-        <!--
-                                        <Border
-                                            Grid.Column="0"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="14"
-                                                Text="{Binding PlaceName}" />
-                                        </Border>
-                                        <Border
-                                            Grid.Column="1"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="14"
-                                                Text="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}" />
-                                        </Border>
-                                        <Border
-                                            Grid.Column="2"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="14"
-                                                Text="{Binding PatrolResult}" />
-                                        </Border>
-                                        <Border
-                                            Grid.Column="3"
-                                            BorderBrush="Black"
-                                            BorderThickness="0.25,0.25,0.25,0.25">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="14"
-                                                Text="{Binding EventName}" />
-                                        </Border>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>-->
-        <!--
-                        <DataGrid
-                            Grid.Column="4"
-                            Margin="0"
-                            HeadersVisibility="None"
-                            ItemsSource="{Binding Details}"
-                            Style="{StaticResource ContentDataGrid}">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Binding="{Binding PlaceName}" />
-                                <DataGridTextColumn Width="*" Binding="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}" />
-                                <DataGridTextColumn Width="*" Binding="{Binding PatrolResult}" />
-                                <DataGridTextColumn Width="*" Binding="{Binding EventName}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
-
-        <!--<DataGrid
-            x:Name="ExportGrid"
-            Grid.Row="1"
-            ItemsSource="{Binding Dutys}"
-            LoadingRow="DataGrid_LoadingRow"
-            Style="{StaticResource ContentDataGrid}">
-            <DataGrid.Resources>
-                <converter:PatrolResultConverter x:Key="PatrolResultConverter" />
-            </DataGrid.Resources>
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridRow}}, Path=Header}"
-                    Header="序号" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding Frequence.RouteName}"
-                    Header="线路" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding Frequence.Name}"
-                    Header="班次" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding PlanTime}"
-                    Header="计划时间" />
-                <DataGridTextColumn
-                    Width="Auto"
-                    Binding="{Binding Worker.Name}"
-                    Header="巡检员" />
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Content="地点名称" />
-                                <Label Grid.Column="1" Content="地点名称" />
-                                <Label Grid.Column="2" Content="考核结果" />
-                                <Label Grid.Column="3" Content="事件" />
-                            </Grid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.HeaderTemplate>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DataGrid
-                                HeadersVisibility="None"
-                                ItemsSource="{Binding Records}"
-                                Style="{StaticResource ContentDataGrid}">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Place.Name}"
-                                        Header="地点名称" />
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding PlaceTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}"
-                                        Header="实巡时间" />
-                                    <DataGridTextColumn Width="*" Binding="{Binding PlaceTime, ConverterParameter={StaticResource PatrolResultConverter}}" />
-                                    <DataGridTextColumn
-                                        Width="*"
-                                        Binding="{Binding Event.Name}"
-                                        Header="事件" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-        -->
-        <!--<DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding PlaceName}"
-                    Header="地点名称" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding PatrolTime, StringFormat='yyyy年MM月dd日 HH:mm:ss'}"
-                    Header="实巡时间" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding PatrolResult}"
-                    Header="考核结果" />
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding EventName}"
-                    Header="事件" />-->
-        <!--
-            </DataGrid.Columns>
-        </DataGrid>-->
-        <StackPanel
+                <StackPanel
             Grid.Row="2"
             FlowDirection="RightToLeft"
             Orientation="Horizontal">
             <Button Style="{StaticResource CloseBtn}" />
             <Button Click="Export_Button_Click" Style="{StaticResource ExportExcelBtn}" />
-            <Button  Style="{StaticResource PrintBtn}" Click="Print_Button_Click"/>
+            <Button Click="Print_Button_Click" Style="{StaticResource PrintBtn}" />
         </StackPanel>
     </Grid>
 </view:ShowContentView>

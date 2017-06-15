@@ -69,14 +69,17 @@
                 ItemsSource="{Binding CountTypes}"
                 SelectedItem="{Binding SelectCountType}" />
         </Grid>
-        <ContentControl Grid.Row="1" Content="{Binding Content}" />
+        <ContentControl
+            x:Name="ContentControl"
+            Grid.Row="1"
+            Content="{Binding Content}" />
         <StackPanel
             Grid.Row="2"
             FlowDirection="RightToLeft"
             Orientation="Horizontal">
             <Button Style="{StaticResource CloseBtn}" />
-            <Button Style="{StaticResource ExportExcelBtn}" />
-            <Button Style="{StaticResource PrintBtn}" />
+            <Button Click="Export_Button_Click" Style="{StaticResource ExportExcelBtn}" />
+            <Button Click="Print_Button_Click" Style="{StaticResource PrintBtn}" />
         </StackPanel>
     </Grid>
 </view:ShowContentView>

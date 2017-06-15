@@ -33,10 +33,10 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="{Binding User, Converter={StaticResource UserConverter}}" />
             <!--<Label Grid.Column="1" Content="{DynamicResource COMPANY_NAME}" />-->
-            <!--<Label
+            <Label
                 Grid.Column="1"
                 Margin="0,0,20,0"
-                Content="{Binding CopyRight}" />-->
+                Content="{Binding CopyRight}" />
         </Grid>
         <!--  进度条  -->
         <view:StatuProgressView VerticalAlignment="Stretch" DataContext="{Binding ProgressVM}" />

@@ -69,9 +69,7 @@ namespace GuardTourSystem.ViewModel
         public InteractionRequest<INotification> PopupDeviceTest { get; private set; }
         public InteractionRequest<INotification> PopupAboutUs { get; private set; }
         public InteractionRequest<INotification> PopupError { get; private set; }
-        public InteractionRequest<INotification> PopupSharePatrol { get; private set; }
         #endregion
-
 
         private const string BACKGROUND_IMAGE_PATH = "/Resource/Img/Background.jpg";
         /// <summary>
@@ -123,7 +121,6 @@ namespace GuardTourSystem.ViewModel
             this.PopupDeviceTest = new InteractionRequest<INotification>();
             this.PopupAboutUs = new InteractionRequest<INotification>();
             this.PopupError = new InteractionRequest<INotification>();
-            this.PopupSharePatrol = new InteractionRequest<INotification>();
         }
 
         /// <summary>
@@ -217,7 +214,6 @@ namespace GuardTourSystem.ViewModel
                     }
                     this.PopupError.Raise(new AppErrorViewModel(errorInfo));
                     break;
-
                 default:
                     break;
             }

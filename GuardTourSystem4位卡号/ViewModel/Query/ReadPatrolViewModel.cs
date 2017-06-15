@@ -29,15 +29,6 @@ namespace GuardTourSystem.ViewModel
         public DelegateCommand CClearRecord { get; set; }
         public DelegateCommand CPrint { get; set; }
 
-        //private bool isBusy;
-        //public bool IsBusy
-        //{
-        //    get { return isBusy; }
-        //    set
-        //    {
-        //        SetProperty(ref this.isBusy, value);
-        //    }
-        //}
 
         public ObservableCollection<RawData> RawDatas { get; set; } // 巡检机数据
 
@@ -64,21 +55,18 @@ namespace GuardTourSystem.ViewModel
         {
             InfoVM.Clear();
             RawDatas.Clear();
-            //IsBusy = true;
 
             InfoVM.Append(LanKey.PatrolDataReading);
             var recordBundle = await AppSerialPortUtil.GetAllPatrolRecord();
             if (!recordBundle.Check())
             {
                 InfoVM.Append(LanKey.PatrolDataReadFail, recordBundle.Result.ToLanString());
-                //IsBusy = false;
                 return;
             }
             var patrolRecords = (List<PatrolRecord>)recordBundle.Value;
             if (patrolRecords.Count == 0)
             {
                 InfoVM.Append(LanKey.PatrolDataEmptyData);
-                //IsBusy = false;
                 return;
             }
             InfoVM.Append(LanKey.PatrolDataReadSuccess);
@@ -95,7 +83,6 @@ namespace GuardTourSystem.ViewModel
             if (!await HandleDeviceData(deviceRecords))
             {
                 //处理数据失败,不删除巡检机数据
-                //IsBusy = false;
                 return;
             }
 
@@ -109,7 +96,6 @@ namespace GuardTourSystem.ViewModel
                     LanLoader.Load(LanKey.DeviceTestVerifyTimeSuccess) :
                     LanLoader.Load(LanKey.DeviceTestVerifyTimeFail, setTimeResult.Result.ToLanString()));
 
-            //IsBusy = false;
         }
 
         /// <summary>
@@ -135,19 +121,19 @@ namespace GuardTourSystem.ViewModel
             IRawDataService rds = new RawDataBLL();
             IDutyService ids = new DutyBLL();
             // 生成并保存原始数据
+            AppStatusViewModel.Instance.ShowProgress(true, "正在处理巡检数据...");
+            InfoVM.Append("正在处理巡检数据...");
             var rawDatas = await Task.Run(() => { return rds.GenerateRawData(deviceDatas); });
             //更新UI
-            foreach (var raw in rawDatas)
+            await Task.Run(() =>
             {
-                RawDatas.Add(raw);
-            }
+               foreach (var raw in rawDatas)
+               {
+                   RawDatas.Add(raw);
+               }
+            });
 
-            // 如果有原始数据,更新考核表
-            InfoVM.Append(LanKey.PatrolDataDutyUpdating);
-            var updateResult = ids.UpdateDuty(rawDatas);
-            InfoVM.Append(updateResult ? LanKey.PatrolDataDutyUpdateSuccess : LanKey.PatrolDataDutyUpdateFail);
-
-            if (!saveResult || !updateResult)
+            if (!saveResult)
             {
                 InfoVM.Append(LanKey.PatrolDataHandleFail);
             }
@@ -155,6 +141,16 @@ namespace GuardTourSystem.ViewModel
             {
                 InfoVM.Append(LanKey.PatrolDataHandleSuccess);
             }
+
+
+            // 如果有原始数据,更新考核表
+            InfoVM.Append(LanKey.PatrolDataDutyUpdating);
+            var updateResult = await Task.Run(() => { return ids.UpdateDuty(rawDatas); });
+            InfoVM.Append(updateResult ? LanKey.PatrolDataDutyUpdateSuccess : LanKey.PatrolDataDutyUpdateFail);
+
+         
+            AppStatusViewModel.Instance.ShowCompany();
+
             return saveResult && updateResult;
         }
 

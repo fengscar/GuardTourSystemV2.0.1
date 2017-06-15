@@ -9,15 +9,24 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <telerik:RadTabControl TabStripPlacement="Bottom">
+    <telerik:RadTabControl Name="TabControl" TabStripPlacement="Bottom">
         <telerik:RadTabControl.Items>
-            <telerik:RadTabItem Header="表格" Height="30" Width="100">
+            <telerik:RadTabItem
+                Width="100"
+                Height="30"
+                Header="表格">
                 <chart:WorkerGridControl DataContext="{Binding WorkerCountInfos}" />
             </telerik:RadTabItem>
-            <telerik:RadTabItem Header="柱形图" Height="30" Width="100">
+            <telerik:RadTabItem
+                Width="100"
+                Height="30"
+                Header="柱形图">
                 <chart:WorkerBarControl DataContext="{Binding BarViewModel}" />
             </telerik:RadTabItem>
-            <telerik:RadTabItem Header="饼图" Height="30" Width="100">
+            <telerik:RadTabItem
+                Width="100"
+                Height="30"
+                Header="饼图">
                 <chart:WorkerPieControl DataContext="{Binding PieViewModel}" />
             </telerik:RadTabItem>
         </telerik:RadTabControl.Items>

@@ -11,7 +11,16 @@ namespace GuardTourSystem.Utils
 {
     enum LanKey
     {
-        APP_NAME, COMPANY_NAME,
+         APP_NAME,
+        APP_VERSION,
+        APP_LANGUAGE,
+        APP_LOGINUSER,
+        COMPANY_NAME,
+        COMPANY_TEL,
+        COMPANY_ADDRESS,
+        COMPANY_WEBSITE,
+        COMPANY_COPYRIGHT,
+
         CANCEL,
         LOGIN_WINDOW, LOGIN_BUTTON, LOGIN_DEFAULT_PASSWORD,
         SETTING_WINDOW, SETTING_SELECT_LANGUAGE,
@@ -198,6 +207,8 @@ namespace GuardTourSystem.Utils
         FilterValueEmpty,
         FilterValueNull,
 
+        WorkerCountInfo,
+        RouteCountInfo,
 
 
 

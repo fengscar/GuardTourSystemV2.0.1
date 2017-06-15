@@ -20,33 +20,33 @@
         Style="{StaticResource ContentGridView}">
         <telerik:RadGridView.Columns>
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="1.5*"
                 DataMemberBinding="{Binding PlaceTime, StringFormat=yyyy/MM/dd HH:mm}"
                 Header="{DynamicResource PatrolTime}"
                 IsFilterable="False" />
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="1*"
                 CellStyle="{StaticResource GridViewCardCell}"
                 DataMemberBinding="{Binding Device}"
                 Header="{DynamicResource DeviceID}" />
             <!--  巡检员信息  -->
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="1*"
                 DataMemberBinding="{Binding Worker.Name}"
                 Header="{DynamicResource Worker}" />
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="1*"
                 CellStyle="{StaticResource GridViewCardCell}"
                 DataMemberBinding="{Binding Worker.Card}"
                 Header="{DynamicResource WorkerCard}"
                 IsFilterable="False" />
             <!--  线路+地点信息  -->
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="1*"
                 DataMemberBinding="{Binding RouteName}"
                 Header="{DynamicResource Route}" />
             <telerik:GridViewDataColumn
-                Width="Auto"
+                Width="0.75*"
                 DataMemberBinding="{Binding Place.Order, Converter={StaticResource ZeroToEmptyConverter}}"
                 Header="{DynamicResource PlaceOrder}" />
             <telerik:GridViewDataColumn

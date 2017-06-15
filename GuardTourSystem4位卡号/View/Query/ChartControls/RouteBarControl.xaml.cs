@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardTourSystem.Print;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,16 @@ namespace GuardTourSystem.View.Query.ChartControls
     /// <summary>
     /// RouteBarControl.xaml 的交互逻辑
     /// </summary>
-    public partial class RouteBarControl : UserControl
+    public partial class RouteBarControl : UserControl, IPrintable
     {
         public RouteBarControl()
         {
             InitializeComponent();
+        }
+
+        public void PrintView()
+        {
+            Printer.PrintVisual(this.RouteBarChart);
         }
     }
 }

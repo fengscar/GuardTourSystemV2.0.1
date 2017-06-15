@@ -111,11 +111,18 @@ namespace GuardTourSystem.Print
         /// 打印控件
         /// </summary>
         /// <param name="element"></param>
-        public void PrintVisual(FrameworkElement element)
+        public static void PrintVisual(FrameworkElement element,
+            PageOrientation ori = PageOrientation.Landscape,
+            PageMediaSizeName pageSize = PageMediaSizeName.ISOA4)
         {
             var printDialog = new PrintDialog();
-            printDialog.PrintVisual(element, "");
-            printDialog.ShowDialog();
+            printDialog.PrintTicket.PageOrientation = ori;
+            printDialog.PrintTicket.PageMediaSize = new PageMediaSize(pageSize);
+            printDialog.PrintTicket.PageScalingFactor = 90;
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(element, "");
+            };
         }
     }
 }
