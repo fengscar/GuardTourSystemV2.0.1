@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardTourSystem.Utils;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,9 +27,16 @@ namespace GuardTourSystem.View
             InitializeComponent();
         }
 
-        //private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Process.Start(new ProcessStartInfo(this.HyperLink.Content.ToString()));
-        //}
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(this.HyperLink.Content.ToString()));
+            }
+            catch (Exception ex)
+            {
+                DBug.w(ex);
+            }
+        }
     }
 }
