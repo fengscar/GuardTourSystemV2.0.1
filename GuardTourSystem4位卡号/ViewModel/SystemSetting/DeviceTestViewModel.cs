@@ -122,14 +122,14 @@ namespace GuardTourSystem.ViewModel
             }
         }
 
-        //是否将巡检机设置为 静音模式
-        private bool muteMode;
-        public bool MuteMode
+        //工作模式 0:振动/蜂鸣  1: 静音
+        private int notifyMode;
+        public int NotifyMode
         {
-            get { return muteMode; }
+            get { return notifyMode; }
             set
             {
-                SetProperty(ref this.muteMode, value);
+                SetProperty(ref this.notifyMode, value);
             }
         }
 
@@ -158,6 +158,7 @@ namespace GuardTourSystem.ViewModel
         public DeviceTestViewModel()
         {
             SerialPortManager.Instance.AddListener(this);
+            NotifyMode = 0;
 
             this.InfoVM = new InfoViewModel();
             this.Title = "巡检机管理";
@@ -176,11 +177,23 @@ namespace GuardTourSystem.ViewModel
 
 
         //切换 蜂鸣器/振动 与静音 
-        private void SetNotifyType()
+        private async void SetNotifyType()
         {
             InfoVM.Clear();
-            InfoVM.Append("正在设置机号...");
-
+            InfoVM.Append("正在将巡检机工作模式改为:" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
+            var setNotifyMode = await SerialPortUtil.Write(
+                new SetNotifyType(NotifyMode == 0 ?
+                                     KaiheSerialPortLibrary.SetNotifyType.NotifyType.Buzzer :
+                                     KaiheSerialPortLibrary.SetNotifyType.NotifyType.Mute));
+            if (!setNotifyMode.Check())
+            {
+                InfoVM.Append("更改巡检机工作模式失败:" + setNotifyMode.ResultInfo);
+                return;
+            }
+            else
+            {
+                InfoVM.Append("巡检机工作模式更改成功,当前模式为 :" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
+            }
         }
 
         private async void SetDeviceID()

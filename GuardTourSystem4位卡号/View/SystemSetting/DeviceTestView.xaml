@@ -16,6 +16,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*" />
@@ -77,7 +78,7 @@
         <Border
             Grid.Row="1"
             Grid.ColumnSpan="1"
-            Margin="10"
+            Margin="3"
             Padding="5"
             BorderBrush="AliceBlue"
             BorderThickness="1"
@@ -90,7 +91,7 @@
                     VerticalAlignment="Center"
                     FontSize="16"
                     MaxLength="2"
-                    Text="{Binding DeviceID,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+                    Text="{Binding DeviceID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 <Button
                     Width="150"
                     Command="{Binding CSetDeviceID}"
@@ -98,14 +99,39 @@
                     Style="{StaticResource BlueBtn}" />
             </UniformGrid>
         </Border>
-
+        <Border
+            Grid.Row="2"
+            Grid.ColumnSpan="1"
+            Margin="3"
+            Padding="5"
+            BorderBrush="AliceBlue"
+            BorderThickness="1"
+            CornerRadius="3">
+            <UniformGrid Columns="2">
+                <ComboBox
+                    Width="150"
+                    Margin="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    SelectedIndex="{Binding NotifyMode}">
+                    <ComboBoxItem Content="振动或蜂鸣" />
+                    <ComboBoxItem Content="静音" />
+                </ComboBox>
+                <Button
+                    Width="150"
+                    Command="{Binding CSetNotifyType}"
+                    Content="设置工作模式"
+                    Style="{StaticResource BlueBtn}" />
+            </UniformGrid>
+        </Border>
         <view:CustomInfoControl
-            Grid.RowSpan="2"
+            Grid.RowSpan="3"
             Grid.Column="1"
             DataContext="{Binding InfoVM}" />
 
         <UniformGrid
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.ColumnSpan="2"
             Margin="10"
             Columns="1">

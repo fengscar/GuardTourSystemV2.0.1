@@ -97,7 +97,6 @@ namespace GuardTourSystem.ViewModel
             dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageClearPatrolData), InitPopupWindowCommand(PopupEnum.ClearPatrolData), GetIconPath("ClearPatrolData"), needPermission));
             dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageImportPatrolData), InitPopupWindowCommand(PopupEnum.ImportPatrolData), GetIconPath("ImportPatrolData")));
             dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageExportPatrolData), InitPopupWindowCommand(PopupEnum.ExportPatrolData), GetIconPath("ExportPatrolData")));
-            dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageSharePatrolData), InitPopupWindowCommand(PopupEnum.SharePatrolData), GetIconPath("SharePatrolData")));
             dataMenu.SubItems = dataMenuItems;
             //载入系统管理菜单
             systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemInit), InitPopupWindowCommand(PopupEnum.SystemInit), GetIconPath("SystemInit"), needPermission));

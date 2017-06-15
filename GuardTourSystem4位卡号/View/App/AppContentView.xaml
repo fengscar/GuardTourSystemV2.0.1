@@ -72,13 +72,6 @@
                 </view:CustomPopupWindowAction.WindowContent>
             </view:CustomPopupWindowAction>
         </prism:InteractionRequestTrigger>
-        <prism:InteractionRequestTrigger SourceObject="{Binding PopupSharePatrol}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
-                    <view:SharePatrolDataView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
 
     <Border
