@@ -37,19 +37,19 @@
             Margin="50,0,0,0">
             <TextBlock
                 FontSize="18"
-                Text="{Binding SoftwareName}"
+                Text="{Binding AppName}"
                 TextWrapping="Wrap" />
             <TextBlock
                 FontSize="18"
-                Text="{Binding SoftwareVersion}"
+                Text="{Binding AppVersion}"
                 TextWrapping="Wrap" />
-            <!--<TextBlock
+            <TextBlock
                 FontSize="18"
-                Text="{Binding CopyrightInfo}"
-                TextWrapping="Wrap" />-->
+                Text="{Binding CompanyCopyright}"
+                TextWrapping="Wrap" />
         </StackPanel>
 
-        <!--<StackPanel
+        <StackPanel
             Grid.Row="1"
             Grid.Column="1"
             Margin="50,50,0,0">
@@ -72,7 +72,7 @@
             </TextBlock>
 
 
-        </StackPanel>-->
+        </StackPanel>
 
 
         <Button
