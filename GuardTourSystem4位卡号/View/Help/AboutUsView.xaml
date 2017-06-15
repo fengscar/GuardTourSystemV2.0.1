@@ -1,0 +1,86 @@
+﻿<view:InteractionRequestAwareUserControl
+    x:Class="GuardTourSystem.View.AboutUsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    Width="450"
+    Height="Auto"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="3" />
+            </Style>
+        </Grid.Resources>
+        <Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="100"
+            Height="100"
+            Margin="10"
+            Source="/Resource/Img/Logo256.png" />
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="50,0,0,0">
+            <TextBlock
+                FontSize="18"
+                Text="{Binding SoftwareName}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                FontSize="18"
+                Text="{Binding SoftwareVersion}"
+                TextWrapping="Wrap" />
+            <!--<TextBlock
+                FontSize="18"
+                Text="{Binding CopyrightInfo}"
+                TextWrapping="Wrap" />-->
+        </StackPanel>
+
+        <!--<StackPanel
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="50,50,0,0">
+            <TextBlock
+                xml:space="preserve"
+                Text="{Binding CompanyName}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                xml:space="preserve"
+                Text="{Binding CompanyAddress}"
+                TextWrapping="Wrap" />
+            <TextBlock
+                xml:space="preserve"
+                Text="{Binding CompanyTel}"
+                TextWrapping="Wrap" />
+            <TextBlock>
+                <Hyperlink Click="Hyperlink_Click">
+                    <Label x:Name="HyperLink" Content="{Binding CompanyWebsite}" />
+                </Hyperlink>
+            </TextBlock>
+
+
+        </StackPanel>-->
+
+
+        <Button
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Width="150"
+            Margin="10"
+            HorizontalAlignment="Center"
+            Style="{StaticResource CloseBtn}" />
+    </Grid>
+</view:InteractionRequestAwareUserControl>

@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.AppStatusControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:GuardTourSystem.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    xmlns:vm="clr-namespace:GuardTourSystem.ViewModel"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <cv:UserToStringConverter x:Key="UserConverter" />
+        <cv:BoolToVisibleConverter x:Key="VisibleConverter" />
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Light" />
+            <Setter Property="Margin" Value="20,0,0,0" />
+        </Style>
+    </UserControl.Resources>
+    <Grid Height="30">
+        <!--  公司信息  -->
+        <Grid
+            VerticalAlignment="Stretch"
+            Background="{StaticResource FlatBlueSolidBrush}"
+            DataContext="{Binding CompanyVM}"
+            Visibility="{Binding IsShow, Converter={StaticResource VisibleConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="{Binding User, Converter={StaticResource UserConverter}}" />
+            <!--<Label Grid.Column="1" Content="{DynamicResource COMPANY_NAME}" />-->
+            <!--<Label
+                Grid.Column="1"
+                Margin="0,0,20,0"
+                Content="{Binding CopyRight}" />-->
+        </Grid>
+        <!--  进度条  -->
+        <view:StatuProgressView VerticalAlignment="Stretch" DataContext="{Binding ProgressVM}" />
+        <!--  操作提示  -->
+        <Grid
+            VerticalAlignment="Stretch"
+            Background="{StaticResource FlatGreenSolidBrush}"
+            DataContext="{Binding InfoVM}"
+            Visibility="{Binding IsShow, Converter={StaticResource VisibleConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="{Binding Info}" />
+        </Grid>
+        <!--  错误提示  -->
+        <Grid
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource FlatRedSolidBrush}"
+            DataContext="{Binding ErrorVM}"
+            Visibility="{Binding IsShow, Converter={StaticResource VisibleConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="{Binding Error}" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,66 @@
+﻿<view:InteractionRequestAwareUserControl
+    x:Class="GuardTourSystem.View.ClearPatrolDataView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Util="clr-namespace:GuardTourSystem.Utils"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    d:DesignWidth="300"
+    FocusManager.FocusedElement="{Binding ElementName=StartDatePicker}"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Content="请选择要进行巡检数据清理的时间段" Style="{StaticResource TitleLabel}" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="5,10"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Label
+                Margin="0,0,10,0"
+                Content="开始日期"
+                Style="{StaticResource ContentLabel}" />
+            <telerik:RadDateTimePicker
+                x:Name="StartDatePicker"
+                Width="120"
+                SelectedDate="{Binding DateQueryInfo.Begin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource RadDatePicker}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            Margin="5,10"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Label
+                Margin="0,0,10,0"
+                Content="结束日期"
+                Style="{StaticResource ContentLabel}" />
+            <telerik:RadDateTimePicker
+                Width="120"
+                SelectedDate="{Binding DateQueryInfo.End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource RadDatePicker}" />
+        </StackPanel>
+        <Label
+            Grid.Row="3"
+            Content="{Binding ErrorInfo}"
+            Style="{StaticResource AlarmLabel}" />
+        <UniformGrid
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="0,10"
+            Columns="2">
+            <Button Margin="10" Style="{StaticResource ConfirmBtn}" />
+            <Button Margin="10" Style="{StaticResource CloseBtn}" />
+        </UniformGrid>
+    </Grid>
+</view:InteractionRequestAwareUserControl>

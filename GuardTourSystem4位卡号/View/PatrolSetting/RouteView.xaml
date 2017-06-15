@@ -1,0 +1,178 @@
+﻿<view:ShowContentView
+    x:Class="GuardTourSystem.View.RouteView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:GuardTourSystem.Model"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    xmlns:vm="clr-namespace:GuardTourSystem.ViewModel"
+    d:DesignWidth="1000"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding RouteInfoPopupRequest, Mode=OneWay}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:RouteInfoView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PlaceInfoPopupRequest, Mode=OneWay}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:PlaceInfoView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="0.5">
+            <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="1" Orientation="Horizontal">
+                    <Button
+                        Grid.Row="0"
+                        Width="80"
+                        Command="{Binding CAddRoute}"
+                        Content="{DynamicResource RouteSettingAddRoute}"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button
+                        Grid.Row="0"
+                        Width="80"
+                        Command="{Binding CAddPlace}"
+                        Content="{DynamicResource RouteSettingAddPlace}"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button
+                        Width="80"
+                        Command="{Binding CUpdate}"
+                        Content="{DynamicResource Edit}"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button
+                        Width="80"
+                        Command="{Binding CDelete}"
+                        Content="{DynamicResource Delete}"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button Command="{Binding CShiftUp}" Style="{StaticResource BlueBtn}">
+                        <iconPacks:PackIconOcticons
+                            Width="30"
+                            Height="15"
+                            Kind="ArrowUp" />
+                    </Button>
+
+                    <Button Command="{Binding CShiftDown}" Style="{StaticResource BlueBtn}">
+                        <iconPacks:PackIconOcticons
+                            Width="30"
+                            Height="15"
+                            Kind="ArrowDown" />
+                    </Button>
+
+                    <!--<Button
+                        Width="110"
+                        Command="{Binding CSendMap}"
+                        Content="{DynamicResource RouteSettingSendToDevice}"
+                        Style="{StaticResource BlueBtn}" />-->
+                </StackPanel>
+
+                <telerik:RadTreeListView
+                    x:Name="TreeListView"
+                    Grid.Row="1"
+                    Margin="5"
+                    AutoExpandItems="True"
+                    AutoGenerateColumns="False"
+                    CanUserSortColumns="False"
+                    FontSize="14"
+                    FrozenColumnCount="4"
+                    GroupRenderMode="Flat"
+                    IsFilteringAllowed="True"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Routes}"
+                    RowIndicatorVisibility="Collapsed"
+                    RowStyle="{DynamicResource TreeListViewRowStyle}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible"
+                    SelectedItem="{Binding SelectItem}"
+                    ShowColumnFooters="False">
+                    <telerik:RadTreeListView.ChildTableDefinitions>
+                        <telerik:TreeListViewTableDefinition ItemsSource="{Binding Places}" />
+                    </telerik:RadTreeListView.ChildTableDefinitions>
+                    <telerik:RadTreeListView.Columns>
+                        <telerik:GridViewDataColumn
+                            Width="Auto"
+                            DataMemberBinding="{Binding RouteName}"
+                            FilterMemberPath="RouteName"
+                            Header="{DynamicResource Route}" />
+                        <telerik:GridViewDataColumn
+                            Width="Auto"
+                            DataMemberBinding="{Binding Order}"
+                            FilterMemberPath="Order"
+                            Header="{DynamicResource PlaceOrder}" />
+                        <telerik:GridViewDataColumn
+                            Width="Auto"
+                            CellStyle="{StaticResource GridViewCardCell}"
+                            DataMemberBinding="{Binding Card}"
+                            Header="{DynamicResource Card}" />
+                        <telerik:GridViewDataColumn
+                            Width="*"
+                            DataMemberBinding="{Binding Name}"
+                            Header="{DynamicResource PlaceName}" />
+                    </telerik:RadTreeListView.Columns>
+                </telerik:RadTreeListView>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FlowDirection="RightToLeft"
+                    Orientation="Horizontal">
+                    <Button Style="{StaticResource CloseBtn}" />
+                    <Button Click="Export_Button_Click" Style="{StaticResource ExportExcelBtn}" />
+                    <Button Style="{StaticResource PrintBtn}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="0,0.5,0.5,0.5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <view:BatchAddControl
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    DataContext="{Binding BatchAddVM}" />
+                <UniformGrid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="Auto"
+                    HorizontalAlignment="Center"
+                    Columns="2">
+                    <ComboBox
+                        Width="120"
+                        Margin="3"
+                        DisplayMemberPath="RouteName"
+                        ItemsSource="{Binding Routes}"
+                        SelectedItem="{Binding BatchAddRoute}" />
+                    <Button
+                        Width="100"
+                        Command="{Binding BatchAddVM.CBatchAdd}"
+                        Content="{DynamicResource BatchAdd}"
+                        Style="{StaticResource BlueBtn}" />
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</view:ShowContentView>

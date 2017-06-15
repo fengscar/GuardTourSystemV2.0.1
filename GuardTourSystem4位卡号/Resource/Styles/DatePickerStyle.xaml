@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+    <Style x:Key="CalendarStyle" TargetType="telerik:RadCalendar">
+        <Setter Property="AreWeekNumbersVisible" Value="False" />
+    </Style>
+
+    <Style x:Key="RadDatePicker" TargetType="telerik:RadDateTimePicker">
+        <Setter Property="CalendarStyle" Value="{StaticResource CalendarStyle}" />
+        <Setter Property="InputMode" Value="DatePicker" />
+    </Style>
+</ResourceDictionary>

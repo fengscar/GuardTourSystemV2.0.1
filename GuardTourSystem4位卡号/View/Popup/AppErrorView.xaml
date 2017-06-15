@@ -1,0 +1,77 @@
+﻿<view:InteractionRequestAwareUserControl
+    x:Class="GuardTourSystem.View.AppErrorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    mc:Ignorable="d">
+    <Grid Width="600" Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+        </Grid.Resources>
+        <!--<Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="100"
+            Height="100"
+            Margin="10"
+            Source="/Resource/Img/Logo256.png" />-->
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            xml:space="preserve"
+            FontSize="18">
+        非常抱歉,系统运行中出现错误。
+        您可以忽略错误并尝试继续运行,也可以关闭程序并联系我们。
+        以下是错误信息:
+        </TextBlock>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Height="250">
+            <TextBox
+                FontSize="11"
+                IsReadOnly="True"
+                Text="{Binding ErrorInfo}"
+                TextWrapping="Wrap" />
+        </ScrollViewer>
+        <!--<TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            xml:space="preserve">
+        如果多次出现该错误,请联系我们,非常感谢您的反馈。
+
+        邮箱:     287426496@qq.com
+        电话:     0591-83361802、83332624
+        福州凯和电子
+        </TextBlock>-->
+        <UniformGrid
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Columns="2">
+            <Button
+                Width="100"
+                Content="尝试继续运行"
+                Style="{StaticResource ConfirmBtn}" />
+            <Button
+                Width="100"
+                Content="关闭程序"
+                Style="{StaticResource CloseBtn}" />
+        </UniformGrid>
+    </Grid>
+</view:InteractionRequestAwareUserControl>

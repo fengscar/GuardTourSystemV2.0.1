@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.CustomInfoControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Border BorderBrush="#bdc3c7" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                Background="#ecf0f1">
+                <Label Content="{Binding Title}" Style="{StaticResource TitleLabel}" />
+            </StackPanel>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <TextBlock
+                    FontSize="14"
+                    Text="{Binding Result}"
+                    TextWrapping="Wrap" />
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,110 @@
+﻿<view:ShowContentView
+    x:Class="GuardTourSystem.View.RegularView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:GuardTourSystem.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selector="clr-namespace:GuardTourSystem.Selector"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    d:DesignHeight="300"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converter:FrequenceWorkerToStringConverter x:Key="WorkerNameConverter" />
+        <converter:BoolToVisibleConverter x:Key="VisibleConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" />
+        <DataGrid
+            x:Name="WorkerDataGrid"
+            Grid.Row="1"
+                      Style="{StaticResource ContentDataGrid}"
+
+            ItemsSource="{Binding RegularItems}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Frequence.RouteName}"
+                    Header="巡逻线路"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Frequence.Name}"
+                    Header="班次名称"
+                    IsReadOnly="True" />
+                <!--<DataGridComboBoxColumn
+                    Width="*"
+                    Header="巡检员"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding Workers}"
+                    SelectedItemBinding="{Binding Frequence.Worker, Converter={StaticResource WorkerNameConverter}}" />-->
+                <!--  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}"  -->
+                <DataGridTemplateColumn
+                    Width="*"
+                    Header="巡检员"
+                    IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                DisplayMemberPath="Name"
+                                ItemsSource="{Binding Workers}"
+                                SelectedItem="{Binding Frequence.Worker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding DataChanged, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    Width="5*"
+                    Header="排班"
+                    IsReadOnly="True" HeaderTemplate="{DynamicResource RegularHeaderTemplate}">
+                    <!--<DataGridTemplateColumn.CellTemplateSelector>
+                    <selector:FrequenceSelector IrregularTemplate="{StaticResource IrregularTemplate}" RegularTemplate="{StaticResource RegularTemplate}" />
+                </DataGridTemplateColumn.CellTemplateSelector>-->
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                        
+                        	
+                        		   <view:RegularSelectControl DataContext="{Binding WeekSelectViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              
+                        	
+                         
+                     
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel
+            Grid.Row="2"
+            FlowDirection="RightToLeft"
+            Orientation="Horizontal">
+            <Button
+                Grid.Row="2"
+                Width="200"
+                HorizontalAlignment="Right"
+                Style="{StaticResource CloseBtn}" />
+            <Button
+                Width="200"
+                Command="{Binding CCancel}"
+                Content="撤销修改"
+                Style="{StaticResource BlueBtn}" />
+            <Button
+                Width="200"
+                Command="{Binding CSave}"
+                Content="保存修改"
+                Style="{StaticResource BlueBtn}" />
+        </StackPanel>
+    </Grid>
+</view:ShowContentView>

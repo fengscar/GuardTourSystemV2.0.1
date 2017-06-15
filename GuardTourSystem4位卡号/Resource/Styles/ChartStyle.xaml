@@ -1,0 +1,62 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate
+        xmlns:selector="clr-namespace:GuardTourSystem.Selector"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        x:Key="WorkerCountGridTemplate">
+        <DataGrid ItemsSource="{Binding WorkerCountInfos}" Style="{StaticResource ContentDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding CountName}"
+                    Header="巡检员" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding DutyCount}"
+                    Header="应巡次数" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding PatrolCount}"
+                    Header="实巡次数" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding MissCount}"
+                    Header="漏巡次数" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding PatrolPercent, StringFormat=' {0:N2} %'}"
+                    Header="出勤率" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding MissPercent, StringFormat={}{0:N2}%}"
+                    Header="缺勤率" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DataTemplate>
+    <DataTemplate
+        xmlns:selector="clr-namespace:GuardTourSystem.Selector"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        x:Key="WorkerCountPieTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ComboBox Grid.Row="0" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate
+        xmlns:selector="clr-namespace:GuardTourSystem.Selector"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        x:Key="WorkerCountBarTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ComboBox Grid.Row="0" />
+        </Grid>
+    </DataTemplate>
+    <Style x:Key="ColorPieStyle" TargetType="Path">
+        <Setter Property="Fill" Value="{Binding DataItem.Brush}" />
+    </Style>
+</ResourceDictionary>

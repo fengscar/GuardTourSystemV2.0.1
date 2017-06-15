@@ -1,0 +1,69 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.Query.ChartControls.RouteBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <Grid>
+        <telerik:RadCartesianChart>
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis />
+            </telerik:RadCartesianChart.HorizontalAxis>
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis />
+            </telerik:RadCartesianChart.VerticalAxis>
+            <telerik:RadCartesianChart.Series>
+                <telerik:BarSeries
+                    CategoryBinding="Label"
+                    ItemsSource="{Binding BarDatas}"
+                    ShowLabels="True"
+                    ValueBinding="Value">
+                    <telerik:BarSeries.LabelDefinitions>
+                        <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <telerik:ChartSeriesLabelDefinition.Template>
+                                <DataTemplate>
+                                    <TextBlock
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding DataItem.Value}" />
+                                </DataTemplate>
+                            </telerik:ChartSeriesLabelDefinition.Template>
+                        </telerik:ChartSeriesLabelDefinition>
+                    </telerik:BarSeries.LabelDefinitions>
+                    <telerik:BarSeries.PointTemplate>
+                        <DataTemplate>
+                            <Rectangle Fill="{StaticResource FlatGreenSolidBrush}" />
+                        </DataTemplate>
+                    </telerik:BarSeries.PointTemplate>
+                </telerik:BarSeries>
+                <telerik:BarSeries
+                    CategoryBinding="Label"
+                    ItemsSource="{Binding BarDatas}"
+                    ShowLabels="True"
+                    ValueBinding="MissValue">
+                    <telerik:BarSeries.LabelDefinitions>
+                        <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <telerik:ChartSeriesLabelDefinition.Template>
+                                <DataTemplate>
+                                    <TextBlock
+                                        FontSize="15"
+                                        Foreground="Black"
+                                        Text="{Binding DataItem.MissValue}" />
+                                </DataTemplate>
+                            </telerik:ChartSeriesLabelDefinition.Template>
+                        </telerik:ChartSeriesLabelDefinition>
+                    </telerik:BarSeries.LabelDefinitions>
+                    <telerik:BarSeries.PointTemplate>
+                        <DataTemplate>
+                            <Rectangle Fill="{StaticResource FlatRedSolidBrush}" />
+                        </DataTemplate>
+                    </telerik:BarSeries.PointTemplate>
+                </telerik:BarSeries>
+            </telerik:RadCartesianChart.Series>
+        </telerik:RadCartesianChart>
+    </Grid>
+</UserControl>

@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.Query.ChartControls.WorkerChart"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:chart="clr-namespace:GuardTourSystem.View.Query.ChartControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <telerik:RadTabControl TabStripPlacement="Bottom">
+        <telerik:RadTabControl.Items>
+            <telerik:RadTabItem Header="表格" Height="30" Width="100">
+                <chart:WorkerGridControl DataContext="{Binding WorkerCountInfos}" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="柱形图" Height="30" Width="100">
+                <chart:WorkerBarControl DataContext="{Binding BarViewModel}" />
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="饼图" Height="30" Width="100">
+                <chart:WorkerPieControl DataContext="{Binding PieViewModel}" />
+            </telerik:RadTabItem>
+        </telerik:RadTabControl.Items>
+    </telerik:RadTabControl>
+</UserControl>

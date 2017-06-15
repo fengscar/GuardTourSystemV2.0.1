@@ -1,0 +1,19 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="APP_NAME">凱和電子智能巡檢管理系統V0.1</s:String>
+
+    <s:String x:Key="CANCEL">取消</s:String>
+
+
+    <s:String x:Key="LOGIN_WINDOW">用戶登錄</s:String>
+    <s:String x:Key="LOGIN_BUTTON">登錄</s:String>
+    <s:String x:Key="LOGIN_DEFAULT_PASSWORD">使用默認密碼</s:String>
+
+
+
+    <s:String x:Key="SETTING_WINDOW">系統設置</s:String>
+    <s:String x:Key="SETTING_SELECT_LANGUAGE">語言</s:String>
+
+</ResourceDictionary>

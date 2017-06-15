@@ -1,0 +1,112 @@
+﻿<view:InteractionRequestAwareUserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="GuardTourSystem.View.AlarmSettingView"
+    mc:Ignorable="d">
+	<Grid
+		Height="Auto"
+		Margin="20,20,20,0"
+		VerticalAlignment="Center">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Label
+			Grid.Row="0"
+			Content="将设置的闹钟"
+			Style="{StaticResource TitleLabel}" />
+		<Border
+			Grid.Row="1"
+			Padding="3"
+			BorderBrush="Black"
+			BorderThickness="0.75"
+			CornerRadius="3">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<ListView ItemTemplate="{DynamicResource AlarmItemStyle}" ItemsSource="{Binding Alarms}">
+					<ListView.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Width="400" />
+						</ItemsPanelTemplate>
+					</ListView.ItemsPanel>
+				</ListView>
+			</Grid>
+		</Border>
+		<telerik:RadExpander
+			x:Name="Expander"
+			Grid.Row="2"
+			Header="从班次载入"
+			Visibility="{Binding LoadFrequenceVisible}" Custom:ControlsHelper.HeaderFontSize="16" BorderBrush="{DynamicResource FlatBlueSolidBrush}" BorderThickness="1" Margin="5">
+			<Grid Margin="20,0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<ListView ItemTemplate="{DynamicResource FrequenceItemStyle}" ItemsSource="{Binding Frequences}" />
+				<Button
+					Grid.Row="1"
+					Width="100"
+					Margin="20,10,20,10"
+					HorizontalAlignment="Center"
+					Command="{Binding CLoadFrequenceAlarm}"
+					Content="载入"
+					Style="{DynamicResource BlueBtn}" />
+			</Grid>
+		</telerik:RadExpander>
+
+		<Label
+			Grid.Row="3"
+			Content="{Binding Info}"
+			Style="{StaticResource TitleLabel}" />
+		<Label
+			Grid.Row="4"
+			Content="{Binding ErrorInfo}"
+			Style="{StaticResource AlarmLabel}" />
+		<UniformGrid
+			Grid.Row="5"
+			Margin="5"
+			Columns="2">
+			<Button
+				Width="100"
+				Margin="10"
+				Content="设置闹钟"
+				Style="{StaticResource ConfirmBtn}" />
+
+			<Button
+				Width="100"
+				Margin="20,10,20,10"
+				Command="{Binding CClearAlarm}"
+				Content="清空闹钟"
+				Style="{DynamicResource BlueBtn}" />
+		</UniformGrid>
+
+		<UniformGrid
+			Grid.Row="6"
+			Margin="5"
+			Columns="1">
+			<Button
+				Margin="10"
+				Content="{StaticResource Close}"
+				Style="{StaticResource CloseBtn}" />
+		</UniformGrid>
+
+	</Grid>
+</view:InteractionRequestAwareUserControl>

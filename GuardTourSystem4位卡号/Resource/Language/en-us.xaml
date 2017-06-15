@@ -1,0 +1,139 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="APP_NAME">KaiHe GuardTourSystem V0.1</s:String>
+
+    <s:String x:Key="CANCEL">Cancel</s:String>
+
+    <s:String x:Key="LOGIN_WINDOW">User Login</s:String>
+    <s:String x:Key="LOGIN_BUTTON">Login</s:String>
+    <s:String x:Key="LOGIN_DEFAULT_PASSWORD">Use default password</s:String>
+
+
+    <s:String x:Key="SETTING_WINDOW">System Settings</s:String>
+    <s:String x:Key="SETTING_SELECT_LANGUAGE">Language</s:String>
+
+    <s:String x:Key="TEST_LED">LED</s:String>
+    <s:String x:Key="TEST_BUZZER">Buzzer</s:String>
+    <s:String x:Key="TEST_RECORD_COUNT">Record Count</s:String>
+
+    <!--  常用名词  -->
+    <s:String x:Key="RoleManager">Manager</s:String>
+    <s:String x:Key="RoleOperator">Operator</s:String>
+
+    <s:String x:Key="Device">Device</s:String>
+    <s:String x:Key="DeviceID">Device ID</s:String>
+
+    <s:String x:Key="Route">Route</s:String>
+    <s:String x:Key="RouteName">Route Name</s:String>
+
+    <s:String x:Key="Place">Place</s:String>
+    <s:String x:Key="PlaceOrder">Place Order</s:String>
+    <s:String x:Key="PlaceName">Place Name</s:String>
+    <s:String x:Key="PlaceCard">Place Card</s:String>
+
+    <s:String x:Key="Worker">Employee</s:String>
+    <s:String x:Key="WorkerName">Employee Name</s:String>
+    <s:String x:Key="WorkerCard">Employee Card</s:String>
+
+    <s:String x:Key="Event">Event</s:String>
+    <s:String x:Key="EventName">Event Name</s:String>
+    <s:String x:Key="EventCard">Event Card</s:String>
+
+    <s:String x:Key="Frequence">Frequence</s:String>
+    <s:String x:Key="FrequenceRegular">Weekly Frequence</s:String>
+    <s:String x:Key="FrequenceIrregular">Irregular Frequence</s:String>
+
+    <s:String x:Key="PatrolData">Patrol Data</s:String>
+    <s:String x:Key="PatrolTime">Patrol Time</s:String>
+
+    <s:String x:Key="Add">Add</s:String>
+    <s:String x:Key="Edit">Edit</s:String>
+    <s:String x:Key="Delete">Del</s:String>
+    <s:String x:Key="Query">Query</s:String>
+
+    <s:String x:Key="Confirm">Confirm</s:String>
+    <s:String x:Key="Cancel">Cancel</s:String>
+    <s:String x:Key="Close">Close</s:String>
+    <s:String x:Key="Quit">Quit</s:String>
+    <s:String x:Key="QueryDate">QueryDate</s:String>
+    <s:String x:Key="QueryDateTo">To</s:String>
+    <s:String x:Key="ExportExcel">Export Excel</s:String>
+    <s:String x:Key="Print">Print</s:String>
+
+
+
+    <s:String x:Key="SelectAll">Select All</s:String>
+
+    <s:String x:Key="Reading" xml:space="preserve">Reading </s:String>
+    <s:String x:Key="ReadingFail" xml:space="preserve"> 获取失败</s:String>
+    <s:String x:Key="ReadingSuccess" xml:space="preserve"> 获取成功</s:String>
+    <s:String x:Key="Success">Success</s:String>
+    <s:String x:Key="Fail">Fail</s:String>
+
+
+
+    <!--  主窗口 菜单  -->
+    <s:String x:Key="MenuQuery">Data Query</s:String>
+    <s:String x:Key="MenuQueryReadPatrol">Read Patrol-records</s:String>
+    <s:String x:Key="MenuQueryRawData">Patrol Records</s:String>
+    <s:String x:Key="MenuQueryReadHit">Read Hit-records</s:String>
+    <s:String x:Key="MenuQueryResult">Patrol Results</s:String>
+    <s:String x:Key="MenuQueryChart">Patrol Charts</s:String>
+    <s:String x:Key="MenuQueryReanalysis">Reanalysis</s:String>
+
+    <s:String x:Key="MenuPatrolSetting">Patrol Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingRoute">Routes Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingWorker">Workers Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingEvent">Events Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingFrequence">Frequences Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingRegular">Weekly Duty Setting</s:String>
+    <s:String x:Key="MenuPatrolSettingIrregular">Irregular Duty Setting</s:String>
+
+    <s:String x:Key="MenuDataManage">Data Manage</s:String>
+    <s:String x:Key="MenuDataManageBackupAndRecovery">Backup and Recorvy</s:String>
+    <s:String x:Key="MenuDataManageClearPatrolData">Clear Patrol Data</s:String>
+    <s:String x:Key="MenuDataManageImportPatrolData">Import Patrol Data</s:String>
+    <s:String x:Key="MenuDataManageExportPatrolData">Export Patrol Data</s:String>
+
+    <s:String x:Key="MenuSystem">System Manage</s:String>
+    <s:String x:Key="MenuSystemInit">System Data Init</s:String>
+    <s:String x:Key="MenuSystemUserManage">Operator Manage</s:String>
+    <s:String x:Key="MenuSystemModifyPassword">Modify Password</s:String>
+    <s:String x:Key="MenuSystemLanguage">Language</s:String>
+    <s:String x:Key="MenuSystemDeviceTest">Device Test</s:String>
+    <s:String x:Key="MenuSystemLog">System Log</s:String>
+
+    <s:String x:Key="MenuHelp">Help</s:String>
+    <s:String x:Key="MenuHelpHowToUse">How to Use</s:String>
+    <s:String x:Key="MenuHelpHowToStart">How to Start</s:String>
+    <s:String x:Key="MenuHelpAboutUs">About Us</s:String>
+
+    <!--  快捷菜单  -->
+    <s:String x:Key="ShortcutReceive">Receive</s:String>
+    <s:String x:Key="ShortcutRawdata">PatrolRecords</s:String>
+    <s:String x:Key="ShortcutResult">AssessResult</s:String>
+    <s:String x:Key="ShortcutCharts">Charts</s:String>
+    <s:String x:Key="ShortcutDeviceTest">Device Test</s:String>
+
+
+    <!--  数据查询-数据接收  -->
+    <s:String x:Key="PatrolDataRead">Receive</s:String>
+    <s:String x:Key="PatrolDataClear">Clear</s:String>
+    <s:String x:Key="PatrolDataReading">Receiving patrol datas...</s:String>
+    <s:String x:Key="PatrolDataReadFail">Receive patrol data failed : {0} !</s:String>
+    <s:String x:Key="PatrolDataReadSuccess">Receive patrol data success!</s:String>
+    <s:String x:Key="PatrolDataEmptyData">The device data is empty!</s:String>
+    <s:String x:Key="PatrolDataHandling">Handling data...</s:String>
+    <s:String x:Key="PatrolDataHandleFail">Handle data failed!</s:String>
+    <s:String x:Key="PatrolDataHandleSuccess">Handle data success!</s:String>
+    <s:String x:Key="PatrolDataSaveSuccess">Saved {0} patrol record!</s:String>
+    <s:String x:Key="PatrolDataSaveFail">Patrol record save failed!</s:String>
+    <s:String x:Key="PatrolDataDutyUpdating">Updating result...</s:String>
+    <s:String x:Key="PatrolDataDutyUpdateFail">Update result failed!</s:String>
+    <s:String x:Key="PatrolDataDutyUpdateSuccess">Update result success!</s:String>
+    <s:String x:Key="PatrolDataClearing">Clearing device data...</s:String>
+    <s:String x:Key="PatrolDataClearFail">Clear device data failed: {0}!</s:String>
+    <s:String x:Key="PatrolDataClearSuccess">Clear device data success!</s:String>
+</ResourceDictionary>

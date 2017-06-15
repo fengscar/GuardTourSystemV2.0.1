@@ -1,0 +1,31 @@
+﻿<ToggleButton
+    x:Class="GuardTourSystem.View.ImageButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="100"
+    d:DesignWidth="150"
+    Background="Transparent"
+    BorderThickness="0"
+    mc:Ignorable="d">
+    <StackPanel
+        x:Name="LayoutRoot"
+        Width="Auto"
+        HorizontalAlignment="Stretch"
+        Orientation="Vertical">
+        <Image
+            Width="40"
+            Height="40"
+            HorizontalAlignment="Center"
+            Source="{Binding ImagePath}"
+            Stretch="Fill" />
+        <TextBlock
+            Width="Auto"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="16"
+            Foreground="Black"
+            Text="{Binding Label}" />
+    </StackPanel>
+</ToggleButton>

@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GuardTourSystem.Settings" GeneratedClassName="AppSetting">
+  <Profiles />
+  <Settings>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zh-cn</Value>
+    </Setting>
+    <Setting Name="LoginUser" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SoftwareName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">巡检管理系统</Value>
+    </Setting>
+    <Setting Name="CopyrightInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(C) 2017 凯和电子</Value>
+    </Setting>
+    <Setting Name="CompanyName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">福州凯和电子有限公司</Value>
+    </Setting>
+    <Setting Name="CompanyAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">地址:  福建省福州市六一中路</Value>
+    </Setting>
+    <Setting Name="CompanyTel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">电话:  0591-88888888</Value>
+    </Setting>
+    <Setting Name="CompanyWebsite" Type="System.String" Scope="User">
+      <Value Profile="(Default)">www.kai-he.com</Value>
+    </Setting>
+    <Setting Name="SoftwareVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">版本号 2.1.1</Value>
+    </Setting>
+    <Setting Name="ShareFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AutoShare" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShareUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SharePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

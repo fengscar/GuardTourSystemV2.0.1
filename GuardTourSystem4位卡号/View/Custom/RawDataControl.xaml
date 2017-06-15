@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.RawDataControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converer="clr-namespace:GuardTourSystem.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    d:DesignHeight="300"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converer:CardTypeConverter x:Key="CardTypeConverter" />
+        <converer:ZeroToEmptyConverter x:Key="ZeroToEmptyConverter" />
+    </UserControl.Resources>
+    <telerik:RadGridView
+        x:Name="GridView"
+        ItemsSource="{Binding}"
+        RowStyle="{StaticResource GridViewRowStyle}"
+        Style="{StaticResource ContentGridView}">
+        <telerik:RadGridView.Columns>
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                DataMemberBinding="{Binding PlaceTime, StringFormat=yyyy/MM/dd HH:mm}"
+                Header="{DynamicResource PatrolTime}"
+                IsFilterable="False" />
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                CellStyle="{StaticResource GridViewCardCell}"
+                DataMemberBinding="{Binding Device}"
+                Header="{DynamicResource DeviceID}" />
+            <!--  巡检员信息  -->
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                DataMemberBinding="{Binding Worker.Name}"
+                Header="{DynamicResource Worker}" />
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                CellStyle="{StaticResource GridViewCardCell}"
+                DataMemberBinding="{Binding Worker.Card}"
+                Header="{DynamicResource WorkerCard}"
+                IsFilterable="False" />
+            <!--  线路+地点信息  -->
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                DataMemberBinding="{Binding RouteName}"
+                Header="{DynamicResource Route}" />
+            <telerik:GridViewDataColumn
+                Width="Auto"
+                DataMemberBinding="{Binding Place.Order, Converter={StaticResource ZeroToEmptyConverter}}"
+                Header="{DynamicResource PlaceOrder}" />
+            <telerik:GridViewDataColumn
+                Width="1*"
+                DataMemberBinding="{Binding Place.Name}"
+                Header="{DynamicResource PlaceName}" />
+            <telerik:GridViewDataColumn
+                Width="1*"
+                CellStyle="{StaticResource GridViewCardCell}"
+                DataMemberBinding="{Binding Place.Card}"
+                Header="{DynamicResource PlaceCard}"
+                IsFilterable="False" />
+            <!--  事件信息  -->
+            <telerik:GridViewDataColumn
+                Width="1*"
+                DataMemberBinding="{Binding Event.Name}"
+                Header="{DynamicResource EventName}" />
+            <telerik:GridViewDataColumn
+                Width="1*"
+                CellStyle="{StaticResource GridViewCardCell}"
+                DataMemberBinding="{Binding Event.Card}"
+                Header="{DynamicResource EventCard}"
+                IsFilterable="False" />
+        </telerik:RadGridView.Columns>
+    </telerik:RadGridView>
+</UserControl>

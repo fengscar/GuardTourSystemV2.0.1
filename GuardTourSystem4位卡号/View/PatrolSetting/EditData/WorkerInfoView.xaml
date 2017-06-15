@@ -1,0 +1,103 @@
+﻿<view:InteractionRequestAwareUserControl
+    x:Class="GuardTourSystem.View.WorkerInfoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:GuardTourSystem.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:v="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    FocusManager.FocusedElement="{Binding ElementName=WorkerNameTextBox}"
+    mc:Ignorable="d">
+    <Grid Margin="20,20,20,0" VerticalAlignment="Center">
+        <Grid.Resources>
+            <c:BoolReverseConverter x:Key="BoolReverser" />
+            <c:ReadDeviceIdVisibleConverter x:Key="VisibleConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Grid.Row="0"
+            Margin="5,5,5,0"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+            <Label
+                x:Name="NameLabel"
+                Width="100"
+                Content="巡检员姓名"
+                Style="{StaticResource ContentLabel}" />
+            <TextBox
+                x:Name="WorkerNameTextBox"
+                Width="150"
+                MaxLength="5"
+                MaxLines="1"
+                Style="{StaticResource ContentTextBox}"
+                Text="{Binding Worker.Name, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <!--<StackPanel
+            Grid.Row="1"
+            Margin="5,5,5,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Label
+                Width="80"
+                Content="钮号类型"
+                Style="{StaticResource ContentLabel}" />
+            <UniformGrid
+                Width="150"
+                Margin="3"
+                Columns="2">
+                <RadioButton
+                    VerticalAlignment="Center"
+                    Content="人员钮"
+                    IsChecked="{Binding Worker.IsDeviceCard, Converter={StaticResource BoolReverser}}" />
+                <RadioButton
+                    Margin="3,0,0,0"
+                    Content="设备号"
+                    IsChecked="{Binding Worker.IsDeviceCard}" />
+            </UniformGrid>
+        </StackPanel>-->
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="5,5,5,0"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+            <Label
+                Width="100"
+                Content="巡检员钮号"
+                Style="{StaticResource ContentLabel}" />
+            <!--<Label Content="巡检员钮号" Style="{StaticResource ContentLabel}" />-->
+            <TextBox
+                Width="150"
+                MaxLength="4"
+                Style="{StaticResource ContentTextBox}"
+                Text="{Binding Worker.Card, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
+
+        <Label
+            Grid.Row="2"
+            Content="{Binding ErrorInfo}"
+            Style="{StaticResource AlarmLabel}" />
+
+        <UniformGrid
+            Grid.Row="3"
+            Margin="0,20,0,0"
+            Columns="2">
+            <Button Margin="10" Style="{StaticResource ConfirmBtn}" />
+            <Button
+                Margin="10"
+                Content="取消"
+                Style="{StaticResource CloseBtn}" />
+        </UniformGrid>
+    </Grid>
+</view:InteractionRequestAwareUserControl>

@@ -1,0 +1,114 @@
+﻿<view:ShowContentView
+    x:Class="GuardTourSystem.View.WorkerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    xmlns:cv="clr-namespace:GuardTourSystem.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    xmlns:vm="clr-namespace:GuardTourSystem.ViewModel"
+    x:Name="usercontrol"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding WorkerInfoPopupRequest, Mode=OneWay}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:WorkerInfoView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="0.5">
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button
+                        Width="80"
+                        Command="{Binding CAddWorker}"
+                        Content="新增员工"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button
+                        Width="80"
+                        Command="{Binding CUpdateWorker}"
+                        Content="修改"
+                        Style="{StaticResource BlueBtn}" />
+                    <Button
+                        Width="80"
+                        Command="{Binding CDelWorker}"
+                        Content="删除"
+                        Style="{StaticResource BlueBtn}" />
+                    <!--<Button
+                        Width="110"
+                        Command="{Binding CSendWorkers}"
+                        Content="发送到巡检机"
+                        Style="{StaticResource BlueBtn}" />-->
+                </StackPanel>
+                <telerik:RadGridView
+                    x:Name="GridView"
+                    Grid.Row="1"
+                    ItemsSource="{Binding Workers}"
+                    RowStyle="{StaticResource GridViewRowStyle}"
+                    SelectedItem="{Binding Worker, Mode=TwoWay}"
+                    Style="{StaticResource ContentGridView}">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn
+                            Width="*"
+                            DataMemberBinding="{Binding Name}"
+                            Header="巡检员姓名"
+                            IsFilterable="False" />
+                        <telerik:GridViewDataColumn
+                            Width="*"
+                            CellStyle="{StaticResource GridViewCardCell}"
+                            DataMemberBinding="{Binding Card}"
+                            Header="巡检员钮号"
+                            IsFilterable="False" />
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    FlowDirection="RightToLeft"
+                    Orientation="Horizontal">
+                    <Button Style="{StaticResource CloseBtn}" />
+                    <Button Click="Export_Button_Click" Style="{StaticResource ExportExcelBtn}" />
+                    <Button Click="Print_Button_Click" Style="{StaticResource PrintBtn}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Column="1"
+            BorderBrush="Black"
+            BorderThickness="0,0.5,0.5,0.5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <view:BatchAddControl Grid.Row="0" DataContext="{Binding BatchAddVM}" />
+                <Button
+                    Grid.Row="1"
+                    Width="100"
+                    Command="{Binding BatchAddVM.CBatchAdd}"
+                    Content="批量添加"
+                    Style="{StaticResource BlueBtn}" />
+            </Grid>
+        </Border>
+    </Grid>
+</view:ShowContentView>

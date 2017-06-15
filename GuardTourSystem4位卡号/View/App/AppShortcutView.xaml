@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.AppShortcutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    x:Name="ShortcutView"
+    d:DesignWidth="300"
+    Background="#FFFFFBF0"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type view:ImageButton}">
+            <Setter Property="Margin" Value="10,1,0,1" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="MinWidth" Value="80" />
+            <!--  将ImageButton的上下文绑定到 快捷栏 .  点击Command都在快捷栏的ViewModel中  -->
+            <Setter Property="DataContext" Value="{Binding}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Center"
+        Orientation="Horizontal">
+        <view:ImageButton
+            Command="{Binding CReadData}"
+            ImagePath="/Resource/Img/MenuIcon/ReadPatrol.png"
+            IsChecked="{Binding ReadDataCheck}"
+            Label="{DynamicResource ShortcutReceive}"
+            Template="{DynamicResource ImageButtonStyle}" />
+        <view:ImageButton
+            Command="{Binding CQueryRawData}"
+            ImagePath="/Resource/Img/MenuIcon/QueryRawData.png"
+            IsChecked="{Binding QueryRawDataCheck}"
+            Label="{DynamicResource ShortcutRawdata}"
+            Template="{DynamicResource ImageButtonStyle}" />
+        <view:ImageButton
+            Command="{Binding CQueryResult}"
+            ImagePath="/Resource/Img/MenuIcon/QueryResult.png"
+            IsChecked="{Binding QueryResultCheck}"
+            Label="{DynamicResource ShortcutResult}"
+            Template="{DynamicResource ImageButtonStyle}" />
+        <view:ImageButton
+            Command="{Binding CQueryChart}"
+            ImagePath="/Resource/Img/MenuIcon/QueryChart.png"
+            IsChecked="{Binding QueryChartCheck}"
+            Label="{DynamicResource ShortcutCharts}"
+            Template="{DynamicResource ImageButtonStyle}" />
+        <view:ImageButton
+            Command="{Binding CTestMachine}"
+            ImagePath="/Resource/Img/MenuIcon/DeviceTest.png"
+            IsChecked="{Binding TestDeviceCheck}"
+            Label="{DynamicResource ShortcutDeviceTest}"
+            Template="{DynamicResource ImageButtonStyle}" />
+        <view:ImageButton
+            Command="{Binding CQuit}"
+            ImagePath="/Resource/Img/MenuIcon/Quit.png"
+            Label="{DynamicResource Quit}"
+            Template="{DynamicResource ImageButtonStyle}" />
+    </StackPanel>
+</UserControl>

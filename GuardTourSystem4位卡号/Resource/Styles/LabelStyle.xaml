@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="AlarmLabel" TargetType="Label">
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
+    <!--  钮号使用等宽字体  -->
+    <Style x:Key="CardLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Margin" Value="3,0" />
+        <Setter Property="FontFamily" Value="SimSun,Courier New,Lucida Console" />
+    </Style>
+
+    <!--  钮号在 DataGrid的DataGridTextColumn中使用的TextBlock风格  -->
+    <Style x:Key="CardTextBlock" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Padding" Value="3,0" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Margin" Value="3,0" />
+        <Setter Property="FontFamily" Value="SimSun,Courier New,Lucida Console" />
+    </Style>
+
+    <!--  标题的Label样式 16字体大小  -->
+    <Style x:Key="TitleLabel" TargetType="Label">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+
+    <!--  内容的Label样式 14字体大小  -->
+    <Style x:Key="ContentLabel" TargetType="Label">
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+    </Style>
+</ResourceDictionary>

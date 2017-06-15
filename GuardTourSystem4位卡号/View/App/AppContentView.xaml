@@ -1,0 +1,101 @@
+﻿<UserControl
+    x:Class="GuardTourSystem.View.AppContentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://www.codeplex.com/prism"
+    xmlns:view="clr-namespace:GuardTourSystem.View"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupReanalysis}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:ReanalysisView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupSystemInit}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:SystemInitView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupAboutUs}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:AboutUsView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupLanguage}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:LanguageView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupDeviceTest}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:DeviceTestView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupError}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:AppErrorView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupChangePassword}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:ModityPasswordView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupManageUser}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:UserManageView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupClearPatrol}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:ClearPatrolDataView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupSharePatrol}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:SharePatrolDataView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+
+    <Border
+        Margin="0.5"
+        BorderBrush="Black"
+        BorderThickness="0.75">
+        <Border.Background>
+            <ImageBrush ImageSource="{Binding BackgroundImgPath}" Opacity="0.8" />
+        </Border.Background>
+
+        <ContentControl
+            Margin="1"
+            Background="White"
+            Content="{Binding Content}" />
+        <!--<Frame
+            Margin="1"
+            NavigationUIVisibility="Hidden"
+            Source="{Binding FrameSource}" />-->
+    </Border>
+</UserControl>
