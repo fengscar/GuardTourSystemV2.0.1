@@ -70,11 +70,7 @@
                     <Label x:Name="HyperLink" Content="{Binding CompanyWebsite}" />
                 </Hyperlink>
             </TextBlock>
-
-
         </StackPanel>
-
-
         <Button
             Grid.Row="2"
             Grid.ColumnSpan="2"
