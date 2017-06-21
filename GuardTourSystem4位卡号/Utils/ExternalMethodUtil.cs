@@ -1,6 +1,5 @@
 ﻿using GuardTourSystem.Model;
 using GuardTourSystem.ViewModel;
-using GuardTourSystem.ViewModel.Custom;
 using KaiheSerialPortLibrary;
 using System;
 using System.Collections.Generic;
@@ -27,39 +26,39 @@ namespace GuardTourSystem.Utils
     public static class ExternalMethodUtil
     {
         //由于BindableBase不能序列化,所以使用自定义的Copy
-        public static RegularItemViewModel DeepCopy(this RegularItemViewModel obj)
-        {
-            var viewmodel = obj as RegularItemViewModel;
-            if (viewmodel == null)
-            {
-                return null;
-            }
-            var copy = new RegularItemViewModel();
-            var freq = new Frequence() { Worker = viewmodel.Frequence.Worker };
-            var weekSelect = new WeekSelectViewModel(viewmodel.Frequence.Regular, null);
+        //public static RegularItemViewModel DeepCopy(this RegularItemViewModel obj)
+        //{
+        //    var viewmodel = obj as RegularItemViewModel;
+        //    if (viewmodel == null)
+        //    {
+        //        return null;
+        //    }
+        //    var copy = new RegularItemViewModel();
+        //    var freq = new Frequence() { Worker = viewmodel.Frequence.Worker };
+        //    var weekSelect = new WeekSelectViewModel(viewmodel.Frequence.Regular, null);
 
-            copy.Frequence = freq;
-            copy.WeekSelectViewModel = weekSelect;
+        //    copy.Frequence = freq;
+        //    copy.WeekSelectViewModel = weekSelect;
 
-            return copy;
-        }
+        //    return copy;
+        //}
 
-        public static IrregularItemViewModel DeepCopy(this IrregularItemViewModel obj)
-        {
-            var viewmodel = obj as IrregularItemViewModel;
-            if (viewmodel == null)
-            {
-                return null;
-            }
-            var copy = new IrregularItemViewModel();
-            var freq = new Frequence() { Worker = viewmodel.Frequence.Worker };
-            var monthSelect = new MonthSelectViewModel(viewmodel.Frequence.Irregular.GetMonthPlan(DateTime.Now), null);
+        //public static IrregularItemViewModel DeepCopy(this IrregularItemViewModel obj)
+        //{
+        //    var viewmodel = obj as IrregularItemViewModel;
+        //    if (viewmodel == null)
+        //    {
+        //        return null;
+        //    }
+        //    var copy = new IrregularItemViewModel();
+        //    var freq = new Frequence() { Worker = viewmodel.Frequence.Worker };
+        //    var monthSelect = new MonthSelectViewModel(viewmodel.Frequence.Irregular.GetMonthPlan(DateTime.Now), null);
 
-            copy.Frequence = freq;
-            copy.MonthSelectViewModel = monthSelect;
+        //    copy.Frequence = freq;
+        //    copy.MonthSelectViewModel = monthSelect;
 
-            return copy;
-        }
+        //    return copy;
+        //}
 
         #region DateTime的扩展方法
         /// <summary>
@@ -252,6 +251,8 @@ namespace GuardTourSystem.Utils
                     return LanLoader.Load(LanKey.MenuQueryReadPatrol);
                 case ViewEnum.QueryRawData:
                     return LanLoader.Load(LanKey.MenuQueryRawData);
+                case ViewEnum.QueryRawCount:
+                    return LanLoader.Load(LanKey.MenuQueryRawCount);
                 case ViewEnum.ReadHit:
                     return LanLoader.Load(LanKey.MenuQueryReadHit);
                 case ViewEnum.QueryResult:

@@ -10,7 +10,7 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converer:CardTypeConverter x:Key="CardTypeConverter" />
+        <!--<converer:CardTypeConverter x:Key="CardTypeConverter" />-->
         <converer:ZeroToEmptyConverter x:Key="ZeroToEmptyConverter" />
     </UserControl.Resources>
     <telerik:RadGridView
@@ -24,13 +24,13 @@
                 DataMemberBinding="{Binding PlaceTime, StringFormat=yyyy/MM/dd HH:mm}"
                 Header="{DynamicResource PatrolTime}"
                 IsFilterable="False" />
-            <telerik:GridViewDataColumn
+            <!--<telerik:GridViewDataColumn
                 Width="1*"
                 CellStyle="{StaticResource GridViewCardCell}"
                 DataMemberBinding="{Binding Device}"
-                Header="{DynamicResource DeviceID}" />
-            <!--  巡检员信息  -->
-            <telerik:GridViewDataColumn
+                Header="{DynamicResource DeviceID}" />-->
+            <!--  计数员信息  -->
+            <!--<telerik:GridViewDataColumn
                 Width="1*"
                 DataMemberBinding="{Binding Worker.Name}"
                 Header="{DynamicResource Worker}" />
@@ -39,7 +39,7 @@
                 CellStyle="{StaticResource GridViewCardCell}"
                 DataMemberBinding="{Binding Worker.Card}"
                 Header="{DynamicResource WorkerCard}"
-                IsFilterable="False" />
+                IsFilterable="False" />-->
             <!--  线路+地点信息  -->
             <telerik:GridViewDataColumn
                 Width="1*"
@@ -51,6 +51,11 @@
                 Header="{DynamicResource PlaceOrder}" />
             <telerik:GridViewDataColumn
                 Width="1*"
+                CellStyle="{StaticResource GridViewCardCell}"
+                DataMemberBinding="{Binding Place.EmployeeNumber}"
+                Header="人员工号" />
+            <telerik:GridViewDataColumn
+                Width="1*"
                 DataMemberBinding="{Binding Place.Name}"
                 Header="{DynamicResource PlaceName}" />
             <telerik:GridViewDataColumn
@@ -59,8 +64,9 @@
                 DataMemberBinding="{Binding Place.Card}"
                 Header="{DynamicResource PlaceCard}"
                 IsFilterable="False" />
+
             <!--  事件信息  -->
-            <telerik:GridViewDataColumn
+            <!--<telerik:GridViewDataColumn
                 Width="1*"
                 DataMemberBinding="{Binding Event.Name}"
                 Header="{DynamicResource EventName}" />
@@ -69,7 +75,7 @@
                 CellStyle="{StaticResource GridViewCardCell}"
                 DataMemberBinding="{Binding Event.Card}"
                 Header="{DynamicResource EventCard}"
-                IsFilterable="False" />
+                IsFilterable="False" />-->
         </telerik:RadGridView.Columns>
     </telerik:RadGridView>
 </UserControl>

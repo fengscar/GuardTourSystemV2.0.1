@@ -27,7 +27,6 @@ namespace GuardTourSystem.View
 
             Window wrapperWindow;
 
-
             if (this.WindowContent != null)
             {
                 wrapperWindow = new Window();

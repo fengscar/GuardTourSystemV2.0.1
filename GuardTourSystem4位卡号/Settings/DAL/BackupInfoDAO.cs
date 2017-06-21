@@ -14,10 +14,10 @@ namespace GuardTourSystem.Database.DAL
     {
         public bool AddBackupInfo(BackupInfo backupInfo)
         {
-            var sql = " insert into T_Backup(ID,BackupDate,BackupPath,WorkerCount,RouteCount,PlaceCount,EventCount,FrequenceCount,RawDataCount,RecordCount) "
-                    + " values(null,@date,@path,@workerCount,@RouteCount,@PlaceCount,@EventCount,@FrequenceCount,@RawDataCount,@RecordCount) ";
+            var sql = " insert into T_Backup(ID,BackupDate,BackupPath,RouteCount,PlaceCount,RawDataCount) "
+                    + " values(null,@date,@path,@RouteCount,@PlaceCount,@RawDataCount) ";
             var dbInfo = backupInfo.DatabaseInfo;
-            var param = new object[] { backupInfo.BackupDate, backupInfo.BackupPath, dbInfo.WorkerCount, dbInfo.RouteCount, dbInfo.PlaceCount, dbInfo.EventCount, dbInfo.FrequenceCount, dbInfo.RawDataCount, dbInfo.RecordCount };
+            var param = new object[] { backupInfo.BackupDate, backupInfo.BackupPath, dbInfo.RouteCount, dbInfo.PlaceCount, dbInfo.RawDataCount };
             return ConstantSQLiteHelper.Instance.ExecuteNonQuery(sql, param) == 1;
         }
 
@@ -63,13 +63,13 @@ namespace GuardTourSystem.Database.DAL
             info.BackupPath = row["BackupPath"].ToString();
 
             var dbInfo = new DatabaseInfo();
-            dbInfo.WorkerCount = Convert.ToInt32(row["WorkerCount"]);
             dbInfo.RouteCount = Convert.ToInt32(row["RouteCount"]);
             dbInfo.PlaceCount = Convert.ToInt32(row["PlaceCount"]);
-            dbInfo.EventCount = Convert.ToInt32(row["EventCount"]);
-            dbInfo.FrequenceCount = Convert.ToInt32(row["FrequenceCount"]);
             dbInfo.RawDataCount = Convert.ToInt32(row["RawDataCount"]);
-            dbInfo.RecordCount = Convert.ToInt32(row["RecordCount"]);
+            //dbInfo.WorkerCount = Convert.ToInt32(row["WorkerCount"]);
+            //dbInfo.EventCount = Convert.ToInt32(row["EventCount"]);
+            //dbInfo.FrequenceCount = Convert.ToInt32(row["FrequenceCount"]);
+            //dbInfo.RecordCount = Convert.ToInt32(row["RecordCount"]);
 
             info.DatabaseInfo = dbInfo;
             return info;

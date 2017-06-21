@@ -144,7 +144,7 @@ namespace GuardTourSystem.ViewModel
             string error = "";
             foreach (var item in IrregularItems)
             {
-                //保存 班次巡检员
+                //保存 班次计数员
                 FrequenceService.UpdateFrequenceWorker(item.Frequence);
                 //保存 有规律排班表
                 item.UpdateFrequence(); //将界面数据 更新到 item.Frequence
@@ -225,7 +225,7 @@ namespace GuardTourSystem.ViewModel
             }
         }
 
-        //可供选择的巡检员
+        //可供选择的计数员
         public List<Worker> Workers { get; set; }
 
         private MonthSelectViewModel monthSelectViewModel;
@@ -262,7 +262,7 @@ namespace GuardTourSystem.ViewModel
             this.Frequence = freq;
             this.Frequence.SetWorkerChangeAction(OnItemChanged);
 
-            //初始化 巡检员的可选项 和 选中项
+            //初始化 计数员的可选项 和 选中项
             this.Workers = selectionWorkers;
             int workerID = Frequence.Worker == null ? -1 : Frequence.Worker.ID;
             var findedWorker = selectionWorkers.Find(w => { return w.ID == workerID; });

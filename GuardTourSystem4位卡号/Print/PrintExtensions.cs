@@ -89,7 +89,7 @@ namespace GuardTourSystem.Print
             }, false);
 
 
-            await Task.Run(() =>
+            await Task.Factory.StartNew(() =>
             {
                 long curSize = 0;
                 while (stream.CanRead)

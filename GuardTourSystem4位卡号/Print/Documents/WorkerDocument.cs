@@ -42,8 +42,8 @@ namespace GuardTourSystem.Print
         {
             var list = new List<TableColumnHeader>();
             list.Add(new TableColumnHeader("序号", 100));
-            list.Add(new TableColumnHeader("巡检员姓名", 200));
-            list.Add(new TableColumnHeader("巡检员钮号", 200));
+            list.Add(new TableColumnHeader("管理卡名称", 200));
+            list.Add(new TableColumnHeader("管理卡钮号", 200));
             return list;
         }
     }

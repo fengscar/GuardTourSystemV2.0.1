@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem
 {
-    //当获取巡检数据和敲击记录时,将显示预设的进度条
+    //当获取计数数据和敲击记录时,将显示预设的进度条
     public class AppSerialPortUtil : KaiheSerialPortLibrary.SerialPortUtil
     {
         //#region 单例模式
@@ -42,14 +42,14 @@ namespace GuardTourSystem
             GetCount = count;
             if (GetCount != 0)
             {
-                AppStatusViewModel.Instance.ShowProgress(false, "读取巡检记录中...总计" + count + "条");
+                AppStatusViewModel.Instance.ShowProgress(false, "读取计数记录中...总计" + count + "条");
             }
         }
         private static void UpdateGetPatrolProgress(int index)
         {
             if (index >= GetCount)
             {
-                AppStatusViewModel.Instance.ShowInfo("获取巡检记录成功");
+                AppStatusViewModel.Instance.ShowInfo("获取计数记录成功");
                 GetCount = 0;
             }
             else

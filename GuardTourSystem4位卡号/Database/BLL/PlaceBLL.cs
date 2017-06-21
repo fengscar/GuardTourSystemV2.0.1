@@ -36,7 +36,12 @@ namespace GuardTourSystem.Database.BLL
             }
             if (DAO.ExistsName(p.RouteID, p.Name))
             {
-                errorInfo = "该线路下已有同名地点";
+                errorInfo = "该部门下已有同名人员.";
+                return false;
+            }
+            if (DAO.ExistsEmployeeNumnber(p.EmployeeNumber))
+            {
+                errorInfo = "该工号已被使用.";
                 return false;
             }
             if (!PatrolSQLiteManager.CheckCardUnique(p.Card, ref errorInfo))
@@ -67,11 +72,16 @@ namespace GuardTourSystem.Database.BLL
             var old = DAO.QueryPlace(p.ID);
             if (old == null)
             {
-                throw new ArgumentException("未找到ID为" + p.ID + "的地点");
+                throw new ArgumentException("未找到ID为" + p.ID + "的人员");
             }
             if (!old.Name.Equals(p.Name) && DAO.ExistsName(p.RouteID, p.Name))
             {
-                errorInfo = "该线路下已有同名地点";
+                errorInfo = "该部门下已有同名人员";
+                return false;
+            }
+            if (!old.EmployeeNumber.Equals(p.EmployeeNumber) && DAO.ExistsEmployeeNumnber(p.EmployeeNumber))
+            {
+                errorInfo = "该工号已被使用.";
                 return false;
             }
             if (!old.Card.Equals(p.Card))
@@ -81,6 +91,7 @@ namespace GuardTourSystem.Database.BLL
                     return false;
                 }
             }
+
             if (p.RouteID != old.RouteID) //  修改了线路,需要同时修改Order
             {
                 p.Order = DAO.GetMaxRouteOrder(p.RouteID) + 1;
@@ -107,9 +118,13 @@ namespace GuardTourSystem.Database.BLL
             {
                 place.Name = place.Name.Trim();
             }
+            if (place.EmployeeNumber != null)
+            {
+                place.EmployeeNumber = place.EmployeeNumber.Trim();
+            }
             if (String.IsNullOrEmpty(place.Name))
             {
-                errorInfo = "抱歉,地点名称不能为空";
+                errorInfo = "抱歉,人员名称不能为空";
                 return false;
             }
             if (String.IsNullOrEmpty(place.Card))
@@ -120,6 +135,11 @@ namespace GuardTourSystem.Database.BLL
             if (place.Card.Length != 4)
             {
                 errorInfo = "请输入4位钮号";
+                return false;
+            }
+            if (String.IsNullOrEmpty(place.EmployeeNumber))
+            {
+                errorInfo = "请输入工号";
                 return false;
             }
             if (place.RouteID <= 0)

@@ -8,7 +8,7 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding CountName}"
-                    Header="巡检员" />
+                    Header="计数员" />
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding DutyCount}"

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Database.Model
 {
-    class CountInfo //一条 巡检员或 巡检点 的统计信息
+    class CountInfo //一条 计数员或 计数点 的统计信息
     {
-        public string CountName { get; set; } //巡检员/巡检点 名称
+        public string CountName { get; set; } //计数员/计数点 名称
         public virtual int DutyCount { get; set; }//应巡次数
         public virtual int PatrolCount { get; set; }//实际次数
 

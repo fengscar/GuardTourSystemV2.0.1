@@ -19,17 +19,17 @@
                 <ResourceDictionary Source="Resource/Styles/TreeViewStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/ButtonStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resource/Styles/TabControlStyle.xaml" />
+                <!--<ResourceDictionary Source="Resource/Styles/TabControlStyle.xaml" />-->
                 <ResourceDictionary Source="Resource/Styles/DatePickerStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/DataGridStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/GridViewStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/TitleTextBoxStyle.xaml" />
                 <ResourceDictionary Source="Resource/Styles/WindowStyle.xaml" />
-                <ResourceDictionary Source="Resource/Styles/ChartStyle.xaml" />
+                <!--<ResourceDictionary Source="Resource/Styles/ChartStyle.xaml" />-->
                 <ResourceDictionary Source="Resource/Styles/ListViewStyle.xaml" />
-                <ResourceDictionary Source="Resource/Styles/IrregularStyle.xaml" />
-                <ResourceDictionary Source="Resource/Styles/RegularStyle.xaml" />
+                <!--<ResourceDictionary Source="Resource/Styles/IrregularStyle.xaml" />-->
+                <!--<ResourceDictionary Source="Resource/Styles/RegularStyle.xaml" />-->
 
                 <!--  引入Metro样式  -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />

@@ -31,13 +31,13 @@ namespace GuardTourSystem.Settings
                                  + "ID integer primary key autoincrement,"
                                  + "BackupDate DateTime  not null,"
                                  + "BackupPath varchar(100) not null unique, "
-                                 + "WorkerCount integer not null,"
+                                 //+ "WorkerCount integer not null,"
                                  + "RouteCount integer not null,"
                                  + "PlaceCount integer not null,"
-                                 + "EventCount integer not null,"
-                                 + "FrequenceCount integer not null,"
-                                 + "RawDataCount integer not null,"
-                                 + "RecordCount integer not null)";
+                //+ "EventCount integer not null,"
+                //+ "FrequenceCount integer not null,"
+                                 + "RawDataCount integer not null)";
+                                 //+ "RecordCount integer not null)";
 
             ConstantSQLiteHelper.Instance.ExecuteNonQuery(create_role);
             ConstantSQLiteHelper.Instance.ExecuteNonQuery(create_user);

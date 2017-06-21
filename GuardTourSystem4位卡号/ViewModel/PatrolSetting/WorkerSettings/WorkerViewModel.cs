@@ -33,12 +33,12 @@ namespace GuardTourSystem.ViewModel
         {
             get
             {
-                return "人员信息\t 导出时间: " + DateTime.Now.ToString();
+                return "管理卡信息\t 导出时间: " + DateTime.Now.ToString();
             }
         }
 
         private ObservableCollection<Worker> workers;
-        public ObservableCollection<Worker> Workers //当前的所有巡检员
+        public ObservableCollection<Worker> Workers //当前的所有计数员
         {
             get { return workers; }
             set
@@ -84,7 +84,7 @@ namespace GuardTourSystem.ViewModel
             this.CDelWorker = new DelegateCommand(this.DelWorker, () => { return Worker != null; });
             this.CUpdateWorker = new DelegateCommand(this.UpdateWorker, () => { return Worker != null; });
             //this.CSendWorkers = new DelegateCommand(this.SendWorkers, () => { return Workers.Count != 0 && !SerialPortManager.Instance.IsWritting; });
-            this.CPrint = new DelegateCommand(this.Print, () => Workers != null && Workers.Count != 0);
+            this.CPrint = new DelegateCommand(this.Print);
 
             this.WorkerInfoPopupRequest = new InteractionRequest<INotification>();
         }
@@ -143,16 +143,16 @@ namespace GuardTourSystem.ViewModel
                 }
                 else
                 {
-                    ShowMessageDialog("巡检员删除失败!", null);
+                    ShowMessageDialog("计数员删除失败!", null);
                 };
             }
         }
 
 
-        ////发送巡检员信息到 巡检机
+        ////发送计数员信息到 计数机
         //public async void SendWorkers()
         //{
-        //    var result = await ShowConfirmDialog("将重新设置巡检机中的巡检员信息", "该操作预计耗时10秒,请保持巡检机的正常连接");
+        //    var result = await ShowConfirmDialog("将重新设置计数机中的计数员信息", "该操作预计耗时10秒,请保持计数机的正常连接");
 
         //    if (result == MessageDialogResult.Negative) //用户取消
         //    {
@@ -160,7 +160,7 @@ namespace GuardTourSystem.ViewModel
         //    }
         //    else
         //    {
-        //        AppStatusViewModel.Instance.ShowProgress(true, "正在设置巡检机的巡检员信息...", 10000);
+        //        AppStatusViewModel.Instance.ShowProgress(true, "正在设置计数机的计数员信息...", 10000);
         //        string errorInfo = null;
         //        //clear infos
         //        var clearWorkerInfoFlow = await SerialPortUtil.Write(new ClearWorkerInfo());
@@ -181,7 +181,7 @@ namespace GuardTourSystem.ViewModel
         //                        break;
         //                    }
         //                }
-        //                AppStatusViewModel.Instance.ShowInfo("巡检机的巡检员信息设置成功!");
+        //                AppStatusViewModel.Instance.ShowInfo("计数机的计数员信息设置成功!");
         //                return;
         //            }
         //            else
@@ -193,13 +193,13 @@ namespace GuardTourSystem.ViewModel
         //        {
         //            errorInfo = clearWorkerInfoFlow.ResultInfo;
         //        }
-        //        AppStatusViewModel.Instance.ShowError("巡检员信息设置失败: " + errorInfo);
+        //        AppStatusViewModel.Instance.ShowError("计数员信息设置失败: " + errorInfo);
         //        return;
         //    }
         //}
         private void Print()
         {
-            //var printData = new PrintData() { ContentList = Workers.ToList(), Title = "巡检员信息", DataCount = Workers.Count };
+            //var printData = new PrintData() { ContentList = Workers.ToList(), Title = "计数员信息", DataCount = Workers.Count };
             //var printer = new Printer(new FrequenceDocument(printData));
             //printer.ShowPreviewWindow();
         }
@@ -210,7 +210,7 @@ namespace GuardTourSystem.ViewModel
         /// 以下是 批量读取的代码
         /// ----------------------------------------------------------------------
         public BatchAddViewModel BatchAddVM { get; set; }
-        //巡检机批量读取的钮号
+        //计数机批量读取的钮号
         private void InitBatchAdd()
         {
             this.BatchAddVM = new BatchAddViewModel(LanLoader.Load(LanKey.BatchAddReadWorker), OnBatchAdd, OnGetRecords);

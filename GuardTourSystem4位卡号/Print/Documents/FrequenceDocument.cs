@@ -52,14 +52,14 @@ namespace GuardTourSystem.Print
         public override List<TableColumnHeader> GetColumns()
         {
             var list = new List<TableColumnHeader>();
-            list.Add(new TableColumnHeader("巡检线路", 80));
+            list.Add(new TableColumnHeader("部门名称", 80));
             list.Add(new TableColumnHeader("班次名称", 80));
             list.Add(new TableColumnHeader("排班方式", 100));
             list.Add(new TableColumnHeader("上班时间", 80));
             list.Add(new TableColumnHeader("下班时间", 100));
-            list.Add(new TableColumnHeader("巡检时间", 80));
+            list.Add(new TableColumnHeader("工作时间", 80));
             list.Add(new TableColumnHeader("休息时间", 80));
-            list.Add(new TableColumnHeader("巡逻次数", 80));
+            list.Add(new TableColumnHeader("打卡次数", 80));
             return list;
         }
     }

@@ -2,7 +2,7 @@
 using GuardTourSystem.Utils;
 using GuardTourSystem.View;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +18,7 @@ namespace GuardTourSystem.ViewModel
     //  1. 菜单栏
     //  2. 快捷方式栏
     //  3. 内容控件
-    class AppMenuViewModel : BindableBase
+    class AppMenuViewModel : NotificationObject
     {
         #region 单例模式
         private static AppMenuViewModel instance { get; set; }
@@ -49,7 +49,8 @@ namespace GuardTourSystem.ViewModel
             get { return mainMenuItems; }
             set
             {
-                SetProperty(ref this.mainMenuItems, value);
+                mainMenuItems = value;
+                RaisePropertyChanged("MainMenuItems");
             }
         }
 
@@ -78,37 +79,39 @@ namespace GuardTourSystem.ViewModel
 
             //载入数据查询菜单
             queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryReadPatrol), InitShowViewCommand(ViewEnum.ReadPatrol), GetIconPath("ReadPatrol")));
+            //queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryReadHit), InitShowViewCommand(ViewEnum.ReadHit), GetIconPath("ReadHit")));
             queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryRawData), InitShowViewCommand(ViewEnum.QueryRawData), GetIconPath("QueryRawData")));
-            queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryReadHit), InitShowViewCommand(ViewEnum.ReadHit), GetIconPath("ReadHit")));
-            queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryResult), InitShowViewCommand(ViewEnum.QueryResult), GetIconPath("QueryResult")));
-            queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryChart), InitShowViewCommand(ViewEnum.QueryChart), GetIconPath("QueryChart")));
-            queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryReanalysis), InitPopupWindowCommand(PopupEnum.Reanalysis), GetIconPath("Reanalysis")));
+            queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryRawCount), InitShowViewCommand(ViewEnum.QueryRawCount), GetIconPath("QueryRawCount")));
+            //queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryResult), InitShowViewCommand(ViewEnum.QueryResult), GetIconPath("QueryResult")));
+            //queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryChart), InitShowViewCommand(ViewEnum.QueryChart), GetIconPath("QueryChart")));
+            //queryMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuQueryReanalysis), InitPopupWindowCommand(PopupEnum.Reanalysis), GetIconPath("Reanalysis")));
             queryMenu.SubItems = queryMenuItems;
             //载入信息录入菜单
             inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingRoute), InitShowViewCommand(ViewEnum.SetRoute), GetIconPath("SetRoute"), needPermission));
-            inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingWorker), InitShowViewCommand(ViewEnum.SetWorker), GetIconPath("SetWorker"), needPermission));
-            inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingEvent), InitShowViewCommand(ViewEnum.SetEvent), GetIconPath("SetEvent"), needPermission));
-            inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingFrequence), InitShowViewCommand(ViewEnum.SetFrequence), GetIconPath("SetFrequence"), needPermission));
-            inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingRegular), InitShowViewCommand(ViewEnum.SetRegular), GetIconPath("SetRegular"), needPermission));
-            inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingIrregular), InitShowViewCommand(ViewEnum.SetIrregular), GetIconPath("SetIrregular"), needPermission));
+            //inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingWorker), InitShowViewCommand(ViewEnum.SetWorker), GetIconPath("SetWorker"), needPermission));
+            //inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingEvent), InitShowViewCommand(ViewEnum.SetEvent), GetIconPath("SetEvent"), needPermission));
+            //inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingFrequence), InitShowViewCommand(ViewEnum.SetFrequence), GetIconPath("SetFrequence"), needPermission));
+            //inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingRegular), InitShowViewCommand(ViewEnum.SetRegular), GetIconPath("SetRegular"), needPermission));
+            //inputMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuPatrolSettingIrregular), InitShowViewCommand(ViewEnum.SetIrregular), GetIconPath("SetIrregular"), needPermission));
             inputMenu.SubItems = inputMenuItems;
             //载入数据维护菜单
             dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageBackupAndRecovery), InitShowViewCommand(ViewEnum.DataManage), GetIconPath("DataManage")));
             dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageClearPatrolData), InitPopupWindowCommand(PopupEnum.ClearPatrolData), GetIconPath("ClearPatrolData"), needPermission));
-            dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageImportPatrolData), InitPopupWindowCommand(PopupEnum.ImportPatrolData), GetIconPath("ImportPatrolData")));
-            dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageExportPatrolData), InitPopupWindowCommand(PopupEnum.ExportPatrolData), GetIconPath("ExportPatrolData")));
+            //dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageImportPatrolData), InitPopupWindowCommand(PopupEnum.ImportPatrolData), GetIconPath("ImportPatrolData")));
+            //dataMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuDataManageExportPatrolData), InitPopupWindowCommand(PopupEnum.ExportPatrolData), GetIconPath("ExportPatrolData")));
             dataMenu.SubItems = dataMenuItems;
             //载入系统管理菜单
             systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemInit), InitPopupWindowCommand(PopupEnum.SystemInit), GetIconPath("SystemInit"), needPermission));
-            systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemUserManage), InitPopupWindowCommand(PopupEnum.ManageUser), GetIconPath("UserManage"), needPermission));
+            //systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemUserManage), InitPopupWindowCommand(PopupEnum.ManageUser), GetIconPath("UserManage"), needPermission));
             systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemModifyPassword), InitPopupWindowCommand(PopupEnum.ChangePassword), GetIconPath("ChangePassword")));
             //systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemLanguage), InitPopupWindowCommand(PopupEnum.Language), GetIconPath("Language")));
             systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemDeviceTest), InitPopupWindowCommand(PopupEnum.DeviceTest), GetIconPath("DeviceTest")));
+            systemMenuItems.Add(new MenuItem("忽略重复卡", InitPopupWindowCommand(PopupEnum.IgnoreRepeat), GetIconPath("Reanalysis")));
             //systemMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuSystemLog), InitShowViewCommand(ViewEnum.SystemLog), GetIconPath("SystemLog"), needPermission));
             systemMenu.SubItems = systemMenuItems;
             //载入帮助菜单
             helpMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuHelpHowToUse), InitPopupWindowCommand(PopupEnum.Help), GetIconPath("Help")));
-            helpMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuHelpHowToStart), InitPopupWindowCommand(PopupEnum.HowToStart), GetIconPath("HowToStart")));
+            //helpMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuHelpHowToStart), InitPopupWindowCommand(PopupEnum.HowToStart), GetIconPath("HowToStart")));
             helpMenuItems.Add(new MenuItem(LanLoader.Load(LanKey.MenuHelpAboutUs), InitPopupWindowCommand(PopupEnum.AboutUs), GetIconPath("AboutUs")));
             helpMenu.SubItems = helpMenuItems;
 

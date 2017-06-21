@@ -2,7 +2,6 @@
 using GuardTourSystem.Database.BLL;
 using GuardTourSystem.Database.DAL;
 using GuardTourSystem.Database.Model;
-using GuardTourSystem.Model.DAL;
 using GuardTourSystem.Services.Database.DAL;
 using System;
 using System.Collections.Generic;
@@ -40,53 +39,53 @@ namespace GuardTourSystem.Services.Database.BLL
         }
 
         /// <summary>
-        /// 在 事件,地点,巡检员表中查询 该钮号 是否已存在,如果已存在,返回false,并在errorInfo返回错误信息
+        /// 在 事件,地点,计数员表中查询 该钮号 是否已存在,如果已存在,返回false,并在errorInfo返回错误信息
         /// </summary>
         /// <param name="Card"></param>
         /// <param name="errorInfo"></param>
         /// <returns></returns>
         public static bool CheckCardUnique(string Card, ref string errorInfo)
         {
-            var eDAO = new EventDAO();
+            //var eDAO = new EventDAO();
             var pDAO = new PlaceDAO();
-            var wDAO = new WorkerDAO();
-            if (eDAO.ExistsCard(Card))
-            {
-                errorInfo = "该钮号已作为事件卡使用";
-                return false;
-            }
+            //var wDAO = new WorkerDAO();
+            //if (eDAO.ExistsCard(Card))
+            //{
+            //    errorInfo = "该钮号已作为事件卡使用";
+            //    return false;
+            //}
             if (pDAO.ExistsCard(Card))
-            {
-                errorInfo = "该钮号已作为地点卡使用";
-                return false;
-            }
-            if (wDAO.ExistsCard(Card))
             {
                 errorInfo = "该钮号已作为人员卡使用";
                 return false;
             }
+            //if (wDAO.ExistsCard(Card))
+            //{
+            //    errorInfo = "该钮号已作为管理卡使用";
+            //    return false;
+            //}
             return true;
         }
         //获取当前 数据库信息
         public static DatabaseInfo GetCurrentDatabaseInfo()
         {
-            var workerCount = new WorkerDAO().GetRowCount();
+            //var workerCount = new WorkerDAO().GetRowCount();
             var routeCount = new RouteDAO().GetRowCount();
             var placeCount = new PlaceDAO().GetRowCount();
-            var eventCount = new EventDAO().GetRowCount();
-            var frequenceCount = new FrequenceDAO().GetRowCount();
+            //var eventCount = new EventDAO().GetRowCount();
+            //var frequenceCount = new FrequenceDAO().GetRowCount();
             var rawDataCount = new RawDataDAO().GetRowCount();
-            var recordCount = new RecordDAO().GetRowCount();
+            //var recordCount = new RecordDAO().GetRowCount();
 
             var result = new DatabaseInfo()
             {
-                WorkerCount = workerCount,
                 RouteCount = routeCount,
                 PlaceCount = placeCount,
-                EventCount = eventCount,
-                FrequenceCount = frequenceCount,
                 RawDataCount = rawDataCount,
-                RecordCount = recordCount
+                //WorkerCount = workerCount,
+                //EventCount = eventCount,
+                //FrequenceCount = frequenceCount,
+                //RecordCount = recordCount
             };
             return result;
         }

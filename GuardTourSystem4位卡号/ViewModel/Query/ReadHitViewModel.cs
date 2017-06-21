@@ -95,14 +95,14 @@ namespace GuardTourSystem.ViewModel
             var hitRecords = (List<HitRecord>)hitBundle.Value;
             if (hitRecords.Count == 0)
             {
-                InfoVM.Append("巡检机中没有敲击记录!!!");
+                InfoVM.Append("计数机中没有敲击记录!!!");
                 IsBusy = false;
                 return;
             }
             InfoVM.Append("获取敲击记录成功.");
             //不删除设备上的敲击记录
 
-            //将 巡检机敲击记录 转化成 数据库敲击记录 TODO 是否多余???
+            //将 计数机敲击记录 转化成 数据库敲击记录 TODO 是否多余???
             var deviceHits = new List<DeviceHitRecord>();
             foreach (var record in hitRecords)
             {

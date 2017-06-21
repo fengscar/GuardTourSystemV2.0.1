@@ -60,7 +60,7 @@ namespace GuardTourSystem.ViewModel
             if (worker == null)
             {
                 Worker = new Worker() { ID = -1 };
-                Title = "新增巡检员";
+                Title = "新增管理卡";
                 ConfirmButtonText = LanLoader.Load(LanKey.Add);
                 this.CConfirm = new DelegateCommand(new Action(this.AddInfo));
                 this.CardTypeSelectIndex = 0;
@@ -69,7 +69,7 @@ namespace GuardTourSystem.ViewModel
             else
             {
                 OldWorker = worker;
-                Title = "编辑巡检员";
+                Title = "编辑管理卡";
                 ConfirmButtonText = LanLoader.Load(LanKey.Edit);
                 this.CConfirm = new DelegateCommand(new Action(this.UpdateInfo));
             }
@@ -118,7 +118,7 @@ namespace GuardTourSystem.ViewModel
                 var freqs = freqService.GetAllFrequence();
                 foreach (var freq in freqs)
                 {
-                    //如果该班次的巡检员 == 更新的巡检员
+                    //如果该班次的计数员 == 更新的计数员
                     if (freq.Worker != null && freq.Worker.Card.Equals(OldWorker.Card))
                     {
                         //更新 该班次值班表

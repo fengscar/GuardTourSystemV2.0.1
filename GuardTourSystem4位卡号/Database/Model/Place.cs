@@ -1,5 +1,5 @@
 ﻿using GuardTourSystem.Utils;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GuardTourSystem.Model
 {
     //地点
-    public class Place :BindableBase,ICloneable
+    public class Place : NotificationObject, ICloneable
     {
         private int id;
         public int ID
@@ -17,7 +17,8 @@ namespace GuardTourSystem.Model
             get { return id; }
             set
             {
-                SetProperty(ref this.id, value);
+                id = value;
+                RaisePropertyChanged("ID");
             }
         }
 
@@ -29,7 +30,8 @@ namespace GuardTourSystem.Model
             get { return order; }
             set
             {
-                SetProperty(ref this.order, value);
+                order = value;
+                RaisePropertyChanged("Order");
             }
         }
 
@@ -40,7 +42,8 @@ namespace GuardTourSystem.Model
             get { return name; }
             set
             {
-                SetProperty(ref this.name, value);
+                name = value;
+                RaisePropertyChanged("Name");
             }
         }
 
@@ -52,10 +55,23 @@ namespace GuardTourSystem.Model
             set
             {
                 InputChecker.CheckRfidCard(ref value);
-                SetProperty(ref this.card, value);
+                card = value;
+                RaisePropertyChanged("Card");
             }
         }
-     
+
+        private string employeeNumber;
+        public string EmployeeNumber
+        {
+            get { return employeeNumber; }
+            set
+            {
+                InputChecker.CheckEmployeeNumber(ref value);
+                employeeNumber = value;
+                RaisePropertyChanged("EmployeeNumber");
+            }
+        }
+
 
         public Place()
         {

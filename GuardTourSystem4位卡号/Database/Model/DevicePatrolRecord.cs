@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Model
 {
-    //数据库中存放的 巡检数据
-    public class DevicePatrolRecord : BindableBase
+    //数据库中存放的 计数数据
+    public class DevicePatrolRecord : NotificationObject
     {
         private DateTime readTime;
 
@@ -17,7 +17,9 @@ namespace GuardTourSystem.Model
             get { return readTime; }
             set
             {
-                SetProperty(ref this.readTime, value);
+                readTime = value;
+                RaisePropertyChanged("ReadTime");
+                //SetProperty(ref this.readTime, value);
             }
         }
 
@@ -28,7 +30,9 @@ namespace GuardTourSystem.Model
             get { return time; }
             set
             {
-                SetProperty(ref this.time, value);
+                time = value;
+                RaisePropertyChanged("Time");
+                //SetProperty(ref this.time, value);
             }
         }
 
@@ -39,7 +43,9 @@ namespace GuardTourSystem.Model
             get { return device; }
             set
             {
-                SetProperty(ref this.device, value);
+                device = value;
+                RaisePropertyChanged("Device");
+                //SetProperty(ref this.device, value);
             }
         }
 
@@ -50,7 +56,9 @@ namespace GuardTourSystem.Model
             get { return card; }
             set
             {
-                SetProperty(ref this.card, value);
+                card = value;
+                RaisePropertyChanged("Card");
+                //SetProperty(ref this.card, value);
             }
         }
 

@@ -3,7 +3,6 @@ using GuardTourSystem.Utils;
 using GuardTourSystem.Properties;
 using GuardTourSystem.Settings;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +32,7 @@ namespace GuardTourSystem.ViewModel
             RawDataService = new RawDataBLL();
 
             // 初始化语言菜单栏
-            Title = "清理巡检数据";
+            Title = "清理计数数据";
             ConfirmButtonText = "确定";
             this.CConfirm = new DelegateCommand(this.ClearPatrol, this.CheckInput);
 
@@ -46,8 +45,8 @@ namespace GuardTourSystem.ViewModel
             //关闭弹出窗
             this.Finish();
             //弹出确认框,让用户点击确定
-            var result = await this.ShowConfirmDialog("确定要清理巡检数据吗?",
-                 "将清理 " + DateQueryInfo.GetQueryTime() + " 的巡检数据,清理后将无法恢复!");
+            var result = await this.ShowConfirmDialog("确定要清理打卡数据吗?",
+                 "将清理 " + DateQueryInfo.GetQueryTime() + " 的打卡数据,清理后将无法恢复!");
             if (result == MessageDialogResult.Negative) //用户取消
             {
                 return;

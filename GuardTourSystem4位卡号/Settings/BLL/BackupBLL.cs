@@ -1,6 +1,5 @@
 ﻿using GuardTourSystem.Database.DAL;
 using GuardTourSystem.Database.Model;
-using GuardTourSystem.Model.DAL;
 using GuardTourSystem.Services.Database.BLL;
 using GuardTourSystem.Services.Database.DAL;
 using System;

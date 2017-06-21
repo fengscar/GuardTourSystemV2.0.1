@@ -2,10 +2,9 @@
 using GuardTourSystem.Model;
 using GuardTourSystem.Utils;
 using GuardTourSystem.View;
-using GuardTourSystem.ViewModel.DataManage;
 using GuardTourSystem.ViewModel.Popup;
 using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,17 +18,18 @@ namespace GuardTourSystem.ViewModel
     public enum PopupEnum
     {
         Reanalysis, // 重新分析
-        ClearPatrolData, ImportPatrolData, ExportPatrolData, //巡检数据的清理,导入,导出
+        ClearPatrolData, ImportPatrolData, ExportPatrolData, //计数数据的清理,导入,导出
         SystemInit, ManageUser, ChangePassword, //系统初始化
         Language,//选择语言
-        DeviceTest,//巡检机管理
+        DeviceTest,//计数机管理
         Help, HowToStart, AboutUs, //帮助, 关于我们.
         Error, //系统崩溃错误信息
+        IgnoreRepeat,
     }
     public enum ViewEnum
     {
         //数据查询菜单
-        ReadPatrol, QueryRawData, ReadHit, QueryResult, QueryChart,
+        ReadPatrol, QueryRawData, QueryRawCount, ReadHit, QueryResult, QueryChart,
         //信息录入         
         SetRoute, SetWorker, SetEvent, SetFrequence, SetRegular, SetIrregular,
         //数据维护             
@@ -39,9 +39,9 @@ namespace GuardTourSystem.ViewModel
         //系统帮助
         HowToStart,
         //测试
-        Test
+        Test,
     }
-    public class AppContentViewModel : BindableBase
+    public class AppContentViewModel : NotificationObject
     {
         #region 单例模式
         private static AppContentViewModel instance { get; set; }
@@ -60,15 +60,16 @@ namespace GuardTourSystem.ViewModel
         #endregion
 
         #region 弹窗请求(交互请求)
-        public InteractionRequest<INotification> PopupReanalysis { get; private set; }
-        public InteractionRequest<INotification> PopupClearPatrol { get; private set; }
-        public InteractionRequest<INotification> PopupSystemInit { get; private set; }
-        public InteractionRequest<INotification> PopupManageUser { get; private set; }
-        public InteractionRequest<INotification> PopupChangePassword { get; private set; }
-        public InteractionRequest<INotification> PopupLanguage { get; private set; }
-        public InteractionRequest<INotification> PopupDeviceTest { get; private set; }
-        public InteractionRequest<INotification> PopupAboutUs { get; private set; }
-        public InteractionRequest<INotification> PopupError { get; private set; }
+        //public InteractionRequest<INotification> PopupReanalysis { get; private set; }
+        //public InteractionRequest<INotification> PopupClearPatrol { get; private set; }
+        //public InteractionRequest<INotification> PopupSystemInit { get; private set; }
+        //public InteractionRequest<INotification> PopupManageUser { get; private set; }
+        //public InteractionRequest<INotification> PopupChangePassword { get; private set; }
+        //public InteractionRequest<INotification> PopupLanguage { get; private set; }
+        //public InteractionRequest<INotification> PopupDeviceTest { get; private set; }
+        //public InteractionRequest<INotification> PopupAboutUs { get; private set; }
+        //public InteractionRequest<INotification> PopupIgnore { get; private set; }
+        //public InteractionRequest<INotification> PopupError { get; private set; }
         #endregion
 
         private const string BACKGROUND_IMAGE_PATH = "/Resource/Img/Background.jpg";
@@ -81,7 +82,8 @@ namespace GuardTourSystem.ViewModel
             get { return backgroundImgPath; }
             set
             {
-                SetProperty(ref this.backgroundImgPath, value);
+                backgroundImgPath = value;
+                RaisePropertyChanged("BackgroundImgPath");
             }
         }
 
@@ -94,7 +96,8 @@ namespace GuardTourSystem.ViewModel
             get { return content; }
             set
             {
-                SetProperty(ref this.content, value);
+                content = value;
+                RaisePropertyChanged("Content");
                 if (value == null) //如果没有内容,显示背景图片,否则隐藏背景图片
                 {
                     BackgroundImgPath = BACKGROUND_IMAGE_PATH;
@@ -112,15 +115,16 @@ namespace GuardTourSystem.ViewModel
         {
             this.Content = null;
 
-            this.PopupReanalysis = new InteractionRequest<INotification>();
-            this.PopupClearPatrol = new InteractionRequest<INotification>();
-            this.PopupSystemInit = new InteractionRequest<INotification>();
-            this.PopupManageUser = new InteractionRequest<INotification>();
-            this.PopupChangePassword = new InteractionRequest<INotification>();
-            this.PopupLanguage = new InteractionRequest<INotification>();
-            this.PopupDeviceTest = new InteractionRequest<INotification>();
-            this.PopupAboutUs = new InteractionRequest<INotification>();
-            this.PopupError = new InteractionRequest<INotification>();
+            //this.PopupReanalysis = new InteractionRequest<INotification>();
+            //this.PopupClearPatrol = new InteractionRequest<INotification>();
+            //this.PopupSystemInit = new InteractionRequest<INotification>();
+            //this.PopupManageUser = new InteractionRequest<INotification>();
+            //this.PopupChangePassword = new InteractionRequest<INotification>();
+            //this.PopupLanguage = new InteractionRequest<INotification>();
+        //    this.PopupDeviceTest = new InteractionRequest<INotification>();
+        //    this.PopupAboutUs = new InteractionRequest<INotification>();
+        //    this.PopupIgnore = new InteractionRequest<INotification>();
+        //    this.PopupError = new InteractionRequest<INotification>();
         }
 
         /// <summary>
@@ -134,86 +138,62 @@ namespace GuardTourSystem.ViewModel
             MainWindowViewModel.Instance.ContentName = pe.GetContentName();
             switch (pe)
             {
-                case PopupEnum.Reanalysis:
-                    this.PopupReanalysis.Raise(new ReanalysisViewModel());
-                    break;
+                //case PopupEnum.Reanalysis:
+                //    this.PopupReanalysis.Raise(new ReanalysisViewModel());
+                //    break;
 
-                case PopupEnum.ClearPatrolData:
-                    this.PopupClearPatrol.Raise(new ClearPatrolDataViewModel());
-                    break;
-
-                case PopupEnum.ImportPatrolData:
-                    string importError;
-                    if (new ImportExportPatrolDataViewModel().Import(out importError))
-                    {
-                        AppStatusViewModel.Instance.ShowInfo("巡检数据导入成功");
-                    }
-                    else if (importError != null) //用户取消操作则error为null,不进行提示
-                    {
-                        AppStatusViewModel.Instance.ShowError("巡检数据导入失败  " + importError);
-                    }
-
-                    break;
-
-                case PopupEnum.ExportPatrolData:
-                    string exportError;
-                    if (new ImportExportPatrolDataViewModel().Export(out exportError))
-                    {
-                        AppStatusViewModel.Instance.ShowInfo("巡检数据导出成功");
-                    }
-                    else if (exportError != null) //用户取消操作则error为null,不进行提示
-                    {
-                        AppStatusViewModel.Instance.ShowError("巡检数据导出失败  " + exportError);
-                    }
-
-                    break;
-
-                case PopupEnum.SystemInit:
-                    this.PopupSystemInit.Raise(new SystemInitViewModel());
-                    break;
-
-                case PopupEnum.ManageUser:
-                    this.PopupManageUser.Raise(new UserManageViewModel());
-                    break;
-                case PopupEnum.ChangePassword:
-                    this.PopupChangePassword.Raise(new ModifyPasswordViewModel());
-                    break;
-
-                case PopupEnum.Language:
-                    this.PopupLanguage.Raise(new LanguageViewModel());
-                    break;
-
-                case PopupEnum.DeviceTest:
-                    this.PopupDeviceTest.Raise(new DeviceTestViewModel());
-                    break;
+                //case PopupEnum.ClearPatrolData:
+                //    new ClearPatrolDataView();
 
 
-                case PopupEnum.Help:
-                    if (!ChmHelper.OpenHelp())
-                    {
-                        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
-                    };
-                    break;
+                //    this.PopupClearPatrol.Raise(new ClearPatrolDataViewModel());
+                //    break;
 
-                case PopupEnum.HowToStart:
-                    if (!ChmHelper.OpenHelp(""))
-                    {
-                        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
-                    };
-                    break;
 
-                case PopupEnum.AboutUs:
-                    this.PopupAboutUs.Raise(new AboutUsViewModel());
-                    break;
+                //case PopupEnum.SystemInit:
+                //    this.PopupSystemInit.Raise(new SystemInitViewModel());
+                //    break;
 
-                case PopupEnum.Error:
-                    string errorInfo = "NULL";
-                    if (param != null)
-                    {
-                        errorInfo = (string)param;
-                    }
-                    this.PopupError.Raise(new AppErrorViewModel(errorInfo));
-                    break;
+                //case PopupEnum.ChangePassword:
+                //    this.PopupChangePassword.Raise(new ModifyPasswordViewModel());
+                //    break;
+
+
+                //case PopupEnum.DeviceTest:
+                //    this.PopupDeviceTest.Raise(new DeviceTestViewModel());
+                //    break;
+
+
+                //case PopupEnum.Help:
+                //    if (!ChmHelper.OpenHelp())
+                //    {
+                //        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
+                //    };
+                //    break;
+
+                //case PopupEnum.HowToStart:
+                //    if (!ChmHelper.OpenHelp(""))
+                //    {
+                //        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
+                //    };
+                //    break;
+
+                //case PopupEnum.AboutUs:
+                //    this.PopupAboutUs.Raise(new AboutUsViewModel());
+                //    break;
+
+                //case PopupEnum.Error:
+                //    string errorInfo = "NULL";
+                //    if (param != null)
+                //    {
+                //        errorInfo = (string)param;
+                //    }
+                //    this.PopupError.Raise(new AppErrorViewModel(errorInfo));
+                //    break;
+
+                //case PopupEnum.IgnoreRepeat:
+                //    this.PopupIgnore.Raise(new IgnoreRepeatViewModel());
+                //    break;
                 default:
                     break;
             }
@@ -265,24 +245,26 @@ namespace GuardTourSystem.ViewModel
                     return new ReadPatrolView();
                 case ViewEnum.QueryRawData:
                     return new QueryRawDataView();
-                case ViewEnum.ReadHit:
-                    return new ReadHitView();
-                case ViewEnum.QueryResult:
-                    return new QueryResultView();
-                case ViewEnum.QueryChart:
-                    return new QueryChartView();
+                case ViewEnum.QueryRawCount:
+                    return new QueryRawCountView();
+                //case ViewEnum.ReadHit:
+                //    return new ReadHitView();
+                //case ViewEnum.QueryResult:
+                //    return new QueryResultView();
+                //case ViewEnum.QueryChart:
+                //    return new QueryChartView();
                 case ViewEnum.SetRoute:
                     return new RouteView();
-                case ViewEnum.SetWorker:
-                    return new WorkerView();
-                case ViewEnum.SetEvent:
-                    return new EventView();
-                case ViewEnum.SetFrequence:
-                    return new FrequenceView();
-                case ViewEnum.SetRegular:
-                    return new RegularView();
-                case ViewEnum.SetIrregular:
-                    return new IrregularView();
+                //case ViewEnum.SetWorker:
+                //    return new WorkerView();
+                //case ViewEnum.SetEvent:
+                //    return new EventView();
+                //case ViewEnum.SetFrequence:
+                //    return new FrequenceView();
+                //case ViewEnum.SetRegular:
+                //    return new RegularView();
+                //case ViewEnum.SetIrregular:
+                //    return new IrregularView();
                 case ViewEnum.DataManage:
                     return new DataManageView();
                 default:

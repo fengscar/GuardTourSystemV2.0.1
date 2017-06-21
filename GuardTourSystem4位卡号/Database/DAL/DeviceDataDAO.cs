@@ -1,5 +1,4 @@
 ﻿using GuardTourSystem.Model;
-using GuardTourSystem.Model.Model;
 using GuardTourSystem.Utils;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Services.Database.DAL
 {
-    // 巡检设备数据, 支持  查 增 删
+    // 计数设备数据, 支持  查 增 删
     public class DeviceDataDAO
     {
         public List<DevicePatrolRecord> GetAllDeviceRecord(DateTime? begin = null, DateTime? end = null)

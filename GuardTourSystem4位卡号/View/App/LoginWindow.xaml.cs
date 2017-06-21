@@ -27,7 +27,7 @@ namespace GuardTourSystem.View
     /// <summary>
     /// LoginWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginWindow : MetroWindow
+    public partial class LoginWindow 
     {
         private static LoginWindow instance;
         public static LoginWindow Instance
@@ -60,7 +60,7 @@ namespace GuardTourSystem.View
             //this.Top = SystemParameters.PrimaryScreenHeight / 2 - this.Height;
 
             //登录窗口载入完成后,初始化主窗口
-            MainWindowViewModel.Instance.InitMainWindow();
+            //MainWindowViewModel.Instance.InitMainWindow();
         }
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -78,7 +78,7 @@ namespace GuardTourSystem.View
             {
                 LoginBtn.SetPressed(true);// 使用扩展方法,设置按键被按下
                 ViewModel.CLogin.Execute();
-                await Task.Run(() => { Thread.Sleep(50); });
+                await Task.Factory.StartNew(() => { Thread.Sleep(50); });
                 LoginBtn.SetPressed(false);
             }
             else if (e.Key == Key.Escape) //点击Escape,退出

@@ -36,15 +36,15 @@ namespace GuardTourSystem.Database.BLL
                     route.Places = places;
                 }
             }
-            if (attachFrequences)
-            {
-                IFrequenceService fs = new FrequenceBLL();
-                foreach (var route in routes)
-                {
-                    var freqs = fs.GetAllFrequence(route);
-                    route.Frequences = freqs;
-                }
-            }
+            //if (attachFrequences)
+            //{
+            //    IFrequenceService fs = new FrequenceBLL();
+            //    foreach (var route in routes)
+            //    {
+            //        var freqs = fs.GetAllFrequence(route);
+            //        route.Frequences = freqs;
+            //    }
+            //}
             SQLiteHelper.Instance.CommitTransaction();
             return routes;
         }
@@ -60,7 +60,7 @@ namespace GuardTourSystem.Database.BLL
             }
             if (DAO.ExistsName(route.RouteName))
             {
-                errorInfo = "该线路名称已存在";
+                errorInfo = "该部门名称已被使用";
                 return false;
             }
             return DAO.AddRoute(route, out id);
@@ -78,27 +78,28 @@ namespace GuardTourSystem.Database.BLL
             {
                 if (DAO.ExistsName(route.RouteName))
                 {
-                    errorInfo = "该线路名称已存在";
+                    errorInfo = "该部门名称已被使用";
                     return false;
                 }
-                //更新前先获取班次...避免班次的路线名称被改变 导致无法找到指定DUTY
-                var oldFrequences = new FrequenceBLL().GetAllFrequence(old);
+                return true;
+                ////更新前先获取班次...避免班次的路线名称被改变 导致无法找到指定DUTY
+                //var oldFrequences = new FrequenceBLL().GetAllFrequence(old);
 
-                if (DAO.UpdateRoute(route))
-                {
-                    //更新成功,重新生成该班次当天的Duty
-                    var bll = new DutyBLL();
-                    //更新值班表
-                    foreach (var freq in oldFrequences)
-                    {
-                        bll.GenerateDuty(out errorInfo, freq, DateTime.Now);
-                    }
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                //if (DAO.UpdateRoute(route))
+                //{
+                //    //更新成功,重新生成该班次当天的Duty
+                //    var bll = new DutyBLL();
+                //    //更新值班表
+                //    foreach (var freq in oldFrequences)
+                //    {
+                //        bll.GenerateDuty(out errorInfo, freq, DateTime.Now);
+                //    }
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false;
+                //}
             }
             else //如果线路名称没变,无需更新
             {
@@ -118,7 +119,7 @@ namespace GuardTourSystem.Database.BLL
             }
             if (String.IsNullOrEmpty(route.RouteName))
             {
-                errorInfo = "抱歉,线路名称不能为空";
+                errorInfo = "抱歉,部门名称不能为空";
                 return false;
             }
             return true;

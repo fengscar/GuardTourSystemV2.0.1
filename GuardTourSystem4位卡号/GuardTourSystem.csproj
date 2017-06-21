@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GuardTourSystem</RootNamespace>
     <AssemblyName>Patrol</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -77,55 +77,46 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KaiheSerialPortLibrary, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\常用动态链接库\单机巡检Libs\4位卡号\KaiheSerialPortLibrary.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\常用动态链接库\.Net4.5\log4net.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="MahApps.Metro">
-      <HintPath>..\packages\MahApps.Metro.1.3.0\lib\net45\MahApps.Metro.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net40\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MahApps.Metro.IconPacks">
       <HintPath>..\packages\MahApps.Metro.IconPacks.1.6.0\lib\net45\MahApps.Metro.IconPacks.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Expression.Drawing">
-      <Private>False</Private>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Expression.Interactions.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Composition">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.Prism.Composition.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.Prism.Mvvm.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Mvvm.Desktop">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.Prism.Mvvm.Desktop.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.SharedInterfaces">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.Prism.SharedInterfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\常用动态链接库\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System">
@@ -137,22 +128,35 @@
     </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.104.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\常用动态链接库\.Net4.5\System.Data.SQLite.dll</HintPath>
+      <HintPath>..\..\..\常用动态链接库\.Net4.0\System.Data.SQLite.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.IO, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Management">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Net" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=2.6.8.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.8\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml">
       <Private>False</Private>
@@ -247,28 +251,18 @@
     </Compile>
     <Compile Include="Converter\SelectIndexToVisibleConverter.cs" />
     <Compile Include="Converter\FilterValueConverter.cs" />
-    <Compile Include="Converter\ReadDeviceIdVisibleConverter.cs" />
-    <Compile Include="Converter\PatrolResultConverter.cs" />
     <Compile Include="Converter\ZeroToEmptyConverter.cs" />
     <Compile Include="Converter\FilePathToFileNameConverter.cs" />
+    <Compile Include="Database\Model\RawCountInfo.cs" />
     <Compile Include="Device\AppSerialPortUtil.cs" />
     <Compile Include="Print\Documents\AbstractDocument.cs" />
-    <Compile Include="Print\Documents\EventDocument.cs" />
-    <Compile Include="Print\Documents\HitDocument.cs" />
-    <Compile Include="Print\Documents\RouteGridChartDocument.cs" />
     <Compile Include="Print\HeaderFooterPaginator.cs" />
     <Compile Include="Print\PrintData.cs" />
     <Compile Include="Print\PrintExtensions.cs" />
     <Compile Include="Print\PrintPreviewWindow.xaml.cs">
       <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Print\Documents\ResultDocument.cs" />
     <Compile Include="Print\Documents\RouteAndPlaceDocument.cs" />
-    <Compile Include="Print\Documents\RawDataDocument.cs" />
-    <Compile Include="Print\Documents\FrequenceDocument.cs" />
-    <Compile Include="Print\Documents\WorkerDocument.cs" />
-    <Compile Include="Selector\PatrolResultStyleSelector.cs" />
-    <Compile Include="Selector\ChartSelector.cs" />
     <Compile Include="Settings\AppSetting.cs" />
     <Compile Include="Settings\BLL\BackupBLL.cs" />
     <Compile Include="Database\BLL\CountBLL.cs" />
@@ -277,8 +271,6 @@
     <Compile Include="Database\DAL\CountDAO.cs" />
     <Compile Include="Settings\DAL\BackupInfoDAO.cs" />
     <Compile Include="Database\Model\DatabaseInfo.cs" />
-    <Compile Include="Database\Model\RouteCountInfo.cs" />
-    <Compile Include="Database\Model\CountInfo.cs" />
     <Compile Include="Settings\DAL\LogInfoDAO.cs" />
     <Compile Include="Settings\MODEL\LogInfo.cs" />
     <Compile Include="Settings\BLL\SettingManager.cs" />
@@ -289,19 +281,13 @@
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Print\Printer.cs" />
     <Compile Include="ViewModel\App\ShowContentViewModel.cs" />
-    <Compile Include="ViewModel\DataManage\ImportExportPatrolDataViewModel.cs" />
     <Compile Include="ViewModel\Help\AboutUsViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\AssetData.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\RouteBarViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\RouteChartViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\RoutePieViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\WorkerBarViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\WorkerChartViewModel.cs" />
-    <Compile Include="ViewModel\Query\ChartViewModel\WorkerPieViewModel.cs" />
-    <Compile Include="ViewModel\Query\QueryChartViewModel.cs" />
     <Compile Include="ViewModel\Popup\AppErrorViewModel.cs" />
     <Compile Include="ViewModel\DataManage\ClearPatrolDataViewModel.cs" />
-    <Compile Include="ViewModel\SystemSetting\UserManageViewModel.cs" />
+    <Compile Include="ViewModel\Query\QueryRawCountViewModel.cs" />
+    <Compile Include="ViewModel\SystemSetting\IgnoreRepeatViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModel\SystemSetting\ModifyPasswordViewModel.cs" />
     <Compile Include="View\App\ShowContentView.cs" />
     <Compile Include="View\Custom\ExtendNotifyPropertyChanged.cs" />
@@ -312,48 +298,22 @@
     <Compile Include="View\Popup\AppErrorView.xaml.cs">
       <DependentUpon>AppErrorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converter\NextDayConverter.cs" />
     <Compile Include="Converter\UserToStringConverter.cs" />
     <Compile Include="Converter\BoolToVisibleConverter.cs" />
-    <Compile Include="Converter\FrequenceWorkerToStringConverter.cs" />
-    <Compile Include="Converter\EndFrequenceToStringConverter.cs" />
-    <Compile Include="Converter\IsRegularToStringConverter.cs" />
-    <Compile Include="Converter\CardTypeConverter.cs" />
     <Compile Include="Converter\BoolReverseConverter.cs" />
-    <Compile Include="Converter\RegularToBoolConverter.cs" />
     <Compile Include="Converter\ValueToBoolConverter.cs" />
-    <Compile Include="Database\BLL\DutyBLL.cs" />
-    <Compile Include="Database\BLL\EventBLL.cs" />
-    <Compile Include="Database\BLL\FrequenceBLL.cs" />
-    <Compile Include="Database\BLL\HitBLL.cs" />
     <Compile Include="Services\IRawDataService.cs" />
     <Compile Include="Database\BLL\PlaceBLL.cs" />
     <Compile Include="Database\BLL\RawDataBLL.cs" />
     <Compile Include="Database\BLL\RouteBLL.cs" />
-    <Compile Include="Database\DAL\DutyDAO.cs" />
-    <Compile Include="Database\DAL\FrequenceWorkerDAO.cs" />
-    <Compile Include="Database\DAL\HitDAO.cs" />
-    <Compile Include="Database\DAL\IrregularDAO.cs" />
     <Compile Include="Database\DAL\PlaceDAO.cs" />
     <Compile Include="Database\DAL\RawDataDAO.cs" />
-    <Compile Include="Database\DAL\RecordDAO.cs" />
-    <Compile Include="Database\DAL\RegularDAO.cs" />
     <Compile Include="Settings\MODEL\BackupInfo.cs" />
-    <Compile Include="Database\Model\Event.cs" />
-    <Compile Include="Database\Model\DeviceHitRecord.cs" />
     <Compile Include="Database\Model\DevicePatrolRecord.cs" />
-    <Compile Include="Database\Model\Regular.cs" />
-    <Compile Include="Database\Model\Irregular.cs" />
     <Compile Include="Database\Model\RawData.cs" />
     <Compile Include="Database\Model\Route.cs" />
-    <Compile Include="Database\BLL\WorkerBLL.cs" />
-    <Compile Include="Database\DAL\EventDAO.cs" />
     <Compile Include="Database\DAL\DeviceDataDAO.cs" />
     <Compile Include="Database\SQLiteCustomFunction.cs" />
-    <Compile Include="Selector\DayButtonTemplateSelector.cs" />
-    <Compile Include="Selector\FrequenceSelector.cs" />
-    <Compile Include="Services\IEventService.cs" />
-    <Compile Include="Services\IFrequenceService.cs" />
     <Compile Include="Services\IRouteService.cs" />
     <Compile Include="Settings\AppSetting.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -363,15 +323,11 @@
     <Compile Include="Database\BLL\PatrolSQLiteManager.cs" />
     <Compile Include="Settings\BLL\UserBLL.cs" />
     <Compile Include="Database\DAL\BaseDAO.cs" />
-    <Compile Include="Database\DAL\FrequenceDAO.cs" />
     <Compile Include="Database\DAL\RouteDAO.cs" />
     <Compile Include="Settings\DAL\UserDAO.cs" />
-    <Compile Include="Database\DAL\WorkerDAO.cs" />
     <Compile Include="Database\SQLiteHelper.cs" />
     <Compile Include="Services\IPlaceService.cs" />
-    <Compile Include="Services\IDutyService.cs" />
     <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\IWorkerService.cs" />
     <Compile Include="Utils\ChmHelper.cs" />
     <Compile Include="Utils\DBug.cs" />
     <Compile Include="Utils\ExcelExporter.cs" />
@@ -384,23 +340,12 @@
     <Compile Include="ViewModel\App\AppStatusViewModel.cs" />
     <Compile Include="ViewModel\Custom\BatchAddViewModel.cs" />
     <Compile Include="ViewModel\PatrolSetting\AbstractInfoNotificationViewModel.cs" />
-    <Compile Include="ViewModel\Custom\MonthSelectViewModel.cs" />
-    <Compile Include="ViewModel\Custom\WeekSelectViewModel.cs" />
     <Compile Include="ViewModel\DataManage\DataManageViewModel.cs" />
-    <Compile Include="ViewModel\Query\QueryResultViewModel.cs" />
-    <Compile Include="ViewModel\Query\ReadHitViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\EventSettings\EventInfoViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PatrolSettingViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PlanSettings\BaseFrequenceViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PlanSettings\IrregularFrequenceViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PlanSettings\FrequenceInfoPopupViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PlanSettings\RegularFrequenceViewModel.cs" />
     <Compile Include="ViewModel\PatrolSetting\RouteSettings\PlaceInfoViewModel.cs" />
     <Compile Include="ViewModel\PatrolSetting\RouteSettings\RouteInfoViewModel.cs" />
     <Compile Include="ViewModel\App\ShowMetroDialogViewModel.cs" />
     <Compile Include="ViewModel\Popup\AbstractPopupNotificationViewModel.cs" />
     <Compile Include="ViewModel\SystemSetting\SystemInitViewModel.cs" />
-    <Compile Include="ViewModel\Query\ReanalysisViewModel.cs" />
     <Compile Include="View\App\AppContentView.xaml.cs">
       <DependentUpon>AppContentView.xaml</DependentUpon>
     </Compile>
@@ -418,12 +363,7 @@
     <Compile Include="ViewModel\App\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Query\QueryRawDataViewModel.cs" />
     <Compile Include="ViewModel\Query\ReadPatrolViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\EventSettings\EventViewModel.cs" />
     <Compile Include="ViewModel\PatrolSetting\RouteSettings\RoutePlaceViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\PlanSettings\FrequenceViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\WorkerSettings\WorkerInfoViewModel.cs" />
-    <Compile Include="ViewModel\PatrolSetting\WorkerSettings\WorkerViewModel.cs" />
-    <Compile Include="ViewModel\SystemSetting\LanguageViewModel.cs" />
     <Compile Include="ViewModel\SystemSetting\DeviceTestViewModel.cs" />
     <Compile Include="View\Help\AboutUsView.xaml.cs">
       <DependentUpon>AboutUsView.xaml</DependentUpon>
@@ -440,64 +380,30 @@
     <Compile Include="View\Custom\CustomInfoControl.xaml.cs">
       <DependentUpon>CustomInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Custom\IrregularSelectControl.xaml.cs">
-      <DependentUpon>IrregularSelectControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Custom\RawDataControl.xaml.cs">
       <DependentUpon>RawDataControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Custom\RegularSelectControl.xaml.cs">
-      <DependentUpon>RegularSelectControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DataManage\DataManageView.xaml.cs">
       <DependentUpon>DataManageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Popup\CustomPopupWindowAction.cs" />
-    <Compile Include="View\Query\ChartControls\IPrintable.cs" />
-    <Compile Include="View\Query\ChartControls\RouteBarControl.xaml.cs">
-      <DependentUpon>RouteBarControl.xaml</DependentUpon>
+    <Compile Include="View\Popup\PopupWindow.xaml.cs">
+      <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Query\ChartControls\RouteChart.xaml.cs">
-      <DependentUpon>RouteChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\RouteGridControl.xaml.cs">
-      <DependentUpon>RouteGridControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\RoutePieControl.xaml.cs">
-      <DependentUpon>RoutePieControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\WorkerBarControl.xaml.cs">
-      <DependentUpon>WorkerBarControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\WorkerChart.xaml.cs">
-      <DependentUpon>WorkerChart.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\WorkerGridControl.xaml.cs">
-      <DependentUpon>WorkerGridControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ChartControls\WorkerPieControl.xaml.cs">
-      <DependentUpon>WorkerPieControl.xaml</DependentUpon>
+    <Compile Include="View\Query\QueryRawCountView.xaml.cs">
+      <DependentUpon>QueryRawCountView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Query\ReadPatrolView.xaml.cs">
       <DependentUpon>ReadPatrolView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Query\ReadHitView.xaml.cs">
-      <DependentUpon>ReadHitView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\DataManage\ClearPatrolDataView.xaml.cs">
       <DependentUpon>ClearPatrolDataView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SystemSetting\UserManageView.xaml.cs">
-      <DependentUpon>UserManageView.xaml</DependentUpon>
+    <Compile Include="View\SystemSetting\IgnoreRepeatView.xaml.cs">
+      <DependentUpon>IgnoreRepeatView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="View\SystemSetting\ModifyPasswordView.xaml.cs">
       <DependentUpon>ModifyPasswordView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\EditData\EventInfoView.xaml.cs">
-      <DependentUpon>EventInfoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\EditData\FrequenceInfoView.xaml.cs">
-      <DependentUpon>FrequenceInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Popup\InteractionRequestAwareUserControl.cs" />
     <Compile Include="View\PatrolSetting\EditData\PlaceInfoView.xaml.cs">
@@ -509,47 +415,17 @@
     <Compile Include="View\App\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Query\QueryResultView.xaml.cs">
-      <DependentUpon>QueryResultView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Query\QueryRawDataView.xaml.cs">
       <DependentUpon>QueryRawDataView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\QueryChartView.xaml.cs">
-      <DependentUpon>QueryChartView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\EditData\WorkerInfoView.xaml.cs">
-      <DependentUpon>WorkerInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatrolSetting\EditData\RouteInfoView.xaml.cs">
       <DependentUpon>RouteInfoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PatrolSetting\EventView.xaml.cs">
-      <DependentUpon>EventView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\IrregularView.xaml.cs">
-      <DependentUpon>IrregularView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\PatrolSetting\RouteView.xaml.cs">
       <DependentUpon>RouteView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PatrolSetting\RegularView.xaml.cs">
-      <DependentUpon>RegularView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\FrequenceView.xaml.cs">
-      <DependentUpon>FrequenceView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\PatrolSetting\WorkerView.xaml.cs">
-      <DependentUpon>WorkerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\SystemSetting\SystemInitView.xaml.cs">
       <DependentUpon>SystemInitView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Query\ReanalysisView.xaml.cs">
-      <DependentUpon>ReanalysisView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SystemSetting\LanguageView.xaml.cs">
-      <DependentUpon>LanguageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\App\ShowMetrolDialogView.cs" />
     <Compile Include="View\SystemSetting\DeviceTestView.xaml.cs">
@@ -557,13 +433,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Model\Frequence.cs" />
-    <Compile Include="Database\Model\Duty.cs" />
     <Compile Include="Database\Model\Place.cs" />
-    <Compile Include="Database\Model\Record.cs" />
     <Compile Include="Settings\Language.cs" />
     <Compile Include="Settings\MODEL\User.cs" />
-    <Compile Include="Database\Model\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -607,14 +479,6 @@
     <Resource Include="Resource\Img\Logo.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resource\Styles\IrregularStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resource\Styles\RegularStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resource\Styles\ListViewStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -624,10 +488,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Print\FlowDocument.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resource\Styles\ChartStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -694,10 +554,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resource\Styles\TabControlStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resource\Styles\TreeViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -738,15 +594,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Custom\IrregularSelectControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Custom\RawDataControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Custom\RegularSelectControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -754,43 +602,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Query\ChartControls\RouteBarControl.xaml">
+    <Page Include="View\Popup\PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Query\ChartControls\RouteChart.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Query\QueryRawCountView.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\RouteGridControl.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\RoutePieControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\WorkerBarControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\WorkerChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\WorkerGridControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ChartControls\WorkerPieControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Query\ReadPatrolView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\ReadHitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -798,19 +618,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SystemSetting\UserManageView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\SystemSetting\IgnoreRepeatView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SystemSetting\ModifyPasswordView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PatrolSetting\EditData\EventInfoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PatrolSetting\EditData\FrequenceInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -826,19 +638,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Query\QueryResultView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Query\QueryRawDataView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Query\QueryChartView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PatrolSetting\EditData\WorkerInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -846,39 +646,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PatrolSetting\EventView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PatrolSetting\IrregularView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\PatrolSetting\RouteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PatrolSetting\RegularView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PatrolSetting\FrequenceView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\PatrolSetting\WorkerView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\SystemSetting\SystemInitView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Query\ReanalysisView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SystemSetting\LanguageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -971,30 +743,44 @@
   <ItemGroup>
     <PublishFile Include="KaiheSerialPortLibrary">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="MahApps.Metro.IconPacks">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\Img\MenuIcon\QueryRawCount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\KaiheSerialPortLibrary%284位卡号_读卡从序号1开始%29\KaiheSerialPortLibrary.csproj">
+      <Project>{41bb59b2-942a-4a09-8a50-cfa62acd542b}</Project>
+      <Name>KaiheSerialPortLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

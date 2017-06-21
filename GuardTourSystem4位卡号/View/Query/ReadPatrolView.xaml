@@ -11,7 +11,7 @@
     xmlns:vm="clr-namespace:GuardTourSystem.ViewModel"
     mc:Ignorable="d">
     <view:ShowContentView.Resources>
-        <converer:CardTypeConverter x:Key="CardTypeConverter" />
+        <!--<converer:CardTypeConverter x:Key="CardTypeConverter" />-->
         <converer:ZeroToEmptyConverter x:Key="ZeroToEmptyConverter" />
     </view:ShowContentView.Resources>
     <Grid>

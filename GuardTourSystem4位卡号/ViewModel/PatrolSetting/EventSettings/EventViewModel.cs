@@ -138,7 +138,7 @@ namespace GuardTourSystem.ViewModel
 
         private void Print()
         {
-            var printData = new PrintData() { ContentList = Events.ToList(), Title = "巡检事件信息", DataCount = Events.Count };
+            var printData = new PrintData() { ContentList = Events.ToList(), Title = "计数事件信息", DataCount = Events.Count };
             var printer = new Printer(new EventDocument(printData));
             printer.ShowPreviewWindow();
         }

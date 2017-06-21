@@ -53,11 +53,10 @@ namespace GuardTourSystem
             //判断软件是否已经开启
             IsNewApplication();
 
-
             //串口初始化
-            SerialPortDebug.DEBUG = true;
-            DBug.DEBUG = true;
-            SerialPortManager.Instance.ChangeBautRate(9600);
+            SerialPortDebug.DEBUG = false;
+            DBug.DEBUG = false;
+            SerialPortManager.Instance.ChangeBautRate(460800);
             ////Task.Run(() => SerialPortManager.Instance.InitKaiHeDevices()); //初始化放在后台完成
 
         }

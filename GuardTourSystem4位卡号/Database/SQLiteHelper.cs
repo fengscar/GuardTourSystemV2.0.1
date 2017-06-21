@@ -101,7 +101,7 @@ namespace GuardTourSystem.Model
         //1.打开指定位置的数据库
         //2.执行传入的Func
         //3.将Func的结果返回(如果操作出现异常,返回NULL)
-        //注意: 将断开Conn的连接, 并在操作完成后将自动重新连接到 默认的巡检数据库
+        //注意: 将断开Conn的连接, 并在操作完成后将自动重新连接到 默认的计数数据库
         public object OperateOtherDatabase(string dataBaseFilePath, Func<object> func)
         {
             Conn = null;

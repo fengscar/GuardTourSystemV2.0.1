@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Utils
 {
-    public class DateQueryInfo : BindableBase
+    public class DateQueryInfo : NotificationObject
     {
         /// <summary>
         /// 查询的 起始时间
@@ -18,11 +18,12 @@ namespace GuardTourSystem.Utils
             get { return begin; }
             set
             {
-                if (value != null)
-                {
-                    value = value.ToNotNullable().SetBeginOfDay();
-                }
-                SetProperty(ref this.begin, value);
+                //if (value != null)
+                //{
+                //    value = value.ToNotNullable().SetBeginOfDay();
+                //}
+                begin = value;
+                RaisePropertyChanged("Begin");
                 if (OnDateChange != null)
                 {
                     OnDateChange();
@@ -38,11 +39,13 @@ namespace GuardTourSystem.Utils
             get { return end; }
             set
             {
-                if (value != null)
-                {
-                    value = value.ToNotNullable().SetEndOfDay();
-                }
-                SetProperty(ref this.end, value);
+                //if (value != null)
+                //{
+                //    value = value.ToNotNullable().SetEndOfDay();
+                //}
+                end = value;
+                RaisePropertyChanged("End");
+                //SetProperty(ref this.end, value);
                 if (OnDateChange != null)
                 {
                     OnDateChange();
@@ -64,17 +67,17 @@ namespace GuardTourSystem.Utils
         {
             if (Begin == null)
             {
-                error = LanLoader.Load(LanKey.QueryDateErrorBegin); 
+                error = LanLoader.Load(LanKey.QueryDateErrorBegin);
                 return false;
             }
             if (End == null)
             {
-                error = LanLoader.Load(LanKey.QueryDateErrorEnd); 
+                error = LanLoader.Load(LanKey.QueryDateErrorEnd);
                 return false;
             }
             if (this.End.ToNotNullable().Subtract(this.Begin.ToNotNullable()).TotalSeconds < 0)
             {
-                error = LanLoader.Load(LanKey.QueryDateErrorDate); 
+                error = LanLoader.Load(LanKey.QueryDateErrorDate);
                 return false;
             }
             error = null;
@@ -83,7 +86,7 @@ namespace GuardTourSystem.Utils
 
         public string GetQueryTime()
         {
-            return this.Begin.ToNotNullable().ToShortDateString() + " "+LanLoader.Load(LanKey.QueryDateTo)+" " +this.End.ToNotNullable().ToShortDateString();
+            return this.Begin.ToNotNullable().ToShortDateString() + " " + LanLoader.Load(LanKey.QueryDateTo) + " " + this.End.ToNotNullable().ToShortDateString();
         }
     }
 }

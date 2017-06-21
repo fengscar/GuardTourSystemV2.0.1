@@ -5,7 +5,7 @@ using GuardTourSystem.Model;
 using GuardTourSystem.Services.Database.BLL;
 using GuardTourSystem.Utils;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,7 +33,8 @@ namespace GuardTourSystem.ViewModel
             get { return dbInfo; }
             set
             {
-                SetProperty(ref this.dbInfo, value);
+                dbInfo = value;
+                RaisePropertyChanged("DatabaseInfo");
             }
         }
 
@@ -43,7 +44,8 @@ namespace GuardTourSystem.ViewModel
             get { return backupInfos; }
             set
             {
-                SetProperty(ref this.backupInfos, value);
+                backupInfos = value;
+                RaisePropertyChanged("BackupInfos");
             }
         }
 
@@ -53,8 +55,9 @@ namespace GuardTourSystem.ViewModel
             get { return backupInfo; }
             set
             {
+                backupInfo = value;
+                RaisePropertyChanged("SelectBackup");
                 this.CRecovery.RaiseCanExecuteChanged();
-                SetProperty(ref this.backupInfo, value);
             }
         }
 

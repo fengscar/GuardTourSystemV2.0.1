@@ -33,12 +33,12 @@
             Grid.Row="1"
             Margin="10"
             Columns="3">
-            <CheckBox Content="巡检地点" IsChecked="{Binding InitPlace}" />
-            <CheckBox Content="巡检班次" IsChecked="{Binding InitFrequence}" />
-            <CheckBox Content="巡检计划" IsChecked="{Binding InitPlan}" />
-            <CheckBox Content="巡检人员" IsChecked="{Binding InitWorker}" />
-            <CheckBox Content="巡检事件" IsChecked="{Binding InitEvent}" />
-            <CheckBox Content="巡检记录" IsChecked="{Binding InitData}" />
+            <CheckBox Content="人员信息" IsChecked="{Binding InitPlace}" />
+            <!--<CheckBox Content="计数班次" IsChecked="{Binding InitFrequence}" />
+            <CheckBox Content="计数计划" IsChecked="{Binding InitPlan}" />
+            <CheckBox Content="管理卡信息" IsChecked="{Binding InitWorker}" />
+            <CheckBox Content="事件信息" IsChecked="{Binding InitEvent}" />-->
+            <CheckBox Content="打卡记录" IsChecked="{Binding InitData}" />
         </UniformGrid>
         <Label
             Grid.Row="7"

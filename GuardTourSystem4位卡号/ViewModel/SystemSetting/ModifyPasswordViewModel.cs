@@ -3,7 +3,6 @@ using GuardTourSystem.Utils;
 using GuardTourSystem.Properties;
 using GuardTourSystem.Settings;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +24,9 @@ namespace GuardTourSystem.ViewModel
             get { return oldpwd; }
             set
             {
-                SetProperty(ref this.oldpwd, value);
+                oldpwd = value;
+                RaisePropertyChanged("OldPassword");
+                //SetProperty(ref this.oldpwd, value);
             }
         }
 
@@ -36,7 +37,9 @@ namespace GuardTourSystem.ViewModel
             get { return newPwd1; }
             set
             {
-                SetProperty(ref this.newPwd1, value);
+                newPwd1 = value;
+                RaisePropertyChanged("NewPassword1");
+                //SetProperty(ref this.newPwd1, value);
             }
         }
 
@@ -47,7 +50,9 @@ namespace GuardTourSystem.ViewModel
             get { return newPwd2; }
             set
             {
-                SetProperty(ref this.newPwd2, value);
+                newPwd2 = value;
+                RaisePropertyChanged("NewPassword2");
+                //SetProperty(ref this.newPwd2, value);
             }
         }
 

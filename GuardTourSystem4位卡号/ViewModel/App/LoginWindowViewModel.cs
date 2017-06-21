@@ -6,7 +6,7 @@ using GuardTourSystem.View;
 using GuardTourSystem.Settings;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Windows.Input;
 
 namespace GuardTourSystem.ViewModel
 {
-    class LoginWindowViewModel : BindableBase
+    class LoginWindowViewModel : NotificationObject
     {
         public static readonly LoginWindowViewModel Instance = new LoginWindowViewModel();
 
@@ -29,7 +29,8 @@ namespace GuardTourSystem.ViewModel
             get { return loginTitle; }
             set
             {
-                SetProperty(ref this.loginTitle, value);
+                loginTitle = value;
+                RaisePropertyChanged("LoginTitle");
             }
         }
 
@@ -40,7 +41,8 @@ namespace GuardTourSystem.ViewModel
             get { return userList; }
             set
             {
-                SetProperty(ref this.userList, value);
+                userList = value;
+                RaisePropertyChanged("UserList");
             }
         }
 
@@ -52,7 +54,8 @@ namespace GuardTourSystem.ViewModel
             set
             {
                 ErrorInfo = null;
-                SetProperty(ref this.user, value);
+                user = value;
+                RaisePropertyChanged("User");
             }
         }
 
@@ -64,7 +67,8 @@ namespace GuardTourSystem.ViewModel
             set
             {
                 ErrorInfo = null;
-                SetProperty(ref this.password, value);
+                password = value;
+                RaisePropertyChanged("Password");
             }
         }
 
@@ -75,7 +79,8 @@ namespace GuardTourSystem.ViewModel
             get { return errorInfo; }
             set
             {
-                SetProperty(ref this.errorInfo, value);
+                errorInfo = value;
+                RaisePropertyChanged("ErrorInfo");
             }
         }
 

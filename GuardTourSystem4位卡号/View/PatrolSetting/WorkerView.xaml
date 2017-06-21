@@ -39,9 +39,9 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <Button
-                        Width="80"
+                        Width="100"
                         Command="{Binding CAddWorker}"
-                        Content="新增员工"
+                        Content="新增管理卡"
                         Style="{StaticResource BlueBtn}" />
                     <Button
                         Width="80"
@@ -56,7 +56,7 @@
                     <!--<Button
                         Width="110"
                         Command="{Binding CSendWorkers}"
-                        Content="发送到巡检机"
+                        Content="发送到计数机"
                         Style="{StaticResource BlueBtn}" />-->
                 </StackPanel>
                 <telerik:RadGridView
@@ -70,13 +70,13 @@
                         <telerik:GridViewDataColumn
                             Width="*"
                             DataMemberBinding="{Binding Name}"
-                            Header="巡检员姓名"
+                            Header="管理卡名称"
                             IsFilterable="False" />
                         <telerik:GridViewDataColumn
                             Width="*"
                             CellStyle="{StaticResource GridViewCardCell}"
                             DataMemberBinding="{Binding Card}"
-                            Header="巡检员钮号"
+                            Header="管理卡钮号"
                             IsFilterable="False" />
                     </telerik:RadGridView.Columns>
                 </telerik:RadGridView>

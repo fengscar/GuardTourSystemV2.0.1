@@ -36,12 +36,12 @@
                     Grid.Row="0"
                     VerticalAlignment="Stretch"
                     Orientation="Vertical">
-                    <Label Content="{Binding DatabaseInfo.WorkerCount}" ContentStringFormat="人员信息 : {0} 条" />
-                    <Label Content="{Binding DatabaseInfo.RouteCount}" ContentStringFormat="线路信息 : {0} 条" />
-                    <Label Content="{Binding DatabaseInfo.PlaceCount}" ContentStringFormat="地点信息 : {0} 条" />
+                    <Label Content="{Binding DatabaseInfo.WorkerCount}" ContentStringFormat="管理卡信息 : {0} 条" />
+                    <Label Content="{Binding DatabaseInfo.RouteCount}" ContentStringFormat="部门信息 : {0} 条" />
+                    <Label Content="{Binding DatabaseInfo.PlaceCount}" ContentStringFormat="人员信息 : {0} 条" />
                     <Label Content="{Binding DatabaseInfo.EventCount}" ContentStringFormat="事件信息 : {0} 条" />
                     <Label Content="{Binding DatabaseInfo.FrequenceCount}" ContentStringFormat="班次信息 : {0} 条" />
-                    <Label Content="{Binding DatabaseInfo.RawDataCount}" ContentStringFormat="原始数据 : {0} 条" />
+                    <Label Content="{Binding DatabaseInfo.RawDataCount}" ContentStringFormat="打卡记录 : {0} 条" />
                     <Label Content="{Binding DatabaseInfo.RecordCount}" ContentStringFormat="考核结果 : {0} 条" />
                 </StackPanel>
                 <Button
@@ -65,9 +65,9 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <DataGrid
-                               Style="{StaticResource ContentDataGrid}"
                     ItemsSource="{Binding BackupInfos}"
-                    SelectedItem="{Binding SelectBackup}">
+                    SelectedItem="{Binding SelectBackup}"
+                    Style="{StaticResource ContentDataGrid}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="*"
@@ -82,17 +82,17 @@
                         <DataGridTextColumn
                             Width="Auto"
                             Binding="{Binding DatabaseInfo.WorkerCount}"
-                            Header="人员数"
+                            Header="管理卡数"
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="Auto"
                             Binding="{Binding DatabaseInfo.RouteCount}"
-                            Header="线路数"
+                            Header="部门数"
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="Auto"
                             Binding="{Binding DatabaseInfo.PlaceCount}"
-                            Header="地点数"
+                            Header="人员数"
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="Auto"
@@ -107,7 +107,7 @@
                         <DataGridTextColumn
                             Width="Auto"
                             Binding="{Binding DatabaseInfo.RawDataCount}"
-                            Header="原始数据"
+                            Header="打卡记录"
                             IsReadOnly="True" />
                         <DataGridTextColumn
                             Width="Auto"

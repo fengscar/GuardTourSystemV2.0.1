@@ -54,8 +54,8 @@ namespace GuardTourSystem.ViewModel.Query.ChartViewModel
         {
             var targetCountInfo = CountInfos.Find(info => info.CountName.Equals(selectWorker));
             Data.Clear();
-            Data.Add(new AssetData(true) { Value = targetCountInfo.PatrolCount, Label = "巡检次数" });
-            Data.Add(new AssetData(false) { Value = targetCountInfo.MissCount, Label = "漏检次数" });
+            Data.Add(new AssetData(true) { Value = targetCountInfo.PatrolCount, Label = "打卡次数" });
+            Data.Add(new AssetData(false) { Value = targetCountInfo.MissCount, Label = "漏打次数" });
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Database.Model
 {
-    class RouteCountInfo : CountInfo //一条巡检线路 统计信息
+    class RouteCountInfo : CountInfo //一条计数线路 统计信息
     {
         public List<CountInfo> PlaceCountInfos { get; set; } // 所有属于该线路的地点的 统计信息 
 

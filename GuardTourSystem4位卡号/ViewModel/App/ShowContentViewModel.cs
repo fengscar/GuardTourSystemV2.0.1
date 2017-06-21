@@ -47,7 +47,8 @@ namespace GuardTourSystem.ViewModel
             get { return error; }
             set
             {
-                SetProperty(ref this.error, value);
+                error = value;
+                RaisePropertyChanged("Error");
             }
         }
 

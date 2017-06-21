@@ -1,7 +1,7 @@
 ﻿using GuardTourSystem.Utils;
 using KaiheSerialPortLibrary;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace GuardTourSystem.ViewModel
         /// <summary>
         /// 每个测试项目的ViewModel
         /// </summary>
-        public class DeviceTestItemViewModel : BindableBase
+        public class DeviceTestItemViewModel : NotificationObject
         {
             /// <summary>
             /// 该项的测试指令
@@ -32,7 +32,8 @@ namespace GuardTourSystem.ViewModel
                 get { return isSelect; }
                 set
                 {
-                    SetProperty(ref this.isSelect, value);
+                    isSelect = value;
+                    RaisePropertyChanged("IsSelect");
                     if (OnSelectChange != null)
                     {
                         OnSelectChange();
@@ -46,7 +47,9 @@ namespace GuardTourSystem.ViewModel
                 get { return result; }
                 set
                 {
-                    SetProperty(ref this.result, value);
+                    result = value;
+                    RaisePropertyChanged("Result");
+                    //SetProperty(ref this.result, value);
                 }
             }
 
@@ -117,7 +120,9 @@ namespace GuardTourSystem.ViewModel
             }
             set
             {
-                SetProperty(ref this.selectAll, value);
+                selectAll = value;
+                RaisePropertyChanged("SelectAll");
+                //SetProperty(ref this.selectAll, value);
                 TestItems.ForEach(item => item.IsSelect = value);
             }
         }
@@ -129,7 +134,9 @@ namespace GuardTourSystem.ViewModel
             get { return notifyMode; }
             set
             {
-                SetProperty(ref this.notifyMode, value);
+                notifyMode = value;
+                RaisePropertyChanged("NotifyMode");
+                //SetProperty(ref this.notifyMode, value);
             }
         }
 
@@ -140,7 +147,9 @@ namespace GuardTourSystem.ViewModel
             set
             {
                 InputChecker.CheckRfidCard(ref value, 2);
-                SetProperty(ref this.deviceID, value);
+                deviceID = value;
+                RaisePropertyChanged("DeviceID");
+                //SetProperty(ref this.deviceID, value);
                 this.CSetDeviceID.RaiseCanExecuteChanged();
             }
         }
@@ -161,14 +170,14 @@ namespace GuardTourSystem.ViewModel
             NotifyMode = 0;
 
             this.InfoVM = new InfoViewModel();
-            this.Title =LanLoader.Load(LanKey.MenuSystemDeviceTest); 
+            this.Title = LanLoader.Load(LanKey.MenuSystemDeviceTest);
             this.TestItems = new List<DeviceTestItemViewModel>();
 
             this.CStartTest = new DelegateCommand(StartTest, this.CanStartTest);
             this.CVerifyTime = new DelegateCommand(this.VerifyTime, () => !SerialPortManager.Instance.IsWritting);
             this.CSetDeviceID = new DelegateCommand(this.SetDeviceID, () => { return CanSetDeviceID() && !SerialPortManager.Instance.IsWritting; });
             this.CSetNotifyType = new DelegateCommand(this.SetNotifyType, () => !SerialPortManager.Instance.IsWritting);
-           
+
             InitTestItems();
         }
 
@@ -178,19 +187,19 @@ namespace GuardTourSystem.ViewModel
         private async void SetNotifyType()
         {
             InfoVM.Clear();
-            InfoVM.Append("正在将巡检机工作模式改为:" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
+            InfoVM.Append("正在将计数机工作模式改为:" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
             var setNotifyMode = await SerialPortUtil.Write(
                 new SetNotifyType(NotifyMode == 0 ?
                                      KaiheSerialPortLibrary.SetNotifyType.NotifyType.Buzzer :
                                      KaiheSerialPortLibrary.SetNotifyType.NotifyType.Mute));
             if (!setNotifyMode.Check())
             {
-                InfoVM.Append("更改巡检机工作模式失败:" + setNotifyMode.ResultInfo);
+                InfoVM.Append("更改计数机工作模式失败:" + setNotifyMode.ResultInfo);
                 return;
             }
             else
             {
-                InfoVM.Append("巡检机工作模式更改成功,当前模式为 :" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
+                InfoVM.Append("计数机工作模式更改成功,当前模式为 :" + (NotifyMode == 0 ? "振动或蜂鸣" : "静音"));
             }
         }
 
@@ -206,7 +215,7 @@ namespace GuardTourSystem.ViewModel
             }
             else
             {
-                InfoVM.Append("机号设置成功:已将巡检机机号设置为 " + DeviceID);
+                InfoVM.Append("机号设置成功:已将计数机机号设置为 " + DeviceID);
             }
         }
         private bool CanSetDeviceID()
@@ -242,22 +251,22 @@ namespace GuardTourSystem.ViewModel
         private void OnItemSelectChanged()
         {
             selectAll = TestItems.All((item) => item.IsSelect == true);
-            this.OnPropertyChanged("SelectAll");
+            this.RaisePropertyChanged("SelectAll");
 
             this.CStartTest.RaiseCanExecuteChanged();
         }
 
         /// <summary>
-        /// 校准巡检机时间
+        /// 校准计数机时间
         /// </summary>
         private async void VerifyTime()
         {
             InfoVM.Clear();
-            InfoVM.Append("正在校准巡检机时间...");
+            InfoVM.Append("正在校准计数机时间...");
             var setTimeFlow = await SerialPortUtil.Write(new SetDeviceTime(DateTime.Now));
             if (setTimeFlow.Check())
             {
-                InfoVM.Append("校准成功:已将巡检机时间设置为 :\n" + DateTime.Now.ToString());
+                InfoVM.Append("校准成功:已将计数机时间设置为 :\n" + DateTime.Now.ToString());
             }
             else
             {
@@ -302,7 +311,7 @@ namespace GuardTourSystem.ViewModel
                             var getDeviceID = (GetDeviceID)flow;
                             if (getDeviceID != null)
                             {
-                                InfoVM.Append(item.Name + " 测试完成: \n该巡检机机号为 " + getDeviceID.DeviceID + "\n");
+                                InfoVM.Append(item.Name + " 测试完成: \n该计数机机号为 " + getDeviceID.DeviceID + "\n");
                             }
                         });
                         break;
@@ -312,7 +321,7 @@ namespace GuardTourSystem.ViewModel
                             var getDeviceTime = (GetDeviceTime)flow;
                             if (getDeviceTime != null)
                             {
-                                InfoVM.Append(item.Name + " 测试完成: \n巡检机时间当前时间为 " + getDeviceTime.DeviceTime + "\n");
+                                InfoVM.Append(item.Name + " 测试完成: \n计数机时间当前时间为 " + getDeviceTime.DeviceTime + "\n");
                             }
                         });
                         break;
@@ -324,7 +333,7 @@ namespace GuardTourSystem.ViewModel
                             if (getPatrolCountFlow != null)
                             {
 
-                                InfoVM.Append(item.Name + " 测试完成:当前有 " + getPatrolCountFlow.Count + " 条巡检记录\n");
+                                InfoVM.Append(item.Name + " 测试完成:当前有 " + getPatrolCountFlow.Count + " 条计数记录\n");
                             }
                         });
                         break;
@@ -370,32 +379,32 @@ namespace GuardTourSystem.ViewModel
         //private async void ClearDeviceWorker()
         //{
         //    InfoVM.Clear();
-        //    InfoVM.Append("正在清空巡检机的人员信息...");
+        //    InfoVM.Append("正在清空计数机的人员信息...");
 
         //    var clearResult = await SerialPortUtil.Write(new ClearWorkerInfo());
         //    if (clearResult.Check())
         //    {
-        //        InfoVM.Append("清空巡检机的人员信息成功.");
+        //        InfoVM.Append("清空计数机的人员信息成功.");
         //    }
         //    else
         //    {
-        //        InfoVM.Append("清空巡检机的人员信息失败:" + clearResult.ResultInfo);
+        //        InfoVM.Append("清空计数机的人员信息失败:" + clearResult.ResultInfo);
         //    }
         //}
 
         //private async void ClearDeviceRoute()
         //{
         //    InfoVM.Clear();
-        //    InfoVM.Append("正在清空巡检机的线路信息...");
+        //    InfoVM.Append("正在清空计数机的线路信息...");
 
         //    var clearResult = await SerialPortUtil.Write(new ClearPlaceInfo());
         //    if (clearResult.Check())
         //    {
-        //        InfoVM.Append("清空巡检机的线路信息成功.");
+        //        InfoVM.Append("清空计数机的线路信息成功.");
         //    }
         //    else
         //    {
-        //        InfoVM.Append("清空巡检机的线路信息失败:" + clearResult.ResultInfo);
+        //        InfoVM.Append("清空计数机的线路信息失败:" + clearResult.ResultInfo);
         //    }
         //}
 

@@ -1,12 +1,11 @@
 ﻿using GuardTourSystem.Database.BLL;
-using GuardTourSystem.Model.DAL;
 using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.BLL;
 using GuardTourSystem.Services.Database.DAL;
 using GuardTourSystem.Utils;
 using KaiheSerialPortLibrary;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,7 +30,9 @@ namespace GuardTourSystem.ViewModel
             get { return title; }
             set
             {
-                SetProperty(ref this.title, value);
+                title = value;
+                RaisePropertyChanged("Title");
+                //SetProperty(ref this.title, value);
             }
         }
         // 读取后清空
@@ -41,7 +42,9 @@ namespace GuardTourSystem.ViewModel
             get { return clearAfterRead; }
             set
             {
-                SetProperty(ref this.clearAfterRead, value);
+                clearAfterRead = value;
+                RaisePropertyChanged("ClearAfterRead");
+                //SetProperty(ref this.clearAfterRead, value);
             }
         }
 
@@ -52,7 +55,9 @@ namespace GuardTourSystem.ViewModel
             get { return addItems; }
             set
             {
-                SetProperty(ref this.addItems, value);
+                addItems = value;
+                RaisePropertyChanged("AddItems");
+                //SetProperty(ref this.addItems, value);
             }
         }
 
@@ -68,7 +73,9 @@ namespace GuardTourSystem.ViewModel
                 {
                     return;
                 }
-                SetProperty(ref this.selectAll, value);
+                selectAll = value;
+                RaisePropertyChanged("SelectAll");
+                //SetProperty(ref this.selectAll, value);
 
                 foreach (var item in AddItems)
                 {
@@ -85,7 +92,7 @@ namespace GuardTourSystem.ViewModel
         {
             // 使用手动触发...(改变selectAll的值,然后OnPropertyChanged,避免触发 SelectAll中 Set的For循环)
             selectAll = AddItems.All((item) => { return item.Select == true; });
-            this.OnPropertyChanged("SelectAll");
+            this.RaisePropertyChanged("SelectAll");
 
             this.CBatchAdd.RaiseCanExecuteChanged();
         }
@@ -116,7 +123,7 @@ namespace GuardTourSystem.ViewModel
         public DelegateCommand CBatchAdd { get; set; }
 
         /// <summary>
-        /// 单个读卡功能,在5秒内监听巡检机读到的卡,如果没有读卡,则返回 5个0x00 
+        /// 单个读卡功能,在5秒内监听计数机读到的卡,如果没有读卡,则返回 5个0x00 
         /// </summary>
         //public DelegateCommand CSingleRead { get; set; }
 
@@ -126,7 +133,7 @@ namespace GuardTourSystem.ViewModel
         /// </summary>
         private Func<List<AddItem>, bool> BatchAddFunc { get; set; }
         /// <summary>
-        /// 获取到巡检数据并去重后 调用的方法
+        /// 获取到计数数据并去重后 调用的方法
         /// 注意: 如果获取数据失败,将返回NULL; 如果没有可用数据,将返回Count为0的一个List
         /// </summary>
         private Action<List<AddItem>> GetRecordsAction { get; set; }
@@ -135,7 +142,7 @@ namespace GuardTourSystem.ViewModel
         /// 
         /// </summary>
         /// <param name="OnBatchAdd"> 点击批量添加, 对所有选中的AddItem执行的操作 </param>
-        /// <param name="OnGetRecords"> 获取到巡检数据并去重后 调用的方法 </param>
+        /// <param name="OnGetRecords"> 获取到计数数据并去重后 调用的方法 </param>
         /// <param name="title"></param>
         public BatchAddViewModel(string title, Func<List<AddItem>, bool> OnBatchAdd, Action<List<AddItem>> OnGetRecords = null)
         {
@@ -164,16 +171,16 @@ namespace GuardTourSystem.ViewModel
 
 
         /// <summary>
-        /// 1. 获取巡检记录,并进行去重.
+        /// 1. 获取计数记录,并进行去重.
         /// 2. 调用 GetRecordsAction() 来通知调用者
         /// 3. 添加数据到 AddItems
-        /// 4. 清空巡检机数据(如果选中)
+        /// 4. 清空计数机数据(如果选中)
         /// </summary>
         private async void GetRecords()
         {
             this.ClearRecords();
 
-            //获取巡检机的巡检数据
+            //获取计数机的计数数据
             var flow = await AppSerialPortUtil.GetAllPatrolRecord();
 
             // 获取数据错误
@@ -183,7 +190,7 @@ namespace GuardTourSystem.ViewModel
                 return;
             }
             var patrolRecords = (List<PatrolRecord>)flow.Value;
-
+            bool needClearMachine = patrolRecords.Count != 0;
             if (patrolRecords.Count != 0)
             {
                 // 使用Distinct 去除相同钮号的数据
@@ -197,9 +204,11 @@ namespace GuardTourSystem.ViewModel
                 });
 
                 //转成 AddItem
+                int index = 1;
                 foreach (var record in patrolRecords)
                 {
                     var Item = new AddItem(this.OnAddItemSelectChanged);
+                    Item.Index = index++;
                     Item.Card = record.Card;
                     Item.Select = true;//默认是选中的
 
@@ -217,11 +226,13 @@ namespace GuardTourSystem.ViewModel
                 GetRecordsAction(AddItems.ToList());
             }
 
-            //读取后清空巡检器
-            //if (ClearAfterRead)
-            //{
-            //    await SerialPortUtil.Write(new ClearPatrolRecord());
-            //}
+            //读取后清空计数器
+            if (ClearAfterRead && needClearMachine)
+            {
+                AppStatusViewModel.Instance.ShowProgress(true, "请稍等...正在清空打卡机数据", 40000);
+                await SerialPortUtil.Write(new ClearPatrolRecord());
+                AppStatusViewModel.Instance.ShowInfo("打卡机数据清空完成.");
+            }
         }
 
         /// <summary>
@@ -251,11 +262,27 @@ namespace GuardTourSystem.ViewModel
                                       .GroupBy(item => { return item.Name; }) //根据名称进行分组 : 该条命令将返回多条IGroupping结构的数据,IGroupping结构为<TKey,TElement> .就是说一个名称(KEY)对应多个AddItem项(Element);
                                       .Where(item => item.Count() > 1) //获取所有名称有重复的分组
                                       .SelectMany(item => { return item; }); //将分组转换成 list
+
+            var repeatEmployeeItems = selectItems.Where(item => { return !string.IsNullOrEmpty(item.EmployeeNumber); }) //获取所有选中的名称不为空的Item
+                                    .GroupBy(item => { return item.EmployeeNumber; }) //根据名称进行分组 : 该条命令将返回多条IGroupping结构的数据,IGroupping结构为<TKey,TElement> .就是说一个名称(KEY)对应多个AddItem项(Element);
+                                    .Where(item => item.Count() > 1) //获取所有名称有重复的分组
+                                    .SelectMany(item => { return item; }); //将分组转换成 list
+
+
             if (repeatNameItems.Count() > 0)
             {
                 repeatNameItems.ToList().ForEach(item => { item.Error = LanLoader.Load(LanKey.BatchAddReadErrorExists); });
+            }
+            else if (repeatEmployeeItems.Count() > 0)
+            {
+                repeatEmployeeItems.ToList().ForEach(item => item.Error = "该工号在选中项中出现多次");
+            }
+
+            if (repeatEmployeeItems.Count() > 0 || repeatEmployeeItems.Count() > 0)
+            {
                 return; //不再继续判断其他项
             }
+
 
             //调用传入的BatchAddFunc来判断添加是否成功
             if (BatchAddFunc(selectItems.ToList())) //添加成功,从Items中移除当前被选中的项
@@ -271,7 +298,7 @@ namespace GuardTourSystem.ViewModel
         }
 
         /// <summary>
-        /// 在5秒内监听巡检机信息
+        /// 在5秒内监听计数机信息
         /// </summary>
         //private async void SingleRead()
         //{
@@ -347,9 +374,9 @@ namespace GuardTourSystem.ViewModel
     }
 
     /// <summary>
-    /// 从巡检机上读取到 ,准备批量添加的Item
+    /// 从计数机上读取到 ,准备批量添加的Item
     /// </summary>
-    public class AddItem : BindableBase
+    public class AddItem : NotificationObject
     {
         //当每个选项的Select改变时,调用预设的Action
         public Action SelectChangedAction { get; set; }
@@ -361,7 +388,8 @@ namespace GuardTourSystem.ViewModel
             set
             {
                 var isChanged = select != value;
-                SetProperty(ref this.select, value);
+                select = value;
+                RaisePropertyChanged("Select");
 
                 if (isChanged && SelectChangedAction != null)
                 {
@@ -370,13 +398,26 @@ namespace GuardTourSystem.ViewModel
             }
         }
 
+        private int index;
+        public int Index
+        {
+            get { return index; }
+            set
+            {
+                index = value;
+                RaisePropertyChanged("Index");
+            }
+        }
+
+
         private string card;
         public string Card //钮号
         {
             get { return card; }
             set
             {
-                SetProperty(ref this.card, value);
+                card = value;
+                RaisePropertyChanged("Card");
             }
         }
         private string name;
@@ -385,9 +426,23 @@ namespace GuardTourSystem.ViewModel
             get { return name; }
             set
             {
-                SetProperty(ref this.name, value);
+                name = value;
+                RaisePropertyChanged("Name");
             }
         }
+
+        private string employeeNumber;
+        public string EmployeeNumber
+        {
+            get { return employeeNumber; }
+            set
+            {
+                InputChecker.CheckEmployeeNumber(ref value);
+                employeeNumber = value;
+                RaisePropertyChanged("EmployeeNumber");
+            }
+        }
+
 
         private string error;
         public string Error
@@ -395,7 +450,8 @@ namespace GuardTourSystem.ViewModel
             get { return error; }
             set
             {
-                SetProperty(ref this.error, value);
+                error = value;
+                RaisePropertyChanged("Error");
             }
         }
 

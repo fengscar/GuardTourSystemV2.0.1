@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using GuardTourSystem.Utils;
 
 namespace GuardTourSystem.ViewModel
 {
-    class AppShortcutViewModel : BindableBase
+    class AppShortcutViewModel : NotificationObject
     {
         private static AppShortcutViewModel instance = null;
         public static AppShortcutViewModel Instance
@@ -29,8 +29,9 @@ namespace GuardTourSystem.ViewModel
         }
         public DelegateCommand CReadData { get; set; }
         public DelegateCommand CQueryRawData { get; set; }
-        public DelegateCommand CQueryResult { get; set; }
-        public DelegateCommand CQueryChart { get; set; }
+        public DelegateCommand CQueryRawCount { get; set; }
+        //public DelegateCommand CQueryResult { get; set; }
+        //public DelegateCommand CQueryChart { get; set; }
         public DelegateCommand CTestMachine { get; set; }
         public DelegateCommand CQuit { get; set; }
 
@@ -40,7 +41,8 @@ namespace GuardTourSystem.ViewModel
             get { return isReadDataCheck; }
             set
             {
-                SetProperty(ref this.isReadDataCheck, value);
+                isReadDataCheck = value;
+                RaisePropertyChanged("ReadDataCheck");
             }
         }
 
@@ -50,28 +52,41 @@ namespace GuardTourSystem.ViewModel
             get { return isQueryRawDataCheck; }
             set
             {
-                SetProperty(ref this.isQueryRawDataCheck, value);
+                isQueryRawDataCheck = value;
+                RaisePropertyChanged("QueryRawDataCheck");
             }
         }
-        private bool queryResultCheck;
-        public bool QueryResultCheck
+        private bool isQueryRawCountCheck;
+        public bool QueryRawCountCheck
         {
-            get { return queryResultCheck; }
+            get { return isQueryRawCountCheck; }
             set
             {
-                SetProperty(ref this.queryResultCheck, value);
+                isQueryRawCountCheck = value;
+                RaisePropertyChanged("QueryRawCountCheck");
             }
         }
 
-        private bool queryChartCheck;
-        public bool QueryChartCheck
-        {
-            get { return queryChartCheck; }
-            set
-            {
-                SetProperty(ref this.queryChartCheck, value);
-            }
-        }
+        //private bool queryResultCheck;
+        //public bool QueryResultCheck
+        //{
+        //    get { return queryResultCheck; }
+        //    set
+        //    {
+        //        queryResultCheck = value;
+        //        RaisePropertyChanged("QueryResultCheck");
+        //    }
+        //}
+
+        //private bool queryChartCheck;
+        //public bool QueryChartCheck
+        //{
+        //    get { return queryChartCheck; }
+        //    set
+        //    {
+        //        SetProperty(ref this.queryChartCheck, value);
+        //    }
+        //}
 
         private bool testDeviceCheck;
         public bool TestDeviceCheck
@@ -79,15 +94,17 @@ namespace GuardTourSystem.ViewModel
             get { return testDeviceCheck; }
             set
             {
-                SetProperty(ref this.testDeviceCheck, value);
+                testDeviceCheck = value;
+                RaisePropertyChanged("TestDeviceCheck");
             }
         }
         private AppShortcutViewModel()
         {
             this.CReadData = new DelegateCommand(() => { UnCheckAll(); ReadDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.ReadPatrol); });
             this.CQueryRawData = new DelegateCommand(() => { UnCheckAll(); QueryRawDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawData); });
-            this.CQueryResult = new DelegateCommand(() => { UnCheckAll(); QueryResultCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryResult); });
-            this.CQueryChart = new DelegateCommand(() => { UnCheckAll(); QueryChartCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryChart); });
+            this.CQueryRawCount = new DelegateCommand(() => { UnCheckAll(); QueryRawCountCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawCount); });
+            //this.CQueryResult = new DelegateCommand(() => { UnCheckAll(); QueryResultCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryResult); });
+            //this.CQueryChart = new DelegateCommand(() => { UnCheckAll(); QueryChartCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryChart); });
             //这个是弹窗
             this.CTestMachine = new DelegateCommand(() => { UnCheckAll(); TestDeviceCheck = true; AppContentViewModel.Instance.PopupWindow(PopupEnum.DeviceTest); });
             //退出系统
@@ -95,9 +112,8 @@ namespace GuardTourSystem.ViewModel
         }
         private void UnCheckAll()
         {
-            ReadDataCheck = QueryRawDataCheck = QueryResultCheck = QueryChartCheck = TestDeviceCheck = false;
+            ReadDataCheck = QueryRawDataCheck = QueryRawCountCheck = TestDeviceCheck = false;
         }
-
 
 
         public void ContentChange(string value)
@@ -115,14 +131,18 @@ namespace GuardTourSystem.ViewModel
             {
                 QueryRawDataCheck = true;
             }
-            else if (value.Equals(ViewEnum.QueryResult.GetContentName()))
+            else if (value.Equals(ViewEnum.QueryRawCount.GetContentName()))
             {
-                QueryResultCheck = true;
+                QueryRawCountCheck = true;
             }
-            else if (value.Equals(ViewEnum.QueryChart.GetContentName()))
-            {
-                QueryChartCheck = true;
-            }
+            //else if (value.Equals(ViewEnum.QueryResult.GetContentName()))
+            //{
+            //    QueryResultCheck = true;
+            //}
+            //else if (value.Equals(ViewEnum.QueryChart.GetContentName()))
+            //{
+            //    QueryChartCheck = true;
+            //}
             else if (value.Equals(PopupEnum.DeviceTest.GetContentName()))
             {
                 TestDeviceCheck = true;

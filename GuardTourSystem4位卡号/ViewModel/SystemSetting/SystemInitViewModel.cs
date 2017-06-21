@@ -22,81 +22,83 @@ namespace GuardTourSystem.ViewModel.Popup
             get { return initPlace; }
             set
             {
-                if (value)
-                {
-                    InitFrequence = true;
-                    InitPlan = true;
-                }
+                //if (value)
+                //{
+                //    InitFrequence = true;
+                //    InitPlan = true;
+                //}
+                initPlace = value;
                 this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initPlace, value);
+                RaisePropertyChanged("InitPlace");
+                //SetProperty(ref this.initPlace, value);
             }
         }
-        private bool initFrequence;
-        public bool InitFrequence
-        {
-            get { return initFrequence; }
-            set
-            {
-                if (!value && InitPlace)
-                {
-                    return;
-                }
-                if (value)
-                {
-                    InitPlan = true;
-                }
-                this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initFrequence, value);
-            }
-        }
+        //private bool initFrequence;
+        //public bool InitFrequence
+        //{
+        //    get { return initFrequence; }
+        //    set
+        //    {
+        //        if (!value && InitPlace)
+        //        {
+        //            return;
+        //        }
+        //        if (value)
+        //        {
+        //            InitPlan = true;
+        //        }
+        //        this.CConfirm.RaiseCanExecuteChanged();
+        //        SetProperty(ref this.initFrequence, value);
+        //    }
+        //}
 
-        private bool initPlan;
-        public bool InitPlan
-        {
-            get { return initPlan; }
-            set
-            {
-                if (!value && (InitPlace || InitFrequence))
-                {
-                    return;
-                }
-                this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initPlan, value);
-            }
-        }
+        //private bool initPlan;
+        //public bool InitPlan
+        //{
+        //    get { return initPlan; }
+        //    set
+        //    {
+        //        if (!value && (InitPlace || InitFrequence))
+        //        {
+        //            return;
+        //        }
+        //        this.CConfirm.RaiseCanExecuteChanged();
+        //        SetProperty(ref this.initPlan, value);
+        //    }
+        //}
 
-        private bool initEvent;
+        //private bool initEvent;
 
-        public bool InitEvent
-        {
-            get { return initEvent; }
-            set
-            {
-                this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initEvent, value);
-            }
-        }
-        private bool initWorker;
+        //public bool InitEvent
+        //{
+        //    get { return initEvent; }
+        //    set
+        //    {
+        //        this.CConfirm.RaiseCanExecuteChanged();
+        //        SetProperty(ref this.initEvent, value);
+        //    }
+        //}
+        //private bool initWorker;
 
-        public bool InitWorker
-        {
-            get { return initWorker; }
-            set
-            {
-                this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initWorker, value);
-            }
-        }
+        //public bool InitWorker
+        //{
+        //    get { return initWorker; }
+        //    set
+        //    {
+        //        this.CConfirm.RaiseCanExecuteChanged();
+        //        SetProperty(ref this.initWorker, value);
+        //    }
+        //}
 
         private bool initData;
-
         public bool InitData
         {
             get { return initData; }
             set
             {
                 this.CConfirm.RaiseCanExecuteChanged();
-                SetProperty(ref this.initData, value);
+                initData = value;
+                RaisePropertyChanged("InitData");
             }
         }
 
@@ -107,7 +109,8 @@ namespace GuardTourSystem.ViewModel.Popup
             Title = "系统初始化";
             this.ConfirmButtonText = "开始";
             this.CConfirm = new DelegateCommand(ReInit,
-                () => { return InitPlan || InitPlace || InitFrequence || InitWorker || InitEvent || InitData; });
+                () => { return  InitPlace || InitData; });
+                 //() => { return InitPlan || InitPlace || InitFrequence || InitWorker || InitEvent || InitData; });
         }
 
         public async void ReInit()
@@ -118,32 +121,32 @@ namespace GuardTourSystem.ViewModel.Popup
             int index = 1;
             if (InitPlace)
             {
-                confirmMessage.Append(index + ". 地点信息\n");
+                confirmMessage.Append(index + ". 人员信息\n");
                 index++;
             }
-            if (InitFrequence)
-            {
-                confirmMessage.Append(index + ". 班次信息\n");
-                index++;
-            }
-            if (InitPlan)
-            {
-                confirmMessage.Append(index + ". 巡检计划\n");
-                index++;
-            }
-            if (InitWorker)
-            {
-                confirmMessage.Append(index + ". 巡检员信息\n");
-                index++;
-            }
-            if (InitEvent)
-            {
-                confirmMessage.Append(index + ". 事件信息\n");
-                index++;
-            }
+            //if (InitFrequence)
+            //{
+            //    confirmMessage.Append(index + ". 班次信息\n");
+            //    index++;
+            //}
+            //if (InitPlan)
+            //{
+            //    confirmMessage.Append(index + ". 计数计划\n");
+            //    index++;
+            //}
+            //if (InitWorker)
+            //{
+            //    confirmMessage.Append(index + ". 管理卡信息\n");
+            //    index++;
+            //}
+            //if (InitEvent)
+            //{
+            //    confirmMessage.Append(index + ". 事件信息\n");
+            //    index++;
+            //}
             if (InitData)
             {
-                confirmMessage.Append(index + ". 巡检记录\n");
+                confirmMessage.Append(index + ". 打卡记录\n");
                 index++;
             }
             confirmMessage.Append("该操作无法撤销!");
@@ -160,22 +163,22 @@ namespace GuardTourSystem.ViewModel.Popup
                     new RouteBLL().Init();
                     new PlaceBLL().Init();
                 }
-                if (InitFrequence)
-                {
-                    new FrequenceBLL().Init();
-                }
-                if (InitPlan)
-                {
-                    new DutyBLL().Init();
-                }
-                if (InitWorker)
-                {
-                    new WorkerBLL().Init();
-                }
-                if (InitEvent)
-                {
-                    new EventBLL().Init();
-                }
+                //if (InitFrequence)
+                //{
+                //    new FrequenceBLL().Init();
+                //}
+                //if (InitPlan)
+                //{
+                //    new DutyBLL().Init();
+                //}
+                //if (InitWorker)
+                //{
+                //    new WorkerBLL().Init();
+                //}
+                //if (InitEvent)
+                //{
+                //    new EventBLL().Init();
+                //}
                 if (InitData)
                 {
                     new RawDataBLL().Init();
@@ -183,8 +186,8 @@ namespace GuardTourSystem.ViewModel.Popup
                 AppStatusViewModel.Instance.ShowInfo("系统初始化成功", 5);
 
                 //重新生成当天考核表
-                string error = null;
-                new DutyBLL().GenerateDuty(out error, null, DateTime.Now);
+                //string error = null;
+                //new DutyBLL().GenerateDuty(out error, null, DateTime.Now);
             }
         }
     }

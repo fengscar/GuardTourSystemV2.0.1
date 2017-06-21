@@ -64,7 +64,7 @@ namespace GuardTourSystem.Utils
                                 ShowGroupFooters = true
                             }, true);
                         }
-                        await Task.Run(() =>
+                        await Task.Factory.StartNew(() =>
                            {
                                while (stream.CanRead) //当stream被dispose时,将退出该循环.显示导出成功
                                {

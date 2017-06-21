@@ -23,12 +23,12 @@ namespace GuardTourSystem.ViewModel.DataManage
         }
 
         /// <summary>
-        /// 导入巡检数据
+        /// 导入计数数据
         /// 1. 打开对话框让用户选择文件.
         /// 2. 将该文件作为数据库文件并打开
-        /// 3. 判断是否有巡检数据
-        /// 4. 获取巡检数据
-        /// 5. 重新打开PatrolDATA数据库,向其写入巡检数据,并同时进行分析(更新值班表)
+        /// 3. 判断是否有计数数据
+        /// 4. 获取计数数据
+        /// 5. 重新打开PatrolDATA数据库,向其写入计数数据,并同时进行分析(更新值班表)
         /// </summary>
         /// <param name="error"></param>
         /// <returns></returns>
@@ -37,8 +37,8 @@ namespace GuardTourSystem.ViewModel.DataManage
             error = null;
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = false;
-            fileDialog.Title = "请选择要导入的巡检数据文件";
-            fileDialog.Filter = "巡检数据文件(*.db)|*.db";
+            fileDialog.Title = "请选择要导入的计数数据文件";
+            fileDialog.Filter = "计数数据文件(*.db)|*.db";
 
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -55,13 +55,13 @@ namespace GuardTourSystem.ViewModel.DataManage
                     });
                 if (readResult == null || (readResult as List<DevicePatrolRecord>) == null)
                 {
-                    error = "读取巡检数据时出错,请确认导入的文件是否正确.";
+                    error = "读取计数数据时出错,请确认导入的文件是否正确.";
                     return false;
                 }
                 var datas = readResult as List<DevicePatrolRecord>;
                 if (datas.Count == 0)
                 {
-                    error = "要导入的文件中不存在巡检数据";
+                    error = "要导入的文件中不存在计数数据";
                     return false;
                 }
                 new ReadPatrolViewModel().HandleDeviceData(datas);
@@ -72,8 +72,8 @@ namespace GuardTourSystem.ViewModel.DataManage
 
 
         /// <summary>
-        /// 导出巡检数据
-        /// 1.如果没有巡检数据,退出并提示错误
+        /// 导出计数数据
+        /// 1.如果没有计数数据,退出并提示错误
         /// 2.如果文件已存在,提示是否覆盖
         /// 3.不能覆盖当前数据库文件
         /// 4.删除该文件,并新建一个DB数据库.创建所有表
@@ -85,11 +85,11 @@ namespace GuardTourSystem.ViewModel.DataManage
             var records = RawDataBLL.GetAllDeviceRecord();
             if (records.Count == 0)
             {
-                error = "系统中没有巡检数据";
+                error = "系统中没有计数数据";
                 return false;
             }
             SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "巡检数据文件(*.db)|*.db";
+            saveDialog.Filter = "计数数据文件(*.db)|*.db";
             saveDialog.Title = "请选择导出的位置";
             saveDialog.OverwritePrompt = false;//关闭系统默认的检查
             saveDialog.FileName = LanLoader.Load(LanKey.ExportPatrol_DefaultFileName) + DateTime.Now.ToString(" yyyy_MM_dd");
@@ -102,7 +102,7 @@ namespace GuardTourSystem.ViewModel.DataManage
                     DialogResult result = MessageBox.Show("该文件已存在,是否覆盖该次备份？", "确定", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
-                        error = "取消导出巡检数据";
+                        error = "取消导出计数数据";
                         return false;
                     }
                 }

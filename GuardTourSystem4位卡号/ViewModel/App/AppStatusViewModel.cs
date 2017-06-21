@@ -1,7 +1,7 @@
 ﻿using GuardTourSystem.Model;
 using GuardTourSystem.Settings;
 using GuardTourSystem.Utils;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace GuardTourSystem.ViewModel
     //2. 显示进度条和文本: 当处理耗时数据时,显示 进度条( 正在干什么 + ProgressBar + 进度文本)
     //3. 显示错误提示 : 当用户输入出错,或者需要提示信息时,要在N秒内显示 错误提示.
     //4. 显示操作完成提示: 当一个操作完成,比如保存...要在N秒内显示 保存成功..
-    public class AppStatusViewModel : BindableBase
+    public class AppStatusViewModel : NotificationObject
     {
         #region 单例模式
         private static AppStatusViewModel instance = null;
@@ -33,7 +33,7 @@ namespace GuardTourSystem.ViewModel
         }
         #endregion
 
-        public class BaseStatusViewModel : BindableBase
+        public class BaseStatusViewModel : NotificationObject
         {
             private bool isShow;
 
@@ -42,7 +42,8 @@ namespace GuardTourSystem.ViewModel
                 get { return isShow; }
                 set
                 {
-                    SetProperty(ref this.isShow, value);
+                    isShow = value;
+                    RaisePropertyChanged("IsShow");
                 }
             }
         }
@@ -56,7 +57,8 @@ namespace GuardTourSystem.ViewModel
                 get { return user; }
                 set
                 {
-                    SetProperty(ref this.user, value);
+                    user = value;
+                    RaisePropertyChanged("User");
                 }
             }
 
@@ -67,7 +69,8 @@ namespace GuardTourSystem.ViewModel
                 get { return copyRight; }
                 set
                 {
-                    SetProperty(ref this.copyRight, value);
+                    copyRight = value;
+                    RaisePropertyChanged("CopyRight");
                 }
             }
 
@@ -88,7 +91,8 @@ namespace GuardTourSystem.ViewModel
                 get { return indeterminate; }
                 set
                 {
-                    SetProperty(ref this.indeterminate, value);
+                    indeterminate = value;
+                    RaisePropertyChanged("Indeterminate");
                 }
             }
 
@@ -100,7 +104,8 @@ namespace GuardTourSystem.ViewModel
                 get { return title; }
                 set
                 {
-                    SetProperty(ref this.title, value);
+                    title = value;
+                    RaisePropertyChanged("Title");
                 }
             }
             private string progressText;
@@ -110,7 +115,8 @@ namespace GuardTourSystem.ViewModel
                 get { return progressText; }
                 set
                 {
-                    SetProperty(ref this.progressText, value);
+                    progressText = value;
+                    RaisePropertyChanged("ProgressText");
                 }
             }
             private int progress;
@@ -124,7 +130,8 @@ namespace GuardTourSystem.ViewModel
                     {
                         return;
                     }
-                    SetProperty(ref this.progress, value);
+                    progress = value;
+                    RaisePropertyChanged("Progress");
                 }
             }
 
@@ -146,7 +153,8 @@ namespace GuardTourSystem.ViewModel
                 get { return error; }
                 set
                 {
-                    SetProperty(ref this.error, value);
+                    error = value;
+                    RaisePropertyChanged("Error");
                 }
             }
         }
@@ -160,7 +168,8 @@ namespace GuardTourSystem.ViewModel
                 get { return info; }
                 set
                 {
-                    SetProperty(ref this.info, value);
+                    info = value;
+                    RaisePropertyChanged("Info");
                 }
             }
         }

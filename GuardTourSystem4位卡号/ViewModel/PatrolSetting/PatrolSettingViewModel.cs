@@ -34,20 +34,20 @@ namespace GuardTourSystem.ViewModel
         }
 
         public RoutePlaceViewModel RouteViewModel { get; set; }
-        public WorkerViewModel WorkerViewModel { get; set; }
-        public EventViewModel EventViewModel { get; set; }
-        public BaseFrequenceViewModel FrequenceViewModel { get; set; }
-        public BaseFrequenceViewModel RegularViewModel { get; set; }
-        public BaseFrequenceViewModel IrregularViewModel { get; set; }
+        //public WorkerViewModel WorkerViewModel { get; set; }
+        //public EventViewModel EventViewModel { get; set; }
+        //public BaseFrequenceViewModel FrequenceViewModel { get; set; }
+        //public BaseFrequenceViewModel RegularViewModel { get; set; }
+        //public BaseFrequenceViewModel IrregularViewModel { get; set; }
 
         public PatrolSettingViewModel()
         {
             RouteService = new RouteBLL();
             FrequenceService = new FrequenceBLL();
 
-            FrequenceViewModel = new FrequenceViewModel();
-            RegularViewModel = new RegularFrequenceViewModel();
-            IrregularViewModel = new IrregularFrequenceViewModel();
+            //FrequenceViewModel = new FrequenceViewModel();
+            //RegularViewModel = new RegularFrequenceViewModel();
+            //IrregularViewModel = new IrregularFrequenceViewModel();
         }
 
         //发布data改变的通知. 

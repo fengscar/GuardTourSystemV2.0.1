@@ -140,7 +140,7 @@ namespace GuardTourSystem.Model
         }
 
         private int patrolTime;
-        public int PatrolTime //巡检时间-分钟
+        public int PatrolTime //计数时间-分钟
         {
             get { return patrolTime; }
             set
@@ -202,13 +202,13 @@ namespace GuardTourSystem.Model
 
 
         //============================该班次的排班信息======================================//
-        //当巡检员信息改变时 触发的Action. (有规律排班,无规律排班中选择不同巡检员将会改变Worker)
+        //当计数员信息改变时 触发的Action. (有规律排班,无规律排班中选择不同计数员将会改变Worker)
         private Action OnWorkerChange;
         public void SetWorkerChangeAction(Action action)
         {
             this.OnWorkerChange = action;
         }
-        // 巡检员 ,默认是NULL(未指定)
+        // 计数员 ,默认是NULL(未指定)
         private Worker worker;
         public Worker Worker
         {

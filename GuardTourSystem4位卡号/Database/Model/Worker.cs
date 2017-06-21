@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Model
 {
-    //巡检员
+    //计数员
     public class Worker : BindableBase, ICloneable
     {
         // 钮号 / 设备号 2选1
@@ -65,7 +65,7 @@ namespace GuardTourSystem.Model
         {
             get
             {
-                return new Worker() { ID = -1, Name = "巡检员" };
+                return new Worker() { ID = -1, Name = "默认管理卡" };
             }
         }
 

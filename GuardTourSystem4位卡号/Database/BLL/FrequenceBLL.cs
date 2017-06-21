@@ -69,7 +69,7 @@ namespace GuardTourSystem.Database.BLL
             }
             if (DAO.ExistsName(f.RouteID, f.Name))
             {
-                errorInfo = "该线路下已存在同名班次";
+                errorInfo = "该部门下已存在同名班次";
                 return false;
             }
             return DAO.AddFrequence(f, out id);
@@ -92,7 +92,7 @@ namespace GuardTourSystem.Database.BLL
             {
                 if (DAO.ExistsName(newFrequence.RouteID, newFrequence.Name))
                 {
-                    errorInfo = "该线路下已存在同名班次";
+                    errorInfo = "该部门下已存在同名班次";
                     return false;
                 }
             }
@@ -155,16 +155,16 @@ namespace GuardTourSystem.Database.BLL
             }
             return true;
         }
-        //更新 班次巡检员
+        //更新 班次计数员
         public bool UpdateFrequenceWorker(Frequence f)
         {
             if (f.Worker == null || f.Worker.ID <= 0)
-            { //如果不指定巡检员,将 T_FrequenceWorker中的记录删除
+            { //如果不指定计数员,将 T_FrequenceWorker中的记录删除
                 return FreqWorkerDAO.DelFrequenceWorker(f);
             }
             else
             {
-                // 如果指定了巡检员, 新增或替换
+                // 如果指定了计数员, 新增或替换
                 return FreqWorkerDAO.ReplaceFrequenceWorker(f);
             }
         }
@@ -208,12 +208,12 @@ namespace GuardTourSystem.Database.BLL
             }
             if (f.PatrolTime <= 0)
             {
-                errorInfo = "抱歉,巡逻时间不能少于 1 分钟";
+                errorInfo = "抱歉,工作时间不能少于 1 分钟";
                 return false;
             }
             if (f.RestTime < 0)
             {
-                errorInfo = "抱歉,休息时间必须大于等于 0 分钟";
+                errorInfo = "抱歉,间休时间必须大于等于 0 分钟";
                 return false;
             }
 

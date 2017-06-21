@@ -16,19 +16,19 @@
             <telerik:GridViewDataColumn
                 Width="*"
                 DataMemberBinding="{Binding CountName}"
-                Header="巡检员" />
+                Header="管理卡" />
             <telerik:GridViewDataColumn
                 Width="*"
                 DataMemberBinding="{Binding DutyCount}"
-                Header="应巡次数" />
+                Header="应打次数" />
             <telerik:GridViewDataColumn
                 Width="*"
                 DataMemberBinding="{Binding PatrolCount}"
-                Header="实巡次数" />
+                Header="实打次数" />
             <telerik:GridViewDataColumn
                 Width="*"
                 DataMemberBinding="{Binding MissCount}"
-                Header="漏巡次数" />
+                Header="漏打次数" />
             <telerik:GridViewDataColumn
                 Width="*"
                 DataMemberBinding="{Binding PatrolPercent, StringFormat=' {0:N2} %'}"

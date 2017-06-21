@@ -10,22 +10,22 @@
     <s:String x:Key="RoleManager">管理员</s:String>
     <s:String x:Key="RoleOperator">操作员</s:String>
 
-    <s:String x:Key="Device">巡检机</s:String>
+    <s:String x:Key="Device">计数机</s:String>
     <s:String x:Key="DeviceID">机号</s:String>
 
-    <s:String x:Key="Route">巡检线路</s:String>
-    <s:String x:Key="RouteName">线路名称</s:String>
+    <s:String x:Key="Route">部门</s:String>
+    <s:String x:Key="RouteName">部门名称</s:String>
 
-    <s:String x:Key="Place">巡检点</s:String>
-    <s:String x:Key="PlaceOrder">巡检点序号</s:String>
-    <s:String x:Key="PlaceName">巡检点名称</s:String>
-    <s:String x:Key="PlaceCard">巡检点钮号</s:String>
+    <s:String x:Key="Place">人员</s:String>
+    <s:String x:Key="PlaceOrder">人员序号</s:String>
+    <s:String x:Key="PlaceName">人员名称</s:String>
+    <s:String x:Key="PlaceCard">人员钮号</s:String>
 
-    <s:String x:Key="Worker">巡检员</s:String>
-    <s:String x:Key="WorkerName">巡检员名称</s:String>
-    <s:String x:Key="WorkerCard">巡检员钮号</s:String>
+    <s:String x:Key="Worker">管理卡</s:String>
+    <s:String x:Key="WorkerName">管理卡名称</s:String>
+    <s:String x:Key="WorkerCard">管理卡钮号</s:String>
 
-    <s:String x:Key="Event">巡检事件</s:String>
+    <s:String x:Key="Event">计数事件</s:String>
     <s:String x:Key="EventName">事件名称</s:String>
     <s:String x:Key="EventCard">事件钮号</s:String>
 
@@ -33,8 +33,8 @@
     <s:String x:Key="FrequenceRegular">按周排班</s:String>
     <s:String x:Key="FrequenceIrregular">无规律排班</s:String>
 
-    <s:String x:Key="PatrolData">巡检数据</s:String>
-    <s:String x:Key="PatrolTime">巡检时间</s:String>
+    <s:String x:Key="PatrolData">打卡数据</s:String>
+    <s:String x:Key="PatrolTime">打卡时间</s:String>
 
     <s:String x:Key="Add">添加</s:String>
     <s:String x:Key="Edit">修改</s:String>
@@ -58,11 +58,11 @@
     <s:String x:Key="Fail">失败</s:String>
 
     <!--  串口通信结果  -->
-    <s:String x:Key="PortErrorWakeUp">巡检机未响应</s:String>
+    <s:String x:Key="PortErrorWakeUp">计数机未响应</s:String>
     <s:String x:Key="PortErrorInit">USB口初始化失败</s:String>
-    <s:String x:Key="PortErrorNoDevice">未找到巡检设备</s:String>
-    <s:String x:Key="PortErrorNoDeviceOrOccupy">没有巡检设备或设备USB口被占用</s:String>
-    <s:String x:Key="PortErrorMultiDevice">巡检设备不唯一,请单独连接</s:String>
+    <s:String x:Key="PortErrorNoDevice">未找到计数设备</s:String>
+    <s:String x:Key="PortErrorNoDeviceOrOccupy">没有计数设备或设备USB口被占用</s:String>
+    <s:String x:Key="PortErrorMultiDevice">计数设备不唯一,请单独连接</s:String>
     <s:String x:Key="PortErrorWrongData">错误的响应数据</s:String>
     <s:String x:Key="PortErrorTimeOut">通信超时</s:String>
     <s:String x:Key="PortSuccess">通信成功</s:String>
@@ -98,26 +98,26 @@
     <!--  主窗口 菜单  -->
     <s:String x:Key="MenuQuery">数据查询</s:String>
     <s:String x:Key="MenuQueryReadPatrol">数据接收</s:String>
-    <s:String x:Key="MenuQueryRawData">巡检记录</s:String>
+    <s:String x:Key="MenuQueryRawData">打卡记录</s:String>
+    <s:String x:Key="MenuQueryRawCount">打卡总数</s:String>
     <s:String x:Key="MenuQueryReadHit">敲击记录</s:String>
     <s:String x:Key="MenuQueryResult">考核结果</s:String>
     <s:String x:Key="MenuQueryChart">统计图表</s:String>
     <s:String x:Key="MenuQueryReanalysis">重新分析</s:String>
 
     <s:String x:Key="MenuPatrolSetting">信息录入</s:String>
-    <s:String x:Key="MenuPatrolSettingRoute">设置巡检点</s:String>
-    <s:String x:Key="MenuPatrolSettingWorker">设置巡检员</s:String>
-    <s:String x:Key="MenuPatrolSettingEvent">设置巡检事件</s:String>
-    <s:String x:Key="MenuPatrolSettingFrequence">设置巡检班次</s:String>
+    <s:String x:Key="MenuPatrolSettingRoute">设置人员信息</s:String>
+    <s:String x:Key="MenuPatrolSettingWorker">设置管理卡信息</s:String>
+    <s:String x:Key="MenuPatrolSettingEvent">设置打卡事件</s:String>
+    <s:String x:Key="MenuPatrolSettingFrequence">设置打卡班次</s:String>
     <s:String x:Key="MenuPatrolSettingRegular">设置按周排班</s:String>
     <s:String x:Key="MenuPatrolSettingIrregular">设置无规律排班</s:String>
 
     <s:String x:Key="MenuDataManage">数据维护</s:String>
     <s:String x:Key="MenuDataManageBackupAndRecovery">备份与还原</s:String>
-    <s:String x:Key="MenuDataManageClearPatrolData">清理巡检数据</s:String>
-    <s:String x:Key="MenuDataManageImportPatrolData">导入巡检数据</s:String>
-    <s:String x:Key="MenuDataManageExportPatrolData">导出巡检数据</s:String>
-    <s:String x:Key="MenuDataManageSharePatrolData">共享巡检数据</s:String>
+    <s:String x:Key="MenuDataManageClearPatrolData">清理计数数据</s:String>
+    <s:String x:Key="MenuDataManageImportPatrolData">导入计数数据</s:String>
+    <s:String x:Key="MenuDataManageExportPatrolData">导出计数数据</s:String>
 
     <s:String x:Key="MenuSystem">系统管理</s:String>
     <s:String x:Key="MenuSystemInit">系统初始化</s:String>
@@ -134,31 +134,32 @@
 
     <!--  快捷菜单  -->
     <s:String x:Key="ShortcutReceive">数据接收</s:String>
-    <s:String x:Key="ShortcutRawdata">巡检记录</s:String>
+    <s:String x:Key="ShortcutRawdata">打卡记录</s:String>
+    <s:String x:Key="ShortcutRawCount">打卡总数</s:String>
     <s:String x:Key="ShortcutResult">考核结果</s:String>
     <s:String x:Key="ShortcutCharts">统计图表</s:String>
     <s:String x:Key="ShortcutDeviceTest">通讯管理</s:String>
 
     <!--  数据查询-数据接收  -->
-    <s:String x:Key="PatrolDataRead">接收巡检数据</s:String>
-    <s:String x:Key="PatrolDataClear">清空巡检数据</s:String>
-    <s:String x:Key="PatrolDataReading">正在接收巡检数据...</s:String>
-    <s:String x:Key="PatrolDataReadFail">巡检数据接收失败: {0} !</s:String>
-    <s:String x:Key="PatrolDataReadSuccess">巡检数据接收成功!</s:String>
-    <s:String x:Key="PatrolDataEmptyData">巡检机中没有数据!</s:String>
-    <s:String x:Key="PatrolDataHandling">正在处理巡检数据...</s:String>
-    <s:String x:Key="PatrolDataHandleFail">巡检数据处理失败!</s:String>
-    <s:String x:Key="PatrolDataHandleSuccess">巡检数据处理成功!</s:String>
-    <s:String x:Key="PatrolDataSaveSuccess">成功保存了 {0} 条巡检数据!</s:String>
-    <s:String x:Key="PatrolDataSaveFail">巡检数据保存失败!</s:String>
+    <s:String x:Key="PatrolDataRead">接收打卡数据</s:String>
+    <s:String x:Key="PatrolDataClear">清空打卡数据</s:String>
+    <s:String x:Key="PatrolDataReading">正在接收计数数据...</s:String>
+    <s:String x:Key="PatrolDataReadFail">计数数据接收失败: {0} !</s:String>
+    <s:String x:Key="PatrolDataReadSuccess">计数数据接收成功!</s:String>
+    <s:String x:Key="PatrolDataEmptyData">计数机中没有数据!</s:String>
+    <s:String x:Key="PatrolDataHandling">正在处理计数数据...</s:String>
+    <s:String x:Key="PatrolDataHandleFail">计数数据处理失败!</s:String>
+    <s:String x:Key="PatrolDataHandleSuccess">计数数据处理成功!</s:String>
+    <s:String x:Key="PatrolDataSaveSuccess">成功保存了 {0} 条计数数据!</s:String>
+    <s:String x:Key="PatrolDataSaveFail">计数数据保存失败!</s:String>
     <s:String x:Key="PatrolDataDutyUpdating">正在更新考核结果...</s:String>
     <s:String x:Key="PatrolDataDutyUpdateFail">考核结果更新失败!</s:String>
     <s:String x:Key="PatrolDataDutyUpdateSuccess">考核结果更新成功!</s:String>
-    <s:String x:Key="PatrolDataClearing">正在清空巡检机数据...</s:String>
-    <s:String x:Key="PatrolDataClearFail">巡检机数据清空失败: {0}!</s:String>
-    <s:String x:Key="PatrolDataClearSuccess">巡检机数据清空成功!</s:String>
-    <!--  数据查询-巡检记录  -->
-    <s:String x:Key="RawData">巡检记录</s:String>
+    <s:String x:Key="PatrolDataClearing">正在清空计数机数据...</s:String>
+    <s:String x:Key="PatrolDataClearFail">计数机数据清空失败: {0}!</s:String>
+    <s:String x:Key="PatrolDataClearSuccess">计数机数据清空成功!</s:String>
+    <!--  数据查询-计数记录  -->
+    <s:String x:Key="RawData">计数记录</s:String>
     <!--  数据查询-考核结果  -->
     <s:String x:Key="QueryResultShowOnDuty">显示准时数据</s:String>
     <s:String x:Key="QueryResultShowMissDuty">显示漏巡数据</s:String>
@@ -168,55 +169,55 @@
     <s:String x:Key="Card">钮号</s:String>
     <s:String x:Key="Name">名称</s:String>
     <s:String x:Key="BatchAdd">批量添加</s:String>
-    <s:String x:Key="BatchAddClearAfterRead">读取后清空巡检器</s:String>
+    <s:String x:Key="BatchAddClearAfterRead">读取后清空打卡机</s:String>
     <s:String x:Key="BatchAddRead">批量读取</s:String>
     <s:String x:Key="BatchAddReadSingle">单个读取</s:String>
     <s:String x:Key="BatchAddReadEvent">批量添加事件</s:String>
-    <s:String x:Key="BatchAddReadPlace">批量添加地点</s:String>
-    <s:String x:Key="BatchAddReadWorker">批量添加巡检员</s:String>
-    <s:String x:Key="BatchAddReadErrorConnect">读取巡检记录失败</s:String>
-    <s:String x:Key="BatchAddReadErrorConnectExp" xml:space="preserve">1.请检查巡检机是否连接到电脑
+    <s:String x:Key="BatchAddReadPlace">批量添加人员</s:String>
+    <s:String x:Key="BatchAddReadWorker">批量添加管理卡</s:String>
+    <s:String x:Key="BatchAddReadErrorConnect">读取打卡记录失败</s:String>
+    <s:String x:Key="BatchAddReadErrorConnectExp" xml:space="preserve">1.请检查计数机是否连接到电脑
 2.请确认驱动程序是否正确安装</s:String>
     <s:String x:Key="BatchAddReadErrorEmpty">没有可用的数据</s:String>
-    <s:String x:Key="BatchAddReadErrorEmptyExp">已连接到巡检机,但巡检机中没有可用的数据</s:String>
+    <s:String x:Key="BatchAddReadErrorEmptyExp">已连接到计数机,但计数机中没有可用的数据</s:String>
     <s:String x:Key="BatchAddReadErrorExists">该名称在选中项中出现多次</s:String>
-    <s:String x:Key="BatchAddReadErrorNoRouteSelect">请选择要添加到的线路</s:String>
-    <s:String x:Key="BatchAddSingleReadErrorNoCard">巡检机没有读到卡</s:String>
-    <s:String x:Key="BatchAddSingleReadErrorNoCardExp">请在点击 [单个读取] 按键后的5秒内使用巡检机读卡,读卡结果将显示在批量添加的列表中.</s:String>
+    <s:String x:Key="BatchAddReadErrorNoRouteSelect">请在下方选择员工所在部门</s:String>
+    <s:String x:Key="BatchAddSingleReadErrorNoCard">计数机没有读到卡</s:String>
+    <s:String x:Key="BatchAddSingleReadErrorNoCardExp">请在点击 [单个读取] 按键后的5秒内使用计数机读卡,读卡结果将显示在批量添加的列表中.</s:String>
     <s:String x:Key="BatchAddSingleReadErrorCantAdd">无法添加该卡</s:String>
     <s:String x:Key="BatchAddSingleReadErrorCantAddExp">该卡已被读取到批量添加中</s:String>
     <!--  信息录入-线路  -->
-    <s:String x:Key="RouteSettingAddRoute">新增线路</s:String>
-    <s:String x:Key="RouteSettingAddPlace">新增地点</s:String>
-    <s:String x:Key="RouteSettingDelRouteConfirm">确定要删除该线路?</s:String>
-    <s:String x:Key="RouteSettingDelRouteConfirmExp">将同时删除所有与该线路有关的数据...</s:String>
-    <s:String x:Key="RouteSettingDelRouteError">线路删除失败!</s:String>
-    <s:String x:Key="RouteSettingDelPlaceConfirm">确定要删除该地点?</s:String>
-    <s:String x:Key="RouteSettingDelPlaceConfirmExp">将同时删除所有与该地点有关的数据...</s:String>
-    <s:String x:Key="RouteSettingDelPlaceError">地点删除失败!</s:String>
-    <s:String x:Key="RouteSettingSendToDevice">发送到巡检机</s:String>
-    <s:String x:Key="RouteSettingSendToDeviceConfirm">将重新设置巡检机中的路线信息</s:String>
-    <s:String x:Key="RouteSettingSendToDeviceConfirmExp">该操作预计耗时1分钟,请保持巡检机的正常连接</s:String>
-    <s:String x:Key="RouteSettingSendindToDevice">正在设置巡检机的路线信息...</s:String>
-    <s:String x:Key="RouteSettingSendToDeviceSuccess">巡检机路线信息设置成功!</s:String>
-    <s:String x:Key="RouteSettingSendToDeviceFail">巡检机路线信息设置失败: {0}</s:String>
+    <s:String x:Key="RouteSettingAddRoute">新增部门</s:String>
+    <s:String x:Key="RouteSettingAddPlace">新增人员</s:String>
+    <s:String x:Key="RouteSettingDelRouteConfirm">确定要删除该部门?</s:String>
+    <s:String x:Key="RouteSettingDelRouteConfirmExp">将同时删除所有与该部门有关的数据...</s:String>
+    <s:String x:Key="RouteSettingDelRouteError">部门删除失败!</s:String>
+    <s:String x:Key="RouteSettingDelPlaceConfirm">确定要删除该人员?</s:String>
+    <s:String x:Key="RouteSettingDelPlaceConfirmExp">将同时删除所有与该人员有关的数据...</s:String>
+    <s:String x:Key="RouteSettingDelPlaceError">人员删除失败!</s:String>
+    <s:String x:Key="RouteSettingSendToDevice">发送到计数机</s:String>
+    <s:String x:Key="RouteSettingSendToDeviceConfirm">将重新设置计数机中的路线信息</s:String>
+    <s:String x:Key="RouteSettingSendToDeviceConfirmExp">该操作预计耗时1分钟,请保持计数机的正常连接</s:String>
+    <s:String x:Key="RouteSettingSendindToDevice">正在设置计数机的路线信息...</s:String>
+    <s:String x:Key="RouteSettingSendToDeviceSuccess">计数机路线信息设置成功!</s:String>
+    <s:String x:Key="RouteSettingSendToDeviceFail">计数机路线信息设置失败: {0}</s:String>
     <!--  信息录入-线路 弹窗  -->
-    <s:String x:Key="RouteSettingEditRoute">编辑线路</s:String>
+    <s:String x:Key="RouteSettingEditRoute">编辑部门</s:String>
 
 
 
 
     <!--  数据管理-备份与还原  -->
     <s:String x:Key="Backup_DefaultFileName">数据备份</s:String>
-    <!--  数据管理-导出巡检数据  -->
-    <s:String x:Key="ExportPatrol_DefaultFileName">巡检数据</s:String>
+    <!--  数据管理-导出计数数据  -->
+    <s:String x:Key="ExportPatrol_DefaultFileName">计数数据</s:String>
 
 
 
     <!--  系统管理-通讯测试  -->
-    <s:String x:Key="DeviceTestVerifingTime">正在校准巡检机时间...</s:String>
-    <s:String x:Key="DeviceTestVerifyTimeSuccess">巡检机时间校准成功!</s:String>
-    <s:String x:Key="DeviceTestVerifyTimeFail">巡检机时间校准失败: {0}</s:String>
+    <s:String x:Key="DeviceTestVerifingTime">正在校准计数机时间...</s:String>
+    <s:String x:Key="DeviceTestVerifyTimeSuccess">计数机时间校准成功!</s:String>
+    <s:String x:Key="DeviceTestVerifyTimeFail">计数机时间校准失败: {0}</s:String>
 
 
 
@@ -230,7 +231,7 @@
     <s:String x:Key="Sunday">周天</s:String>
 
 
-    <s:String x:Key="APP_NAME">智能巡检管理系统</s:String>
+    <s:String x:Key="APP_NAME">智能计数管理系统</s:String>
     <s:String x:Key="APP_VERSION">V2.4.0</s:String>
     <s:String x:Key="COMPANY_NAME">福州凯和电子有限公司</s:String>
     <s:String x:Key="COMPANY_TEL">0591-83308208</s:String>
@@ -247,34 +248,34 @@
     <s:String x:Key="SETTING_SELECT_LANGUAGE">语言</s:String>
 
 
-    <s:String x:Key="SEARCH_WORKER_HINT">查找巡检员姓名、钮号、设备号</s:String>
+    <s:String x:Key="SEARCH_WORKER_HINT">查找计数员姓名、钮号、设备号</s:String>
     <s:String x:Key="SEARCH_LINE_HINT">查找线路、地点卡</s:String>
-    <s:String x:Key="SEARCH_PLAN_HINT">查找线路、巡检员</s:String>
+    <s:String x:Key="SEARCH_PLAN_HINT">查找线路、计数员</s:String>
 
     <s:String x:Key="TEST_LED">LED灯</s:String>
     <s:String x:Key="TEST_BUZZER">振动或蜂鸣</s:String>
-    <s:String x:Key="TEST_DEVICE_ID">读巡检机机号</s:String>
-    <s:String x:Key="TEST_DEVICE_TIME">读巡检机时间</s:String>
-    <s:String x:Key="TEST_PATROL_COUNT">读巡检记录数</s:String>
+    <s:String x:Key="TEST_DEVICE_ID">读计数机机号</s:String>
+    <s:String x:Key="TEST_DEVICE_TIME">读计数机时间</s:String>
+    <s:String x:Key="TEST_PATROL_COUNT">读计数记录数</s:String>
     <s:String x:Key="TEST_HIT_COUNT">读敲击记录数</s:String>
 
     <s:String x:Key="TEST_CONNECTING">连接中</s:String>
     <s:String x:Key="TEST_SUCCESS">测试成功</s:String>
     <s:String x:Key="TEST_Fail">测试失败</s:String>
-    <s:String x:Key="TEST_TIME_ADJUST">巡检机时间已校准</s:String>
-    <s:String x:Key="TEST_TIME_SUCCESS">巡检机时间正常</s:String>
+    <s:String x:Key="TEST_TIME_ADJUST">计数机时间已校准</s:String>
+    <s:String x:Key="TEST_TIME_SUCCESS">计数机时间正常</s:String>
     <s:String x:Key="TEST_GET_PATROL_COUNT">当前有 {0} 条数据</s:String>
-    <s:String x:Key="TEST_GET_MACHINE_ID">巡检机机号为: {0}</s:String>
+    <s:String x:Key="TEST_GET_MACHINE_ID">计数机机号为: {0}</s:String>
 
     <s:String x:Key="SYSTEM_ERROR">系统错误</s:String>
     <!--  导出的文件名称  -->
-    <s:String x:Key="Export_RouteAndPlace">巡检线路信息</s:String>
-    <s:String x:Key="Export_Worker">巡检员信息</s:String>
-    <s:String x:Key="Export_Event">巡检事件信息</s:String>
-    <s:String x:Key="Export_Frequence">巡检班次信息</s:String>
+    <s:String x:Key="Export_RouteAndPlace">部门与人员信息</s:String>
+    <s:String x:Key="Export_Worker">管理卡信息</s:String>
+    <s:String x:Key="Export_Event">事件信息</s:String>
+    <s:String x:Key="Export_Frequence">班次信息</s:String>
 
-    <s:String x:Key="WorkerCountInfo">人员统计信息</s:String>
-    <s:String x:Key="RouteCountInfo">线路统计信息</s:String>
+    <s:String x:Key="WorkerCountInfo">管理卡统计信息</s:String>
+    <s:String x:Key="RouteCountInfo">部门统计信息</s:String>
 
 
 

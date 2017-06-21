@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Model
 {
-    //巡检值班表 
+    //计数值班表 
     public class Duty:BindableBase
     {
         public int ID { get; set; }

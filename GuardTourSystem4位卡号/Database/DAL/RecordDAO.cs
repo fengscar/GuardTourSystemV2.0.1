@@ -21,12 +21,12 @@ namespace GuardTourSystem.Database.DAL
         //PlaceCard	varchar(10)	              在生成计划时赋值
         //PlaceInfo	varchar(10)               在生成计划时赋值
 
-        //PlaceTime	DateTime	              在读取巡检机数据后更新
-        //ActualWorkerCard	                  在读取巡检机数据后更新
-        //ActualWorkerInfo	                  在读取巡检机数据后更新
-        //EventTime	DateTime	              在读取巡检机数据后更新
-        //EventCard	varchar(10)	              在读取巡检机数据后更新
-        //EventInfo	varchar(10)	              在读取巡检机数据后更新
+        //PlaceTime	DateTime	              在读取计数机数据后更新
+        //ActualWorkerCard	                  在读取计数机数据后更新
+        //ActualWorkerInfo	                  在读取计数机数据后更新
+        //EventTime	DateTime	              在读取计数机数据后更新
+        //EventCard	varchar(10)	              在读取计数机数据后更新
+        //EventInfo	varchar(10)	              在读取计数机数据后更新
 
 
         //获取指定值班的所有记录
@@ -60,7 +60,7 @@ namespace GuardTourSystem.Database.DAL
             return res;
         }
 
-        // 生成巡检计划时,添加值班安排
+        // 生成计数计划时,添加值班安排
         public bool AddRecord(Duty duty)
         {
             var sql = String.Format("insert into T_Record(ID,DutyID,PlaceOrder,PlaceCard,PlaceInfo) values(null,@dutyID,@placeOrder,@PlaceCard,@PlaceInfo)");

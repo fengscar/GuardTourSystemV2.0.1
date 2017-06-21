@@ -71,7 +71,7 @@
                 <Button
                     Width="150"
                     Command="{Binding CVerifyTime}"
-                    Content="校准巡检机时间"
+                    Content="校准计数机时间"
                     Style="{StaticResource BlueBtn}" />
             </UniformGrid>
         </Grid>

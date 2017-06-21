@@ -58,12 +58,12 @@ namespace GuardTourSystem.Print
         {
             var list = new List<TableColumnHeader>();
             list.Add(new TableColumnHeader("序号", 30));
-            list.Add(new TableColumnHeader("线路", 60));
+            list.Add(new TableColumnHeader("部门", 60));
             list.Add(new TableColumnHeader("班次", 60));
             list.Add(new TableColumnHeader("计划时间", 100));
-            list.Add(new TableColumnHeader("巡检员", 80));
-            list.Add(new TableColumnHeader("地点名称", 100));
-            list.Add(new TableColumnHeader("实训时间", 100));
+            list.Add(new TableColumnHeader("管理卡", 80));
+            list.Add(new TableColumnHeader("人员名称", 100));
+            list.Add(new TableColumnHeader("打卡时间", 100));
             list.Add(new TableColumnHeader("考核结果", 40));
             list.Add(new TableColumnHeader("事件", 80));
             return list;

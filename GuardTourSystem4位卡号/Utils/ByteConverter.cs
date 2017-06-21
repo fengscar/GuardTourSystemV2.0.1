@@ -93,7 +93,7 @@ namespace GuardTourSystem.Utils
 
         #region 中文到GBK的转码
         /// <summary>
-        /// 得到 巡检员姓名的 byte[], 固定为10个字节,不足10字节的用0xFF填充
+        /// 得到 计数员姓名的 byte[], 固定为10个字节,不足10字节的用0xFF填充
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace GuardTourSystem.Utils
         }
 
         /// <summary>
-        ///  将 从巡检机读上来的数据 转成姓名..
+        ///  将 从计数机读上来的数据 转成姓名..
         /// </summary>
         /// <param name="nameBytes"></param>
         /// <returns></returns>

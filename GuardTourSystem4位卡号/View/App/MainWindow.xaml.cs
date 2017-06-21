@@ -28,7 +28,7 @@ namespace GuardTourSystem.View
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : MetroWindow, IInteractionRequestAware
+    public partial class MainWindow : MetroWindow
     {
         private static MainWindow instance;
         public static MainWindow Instance
@@ -78,11 +78,6 @@ namespace GuardTourSystem.View
                 DBug.w(e);
             }
         }
-
-        public Action FinishInteraction { get; set; }
-
-        public INotification Notification { get; set; }
-
 
 
         public void SaveWindowSize()

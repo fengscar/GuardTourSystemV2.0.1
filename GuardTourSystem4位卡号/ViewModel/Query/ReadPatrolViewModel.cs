@@ -1,14 +1,12 @@
 ﻿using GuardTourSystem.Database.BLL;
 using GuardTourSystem.Model;
-using GuardTourSystem.Model.DAL;
-using GuardTourSystem.Model.Model;
 using GuardTourSystem.Print;
 using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.DAL;
 using GuardTourSystem.Utils;
 using KaiheSerialPortLibrary;
+using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +28,7 @@ namespace GuardTourSystem.ViewModel
         public DelegateCommand CPrint { get; set; }
 
 
-        public ObservableCollection<RawData> RawDatas { get; set; } // 巡检机数据
+        public ObservableCollection<RawData> RawDatas { get; set; } // 计数机数据
 
 
         public ReadPatrolViewModel()
@@ -40,16 +38,16 @@ namespace GuardTourSystem.ViewModel
             this.RawDatas = new ObservableCollection<RawData>();
             this.InfoVM = new InfoViewModel();
             this.CReadRecord = new DelegateCommand(this.ReadRecord, () => !SerialPortManager.Instance.IsWritting); //,() => { return !MainWindowViewModel.Instance.IsWriting; });
-            this.CClearRecord = new DelegateCommand(() => this.ClearRecord(), () => !SerialPortManager.Instance.IsWritting);//, () => { return !MainWindowViewModel.Instance.IsWriting; });
+            this.CClearRecord = new DelegateCommand(this.ClearRecordWithAsk, () => !SerialPortManager.Instance.IsWritting);//, () => { return !MainWindowViewModel.Instance.IsWriting; });
             this.CPrint = new DelegateCommand(this.Print);
         }
 
         ///<summary>
-        ///读取巡检记录 PatrolReocrd -> 原始数据 RawData -> 更新记录 Record
-        ///     1. 获取巡检机中的巡检记录
-        ///     2. 调用 HandleDeviceData() 处理巡检数据 
-        ///     3. 删除巡检机中的巡检记录
-        ///     4. 校准巡检机时间
+        ///读取计数记录 PatrolReocrd -> 原始数据 RawData -> 更新记录 Record
+        ///     1. 获取计数机中的计数记录
+        ///     2. 调用 HandleDeviceData() 处理计数数据 
+        ///     3. 删除计数机中的计数记录
+        ///     4. 校准计数机时间
         ///</summary>
         public async void ReadRecord()
         {
@@ -71,25 +69,21 @@ namespace GuardTourSystem.ViewModel
             }
             InfoVM.Append(LanKey.PatrolDataReadSuccess);
 
-            // 将机器记录machineRecord转成 巡检机数据deviceRecords (添加一个接收时间)
+            // 将机器记录machineRecord转成 计数机数据deviceRecords (添加一个接收时间)
             var deviceRecords = new List<DevicePatrolRecord>();
             var readTime = DateTime.Now;
-            foreach (var record in patrolRecords)
-            {
-                deviceRecords.Add(new DevicePatrolRecord(record.Device, record.Time, record.Card, readTime));
-            }
+            patrolRecords.ForEach(record => deviceRecords.Add(new DevicePatrolRecord(record.Device, record.Time, record.Card, readTime)));
 
-            // 处理接收到的巡检机数据 , 并显示到UI
+            // 处理接收到的计数机数据 , 并显示到UI
             if (!await HandleDeviceData(deviceRecords))
             {
-                //处理数据失败,不删除巡检机数据
+                //处理数据失败,不删除计数机数据
                 return;
             }
-
-            //3. 处理完再删除巡检机数据
+            //3. 处理完再删除计数机数据
             await this.ClearRecord();
 
-            //校准巡检机时间
+            //校准计数机时间
             InfoVM.Append(LanLoader.Load(LanKey.DeviceTestVerifingTime));
             var setTimeResult = await SerialPortUtil.Write(new SetDeviceTime(DateTime.Now));
             InfoVM.Append(setTimeResult.Check() ?
@@ -99,16 +93,15 @@ namespace GuardTourSystem.ViewModel
         }
 
         /// <summary>
-        /// 处理接收到的巡检数据
-        /// 1. 保存 巡检数据DeviceData
+        /// 处理接收到的计数数据
+        /// 1. 保存 计数数据DeviceData
         /// 2. 生成并保存 原始数据RawData
-        /// 3. 更新考核表 (T_Record)
         /// </summary>
         /// <param name="deviceDatas"></param>
         /// <returns></returns>
         public async Task<bool> HandleDeviceData(List<DevicePatrolRecord> deviceDatas)
         {
-            //保存 巡检数据 
+            //保存 计数数据 
             InfoVM.Append(LanKey.PatrolDataHandling);
 
             var saveResult = new DeviceDataDAO().AddDeviceRecord(deviceDatas);
@@ -119,18 +112,28 @@ namespace GuardTourSystem.ViewModel
 
 
             IRawDataService rds = new RawDataBLL();
-            IDutyService ids = new DutyBLL();
+
             // 生成并保存原始数据
-            AppStatusViewModel.Instance.ShowProgress(true, "正在处理巡检数据...");
-            InfoVM.Append("正在处理巡检数据...");
-            var rawDatas = await Task.Run(() => { return rds.GenerateRawData(deviceDatas); });
-            //更新UI
-            await Task.Run(() =>
+            AppStatusViewModel.Instance.ShowProgress(true, "正在处理计数数据...");
+            InfoVM.Append("正在处理计数数据...");
+
+            SQLiteHelper.Instance.BeginTransaction();
+            // 存 RawData
+            var rawDatas = await Task.Factory.StartNew(() => { return rds.GenerateRawData(deviceDatas); });
+            // 开始统计并存入T_Count表
+            if (rawDatas.Count != 0)
             {
-               foreach (var raw in rawDatas)
-               {
-                   RawDatas.Add(raw);
-               }
+                CountBLL countBll = new CountBLL();
+                countBll.Count(rawDatas);
+            }
+            SQLiteHelper.Instance.CommitTransaction();
+            //更新UI
+            await Task.Factory.StartNew(() =>
+            {
+                foreach (var raw in rawDatas)
+                {
+                    RawDatas.Add(raw);
+                }
             });
 
             if (!saveResult)
@@ -143,19 +146,30 @@ namespace GuardTourSystem.ViewModel
             }
 
 
-            // 如果有原始数据,更新考核表
-            InfoVM.Append(LanKey.PatrolDataDutyUpdating);
-            var updateResult = await Task.Run(() => { return ids.UpdateDuty(rawDatas); });
-            InfoVM.Append(updateResult ? LanKey.PatrolDataDutyUpdateSuccess : LanKey.PatrolDataDutyUpdateFail);
+            //// 如果有原始数据,更新考核表
+            //InfoVM.Append(LanKey.PatrolDataDutyUpdating);
+            //var updateResult = await Task.Run(() => { return ids.UpdateDuty(rawDatas); });
+            //InfoVM.Append(updateResult ? LanKey.PatrolDataDutyUpdateSuccess : LanKey.PatrolDataDutyUpdateFail);
 
-         
+
             AppStatusViewModel.Instance.ShowCompany();
 
-            return saveResult && updateResult;
+            return saveResult;
         }
-
+        public async void ClearRecordWithAsk()
+        {
+            var result = await this.ShowConfirmDialog("确定要清空设备中的打卡数据吗?", "清空后将无法恢复!");
+            if (result == MessageDialogResult.Negative) //用户取消
+            {
+                return;
+            }
+            else
+            {
+                ClearRecord();
+            }
+        }
         /// <summary>
-        /// 清空巡检记录
+        /// 清空计数记录
         /// </summary>
         public async Task<bool> ClearRecord()
         {

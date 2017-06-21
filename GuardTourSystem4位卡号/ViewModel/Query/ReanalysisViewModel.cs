@@ -36,7 +36,7 @@ namespace GuardTourSystem.ViewModel.Popup
             this.Finish();
             //弹出确认框,让用户点击确定
             var result = await this.ShowConfirmDialog("确定要重新分析吗?",
-                "将重新分析 " + DateQueryInfo.GetQueryTime() + " 的巡检数据,该操作无法撤销!");
+                "将重新分析 " + DateQueryInfo.GetQueryTime() + " 的计数数据,该操作无法撤销!");
             if (result == MessageDialogResult.Negative) //用户取消
             {
                 return;

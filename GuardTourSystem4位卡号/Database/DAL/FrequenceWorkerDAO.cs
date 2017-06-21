@@ -33,7 +33,7 @@ namespace GuardTourSystem.Database.DAL
         {
             if (f.Worker == null)
             {
-                throw new Exception("该班次未指定巡检员,应调用DelFrequenceWorker");
+                throw new Exception("该班次未指定计数员,应调用DelFrequenceWorker");
             }
             var sql = String.Format("Replace into T_FrequenceWorker(FrequenceID,WorkerID) values({0},{1})",f.ID,f.Worker.ID);
             return SQLiteHelper.Instance.ExecuteNonQuery(sql, null)==1;

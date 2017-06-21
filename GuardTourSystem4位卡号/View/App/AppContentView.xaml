@@ -9,7 +9,7 @@
     xmlns:view="clr-namespace:GuardTourSystem.View"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
-        <prism:InteractionRequestTrigger SourceObject="{Binding PopupReanalysis}">
+        <!--<prism:InteractionRequestTrigger SourceObject="{Binding PopupReanalysis}">
             <view:CustomPopupWindowAction>
                 <view:CustomPopupWindowAction.WindowContent>
                     <view:ReanalysisView />
@@ -72,6 +72,13 @@
                 </view:CustomPopupWindowAction.WindowContent>
             </view:CustomPopupWindowAction>
         </prism:InteractionRequestTrigger>
+        <prism:InteractionRequestTrigger SourceObject="{Binding PopupIgnore}">
+            <view:CustomPopupWindowAction>
+                <view:CustomPopupWindowAction.WindowContent>
+                    <view:IgnoreRepeatView />
+                </view:CustomPopupWindowAction.WindowContent>
+            </view:CustomPopupWindowAction>
+        </prism:InteractionRequestTrigger>-->
     </i:Interaction.Triggers>
 
     <Border

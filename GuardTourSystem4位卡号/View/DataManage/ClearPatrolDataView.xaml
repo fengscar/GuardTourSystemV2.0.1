@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Content="请选择要进行巡检数据清理的时间段" Style="{StaticResource TitleLabel}" />
+        <Label Content="请选择要进行计数数据清理的时间段" Style="{StaticResource TitleLabel}" />
         <StackPanel
             Grid.Row="1"
             Margin="5,10"

@@ -28,7 +28,7 @@ namespace GuardTourSystem.ViewModel
         {
             return FrequenceService.GetAllFrequence();
         }
-        // 得到所有可选的巡检员,包括 <不指定>
+        // 得到所有可选的计数员,包括 <不指定>
         public List<Worker> GetWorkerData()
         {
             var workers = WorkerService.GetAllWorker();

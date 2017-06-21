@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace GuardTourSystem.View
 {
     // 弹出窗口 的父类, 初始化了 Action Close 
-    public class InteractionRequestAwareUserControl : ShowMetroDialogView, IInteractionRequestAware
+    public class InteractionRequestAwareUserControl : ShowMetroDialogView
     {
         public AbstractPopupNotificationViewModel ViewModel { get; set; }
         public InteractionRequestAwareUserControl()
@@ -27,9 +27,9 @@ namespace GuardTourSystem.View
             {
                 finishInteraction = value;
 
-                this.ViewModel= notification as AbstractPopupNotificationViewModel;
-                this.ViewModel.Close = this.FinishInteraction; //初始化Close
-                this.ViewModel.Close += () => { MainWindow.Instance.HideOverlay(); }; //初始化Close
+                //this.ViewModel= notification as AbstractPopupNotificationViewModel;
+                //this.ViewModel.Close = this.FinishInteraction; //初始化Close
+                //this.ViewModel.Close += () => { MainWindow.Instance.HideOverlay(); }; //初始化Close
 
                 this.KeyUp -= KeyUpAction;
                 this.KeyUp += KeyUpAction;
@@ -54,19 +54,19 @@ namespace GuardTourSystem.View
         }
 
         //初始化时 ,value 为 ViewModel  , 并自动绑定为DataContext
-        public INotification notification { get; set; }
-        public INotification Notification
-        {
-            get
-            {
-                return notification;
-            }
-            set
-            {
-                notification = value;
-                MainWindow.Instance.ShowOverlay();
-            }
-        }
+        //public INotification notification { get; set; }
+        //public INotification Notification
+        //{
+        //    get
+        //    {
+        //        return notification;
+        //    }
+        //    set
+        //    {
+        //        notification = value;
+        //        MainWindow.Instance.ShowOverlay();
+        //    }
+        //}
 
     }
 }

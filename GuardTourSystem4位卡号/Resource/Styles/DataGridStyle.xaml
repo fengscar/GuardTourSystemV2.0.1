@@ -12,7 +12,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <DataTemplate xmlns:Converter="clr-namespace:GuardTourSystem.Converter" x:Key="RegularTemplate">
+    <!--<DataTemplate xmlns:Converter="clr-namespace:GuardTourSystem.Converter" x:Key="RegularTemplate">
         <DataTemplate.Resources>
             <Converter:RegularToBoolConverter x:Key="r2bConverter" />
         </DataTemplate.Resources>
@@ -30,8 +30,8 @@
                 <CheckBox Content="周日" IsChecked="{Binding Regular, Converter={StaticResource r2bConverter}, ConverterParameter=0}" />
             </UniformGrid>
         </Grid>
-    </DataTemplate>
-    <DataTemplate
+    </DataTemplate>-->
+    <!--<DataTemplate
         xmlns:selector="clr-namespace:GuardTourSystem.Selector"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         x:Key="IrregularTemplate">
@@ -84,7 +84,7 @@
                 </telerik:RadCalendar.DayTemplateSelector>
             </telerik:RadCalendar>
         </Grid>
-    </DataTemplate>
+    </DataTemplate>-->
 
     <Style x:Key="ContentDataGrid" TargetType="{x:Type DataGrid}">
         <Setter Property="HorizontalAlignment" Value="Stretch" />

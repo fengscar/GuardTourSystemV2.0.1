@@ -34,7 +34,7 @@ namespace GuardTourSystem.Services
 
             if (DAO.ExistsName(worker.Name))
             {
-                errorInfo = "该巡检员姓名已存在";
+                errorInfo = "该管理卡名称已被使用";
                 return false;
             }
             return true;
@@ -78,7 +78,7 @@ namespace GuardTourSystem.Services
             {
                 if (DAO.ExistsName(worker.Name))
                 {
-                    errorInfo = "该巡检员姓名已存在";
+                    errorInfo = "该管理卡名称已被使用";
                     return false;
                 }
             }
@@ -110,7 +110,7 @@ namespace GuardTourSystem.Services
             }
             if (String.IsNullOrEmpty(worker.Name))
             {
-                errorInfo = "抱歉,姓名不能为空";
+                errorInfo = "抱歉,名称不能为空";
                 return false;
             }
             if (String.IsNullOrEmpty(worker.Card))

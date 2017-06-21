@@ -20,7 +20,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel d:IsHidden="True" Orientation="Horizontal">
-
             <Label
                 Margin="40,3,10,3"
                 Content="选择月份"
@@ -67,7 +66,7 @@
                 <DataGridTextColumn
                     Width="Auto"
                     Binding="{Binding Frequence.RouteName}"
-                    Header="巡逻线路"
+                    Header="部门名称"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="Auto"
@@ -76,7 +75,7 @@
                     IsReadOnly="True" />
                 <DataGridTemplateColumn
                     Width="Auto"
-                    Header="巡检员"
+                    Header="管理卡"
                     IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

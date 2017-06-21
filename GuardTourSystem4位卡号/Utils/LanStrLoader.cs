@@ -11,7 +11,7 @@ namespace GuardTourSystem.Utils
 {
     enum LanKey
     {
-         APP_NAME,
+        APP_NAME,
         APP_VERSION,
         APP_LANGUAGE,
         APP_LOGINUSER,
@@ -33,27 +33,27 @@ namespace GuardTourSystem.Utils
         RoleManager,//管理员 
         RoleOperator,//操作员 
 
-        Device,//巡检机 
+        Device,//计数机 
         DeviceID,//机号 
 
-        Route,//巡检线路 
+        Route,//计数线路 
         RouteName,//线路名称 
 
-        Place,//巡检点 
-        PlaceOrder,//巡检点序号 
-        PlaceName,//巡检点名称 
-        PlaceCard,//巡检点钮号 
+        Place,//计数点 
+        PlaceOrder,//计数点序号 
+        PlaceName,//计数点名称 
+        PlaceCard,//计数点钮号 
 
-        Worker,//巡检员 
-        WorkerName,//巡检员名称 
-        WorkerCard,//巡检员钮号 
+        Worker,//计数员 
+        WorkerName,//计数员名称 
+        WorkerCard,//计数员钮号 
 
-        Event,//巡检事件 
+        Event,//计数事件 
         EventName,//事件名称 
         EventCard,//事件钮号 
 
-        PatrolData,//巡检数据 
-        PatrolTime,//巡检时间 
+        PatrolData,//计数数据 
+        PatrolTime,//计数时间 
 
         Add,//添加 
         Edit,//修改 
@@ -75,11 +75,11 @@ namespace GuardTourSystem.Utils
         #endregion
 
         #region 串口通信结果
-        PortErrorWakeUp,//巡检机未响应 
+        PortErrorWakeUp,//计数机未响应 
         PortErrorInit,//USB口初始化失败 
-        PortErrorNoDevice,//未找到巡检设备 
-        PortErrorNoDeviceOrOccupy,//没有巡检设备或设备USB口被占用 
-        PortErrorMultiDevice,//巡检设备不唯一,请单独连接 
+        PortErrorNoDevice,//未找到计数设备 
+        PortErrorNoDeviceOrOccupy,//没有计数设备或设备USB口被占用 
+        PortErrorMultiDevice,//计数设备不唯一,请单独连接 
         PortErrorWrongData,//错误的响应数据 
         PortErrorTimeOut,//通信超时 
         PortSuccess,//通信成功 
@@ -91,22 +91,23 @@ namespace GuardTourSystem.Utils
         MenuQueryRawData,
         MenuQueryReadHit,
         MenuQueryResult,
+        MenuQueryRawCount,
         MenuQueryChart,
         MenuQueryReanalysis,
 
         MenuPatrolSetting,//信息录入
-        MenuPatrolSettingRoute,//设置巡检点
-        MenuPatrolSettingWorker,//设置巡检员 
-        MenuPatrolSettingEvent,//设置巡检事件 
-        MenuPatrolSettingFrequence,//设置巡检班次 
+        MenuPatrolSettingRoute,//设置计数点
+        MenuPatrolSettingWorker,//设置计数员 
+        MenuPatrolSettingEvent,//设置计数事件 
+        MenuPatrolSettingFrequence,//设置计数班次 
         MenuPatrolSettingRegular,//设置按周排班 
         MenuPatrolSettingIrregular,//设置无规律排班   
 
         MenuDataManage,//数据维护 
         MenuDataManageBackupAndRecovery,//备份与还原 
-        MenuDataManageClearPatrolData,//清理巡检数据  
-        MenuDataManageImportPatrolData,//导入巡检数据 
-        MenuDataManageExportPatrolData,//导出巡检数据 
+        MenuDataManageClearPatrolData,//清理计数数据  
+        MenuDataManageImportPatrolData,//导入计数数据 
+        MenuDataManageExportPatrolData,//导出计数数据 
         MenuDataManageSharePatrolData,//共享文件夹设置
 
         MenuSystem,//系统管理 
@@ -133,33 +134,33 @@ namespace GuardTourSystem.Utils
         #endregion
 
         #region 数据查询-数据接收
-        PatrolDataRead,//接收巡检数据
-        PatrolDataClear,//清空巡检数据
-        PatrolDataReading,//正在接收巡检数据
-        PatrolDataReadFail,//巡检数据 接收失败: {0}
-        PatrolDataReadSuccess,//巡检数据接收成功
-        PatrolDataEmptyData,//巡检机中没有数据
-        PatrolDataHandling,//正在处理巡检数据...
-        PatrolDataHandleFail,//巡检数据 处理失败
-        PatrolDataHandleSuccess,//巡检数据 处理成功
-        PatrolDataSaveSuccess,//成功保存了 {0} 条巡检数据
-        PatrolDataSaveFail,//巡检数据保存失败
+        PatrolDataRead,//接收计数数据
+        PatrolDataClear,//清空计数数据
+        PatrolDataReading,//正在接收计数数据
+        PatrolDataReadFail,//计数数据 接收失败: {0}
+        PatrolDataReadSuccess,//计数数据接收成功
+        PatrolDataEmptyData,//计数机中没有数据
+        PatrolDataHandling,//正在处理计数数据...
+        PatrolDataHandleFail,//计数数据 处理失败
+        PatrolDataHandleSuccess,//计数数据 处理成功
+        PatrolDataSaveSuccess,//成功保存了 {0} 条计数数据
+        PatrolDataSaveFail,//计数数据保存失败
         PatrolDataDutyUpdating,//正在更新考核结果...
         PatrolDataDutyUpdateFail,//考核结果 更新失败
         PatrolDataDutyUpdateSuccess,//考核结果 更新成功
-        PatrolDataClearing,//正在清空巡检机数据...
-        PatrolDataClearFail,//巡检机数据清空失败
-        PatrolDataClearSuccess,//巡检机数据清空成功
+        PatrolDataClearing,//正在清空计数机数据...
+        PatrolDataClearFail,//计数机数据清空失败
+        PatrolDataClearSuccess,//计数机数据清空成功
         #endregion
-        #region 数据查询-巡检记录
-        RawData,//巡检记录
+        #region 数据查询-计数记录
+        RawData,//计数记录
 
         #endregion
 
         #region 系统管理-通讯测试
-        DeviceTestVerifingTime,//正在校准巡检机时间...
-        DeviceTestVerifyTimeSuccess,//巡检机时间校准成功
-        DeviceTestVerifyTimeFail,//巡检机时间校准失败 {0}
+        DeviceTestVerifingTime,//正在校准计数机时间...
+        DeviceTestVerifyTimeSuccess,//计数机时间校准成功
+        DeviceTestVerifyTimeFail,//计数机时间校准失败 {0}
         #endregion
 
         Export_RouteAndPlace,
@@ -209,6 +210,7 @@ namespace GuardTourSystem.Utils
 
         WorkerCountInfo,
         RouteCountInfo,
+       
 
 
 

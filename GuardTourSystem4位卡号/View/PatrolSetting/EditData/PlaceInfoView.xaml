@@ -17,13 +17,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="所属线路" Style="{StaticResource ContentLabel}" />
+            <Label Content="所属部门" Style="{StaticResource ContentLabel}" />
 
             <ComboBox
                 Width="200"
@@ -40,8 +41,7 @@
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="地点名称" Style="{StaticResource ContentLabel}" />
-
+            <Label Content="人员名称" Style="{StaticResource ContentLabel}" />
             <TextBox
                 x:Name="PlaceNameTextBox"
                 Width="200"
@@ -54,20 +54,32 @@
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="地点钮号" Style="{StaticResource ContentLabel}" />
+            <Label Content="人员钮号" Style="{StaticResource ContentLabel}" />
             <TextBox
                 Width="200"
                 MaxLength="4"
                 Style="{StaticResource ContentTextBox}"
                 Text="{Binding Place.Card, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
+        <StackPanel
+            Grid.Row="3"
+            Margin="5,5,5,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Label Content="人员工号" Style="{StaticResource ContentLabel}" />
+            <TextBox
+                Width="200"
+                MaxLength="6"
+                Style="{StaticResource ContentTextBox}"
+                Text="{Binding Place.EmployeeNumber, UpdateSourceTrigger=PropertyChanged}" />
+        </StackPanel>
 
         <Label
-            Grid.Row="3"
+            Grid.Row="4"
             Content="{Binding ErrorInfo}"
             Style="{StaticResource AlarmLabel}" />
         <UniformGrid
-            Grid.Row="4"
+            Grid.Row="5"
             Margin="5"
             Columns="2">
             <Button

@@ -31,12 +31,18 @@ namespace GuardTourSystem.Database.DAL
             }
         }
         //获取所有地点
-        public List<Place> GetAllPlace()
+        public List<Place> GetAllPlace(string queryStr = null)
         {
             var places = new List<Place>();
             var sqlPlace = String.Format("select * from T_Place ");
+            object[] param = null;
+            if (!string.IsNullOrEmpty(queryStr))
+            {
+                sqlPlace += " where NAME Like \"%@Name%\" or Card Like \"%@Card%\" or EmployeeNumber like \"%@EN%\"";
+                param = new object[] { queryStr, queryStr, queryStr };
+            }
             var placeDS = new DataSet();
-            if (!SQLiteHelper.Instance.ExecuteDataSet(sqlPlace, null, out placeDS))
+            if (!SQLiteHelper.Instance.ExecuteDataSet(sqlPlace, param, out placeDS))
             {
                 return places;
             }
@@ -60,7 +66,8 @@ namespace GuardTourSystem.Database.DAL
                 RouteID = Convert.ToInt32(p["RouteID"]),
                 Order = Convert.ToInt32(p["RouteOrder"]),
                 Name = p["Name"].ToString(),
-                Card = p["Card"].ToString()
+                Card = p["Card"].ToString(),
+                EmployeeNumber = p["EmployeeNumber"].ToString()
             };
             return place;
         }
@@ -98,8 +105,8 @@ namespace GuardTourSystem.Database.DAL
             {
                 order = Convert.ToInt32(orderResult) + 1;
             }
-            var sqlAdd = String.Format("insert into T_Place(ID,RouteID,RouteOrder,Name,Card) values(null,@routeID, {0} ,@NAME,@CARD);select last_insert_rowid();", order);
-            object result = SQLiteHelper.Instance.ExecuteScalar(sqlAdd, new object[] { p.RouteID, p.Name, p.Card });
+            var sqlAdd = String.Format("insert into T_Place(ID,RouteID,RouteOrder,Name,Card,EmployeeNumber) values(null,@routeID, {0} ,@NAME,@CARD,@EN);select last_insert_rowid();", order);
+            object result = SQLiteHelper.Instance.ExecuteScalar(sqlAdd, new object[] { p.RouteID, p.Name, p.Card, p.EmployeeNumber });
             if (result != null)
             {
                 id = Convert.ToInt32(result);
@@ -114,8 +121,8 @@ namespace GuardTourSystem.Database.DAL
 
         public bool UpdatePlace(Place p)
         {
-            string sql = "update T_Place set RouteID=@RouteID,RouteOrder=@Order,Name=@NAME,Card=@CARD where Id=@ID";
-            return SQLiteHelper.Instance.ExecuteNonQuery(sql, new object[] { p.RouteID, p.Order, p.Name, p.Card, p.ID }) == 1;
+            string sql = "update T_Place set RouteID=@RouteID,RouteOrder=@Order,Name=@NAME,Card=@CARD,EmployeeNumber=@EN where Id=@ID";
+            return SQLiteHelper.Instance.ExecuteNonQuery(sql, new object[] { p.RouteID, p.Order, p.Name, p.Card, p.EmployeeNumber, p.ID }) == 1;
         }
 
         public bool DelPlace(Place p)
@@ -156,6 +163,16 @@ namespace GuardTourSystem.Database.DAL
         {
             string sql = String.Format("select Count(*) from T_Place where Card=@Card ");
             var count = Convert.ToInt32(SQLiteHelper.Instance.ExecuteScalar(sql, card));
+            return count >= 1;
+        }
+        public bool ExistsEmployeeNumnber(string en)
+        {
+            if (string.IsNullOrWhiteSpace(en))
+            {
+                return false;
+            }
+            string sql = String.Format("select Count(*) from T_Place where EmployeeNumber=@EN");
+            var count = Convert.ToInt32(SQLiteHelper.Instance.ExecuteScalar(sql, en));
             return count >= 1;
         }
 

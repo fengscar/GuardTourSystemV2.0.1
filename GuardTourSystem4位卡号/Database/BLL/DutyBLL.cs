@@ -216,7 +216,7 @@ namespace GuardTourSystem.Database.BLL
                 {
                     //该原始记录的时间 是否在该次值班时间内
                     var inDuty = duty.DutyTime.InDuty(raw.PlaceTime);
-                    //巡检员是否匹配: 如果值班没有指定巡检员,返回true;如果有指定,必须和原始数据的巡检员钮号匹配
+                    //计数员是否匹配: 如果值班没有指定计数员,返回true;如果有指定,必须和原始数据的计数员钮号匹配
                     var workerMatch = duty.Worker == null ? true : duty.Worker.Card.Equals(raw.Worker.Card);
                     //非foreach的return,这个return是属于匿名函数的...
                     return inDuty && workerMatch;

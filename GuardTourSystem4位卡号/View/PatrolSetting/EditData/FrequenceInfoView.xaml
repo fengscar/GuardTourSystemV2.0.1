@@ -34,7 +34,7 @@
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="巡逻线路" Style="{StaticResource ContentLabel}" />
+            <Label Content="部门名称" Style="{StaticResource ContentLabel}" />
             <ComboBox
                 Width="150"
                 Margin="3"
@@ -98,7 +98,7 @@
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="巡检时间" Style="{StaticResource ContentLabel}" />
+            <Label Content="工作时间" Style="{StaticResource ContentLabel}" />
             <TextBox
                 Width="150"
                 MaxLength="3"
@@ -145,7 +145,7 @@
             Margin="5,5,5,0"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <Label Content="巡检次数" Style="{StaticResource ContentLabel}" />
+            <Label Content="打卡次数" Style="{StaticResource ContentLabel}" />
             <TextBox
                 IsEnabled="False"
                 Style="{StaticResource ContentTextBox}"

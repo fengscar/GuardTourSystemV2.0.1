@@ -130,13 +130,13 @@
                 <telerik:GridViewDataColumn
                     Width="1*"
                     DataMemberBinding="{Binding WorkerName}"
-                    Header="巡检员"
+                    Header="计数员"
                     IsCellMergingEnabled="False" />
 
                 <telerik:GridViewDataColumn
                     Width="1*"
                     DataMemberBinding="{Binding PlaceName}"
-                    Header="巡检点"
+                    Header="计数点"
                     IsCellMergingEnabled="False" />
                 <telerik:GridViewDataColumn
                     Width="1.5*"
@@ -152,7 +152,7 @@
                 <telerik:GridViewDataColumn
                     Width="1*"
                     DataMemberBinding="{Binding EventName}"
-                    Header="巡检事件"
+                    Header="计数事件"
                     IsCellMergingEnabled="False" />
             </telerik:RadGridView.Columns>
         </telerik:RadGridView>

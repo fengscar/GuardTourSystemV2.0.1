@@ -32,7 +32,7 @@
             <Label
                 x:Name="NameLabel"
                 Width="100"
-                Content="巡检员姓名"
+                Content="管理卡名称"
                 Style="{StaticResource ContentLabel}" />
             <TextBox
                 x:Name="WorkerNameTextBox"
@@ -74,9 +74,9 @@
             Orientation="Horizontal">
             <Label
                 Width="100"
-                Content="巡检员钮号"
+                Content="管理卡钮号"
                 Style="{StaticResource ContentLabel}" />
-            <!--<Label Content="巡检员钮号" Style="{StaticResource ContentLabel}" />-->
+            <!--<Label Content="计数员钮号" Style="{StaticResource ContentLabel}" />-->
             <TextBox
                 Width="150"
                 MaxLength="4"

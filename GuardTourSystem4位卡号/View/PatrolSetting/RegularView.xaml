@@ -25,14 +25,13 @@
         <DataGrid
             x:Name="WorkerDataGrid"
             Grid.Row="1"
-                      Style="{StaticResource ContentDataGrid}"
-
-            ItemsSource="{Binding RegularItems}">
+            ItemsSource="{Binding RegularItems}"
+            Style="{StaticResource ContentDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding Frequence.RouteName}"
-                    Header="巡逻线路"
+                    Header="部门名称"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
@@ -41,14 +40,14 @@
                     IsReadOnly="True" />
                 <!--<DataGridComboBoxColumn
                     Width="*"
-                    Header="巡检员"
+                    Header="计数员"
                     IsReadOnly="True"
                     ItemsSource="{Binding Workers}"
                     SelectedItemBinding="{Binding Frequence.Worker, Converter={StaticResource WorkerNameConverter}}" />-->
                 <!--  ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType={x:Type DataGrid}}}"  -->
                 <DataGridTemplateColumn
                     Width="*"
-                    Header="巡检员"
+                    Header="管理卡"
                     IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -68,19 +67,14 @@
                 <DataGridTemplateColumn
                     Width="5*"
                     Header="排班"
-                    IsReadOnly="True" HeaderTemplate="{DynamicResource RegularHeaderTemplate}">
+                    HeaderTemplate="{DynamicResource RegularHeaderTemplate}"
+                    IsReadOnly="True">
                     <!--<DataGridTemplateColumn.CellTemplateSelector>
                     <selector:FrequenceSelector IrregularTemplate="{StaticResource IrregularTemplate}" RegularTemplate="{StaticResource RegularTemplate}" />
                 </DataGridTemplateColumn.CellTemplateSelector>-->
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                        
-                        	
-                        		   <view:RegularSelectControl DataContext="{Binding WeekSelectViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                              
-                        	
-                         
-                     
+                            <view:RegularSelectControl DataContext="{Binding WeekSelectViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -72,7 +72,7 @@ namespace GuardTourSystem.Print
 
             PrintDialog = new PrintDialogWithPageRange();
             PrintDialog.PrintTicket.PageOrientation = PageOrientation.Landscape;
-            PrintDialog.SelectedPagesEnabled = true;
+            //PrintDialog.SelectedPagesEnabled = true;
             PrintDialog.UserPageRangeEnabled = true;
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace GuardTourSystem.Print
         /// </summary>
         public void Print(string desc = null)
         {
-            PrintDialog.PrintDocument(new HeaderFooterPaginator(Document), desc ?? "巡检文件");
+            PrintDialog.PrintDocument(new HeaderFooterPaginator(Document), desc ?? "计数文件");
         }
 
 
@@ -102,7 +102,7 @@ namespace GuardTourSystem.Print
         {
             if (PrintDialog.ShowDialog() == true)
             {
-                PrintDialog.PrintDocument(new HeaderFooterPaginator(Document), desc ?? "巡检文件");
+                PrintDialog.PrintDocument(new HeaderFooterPaginator(Document), desc ?? "计数文件");
             }
         }
 

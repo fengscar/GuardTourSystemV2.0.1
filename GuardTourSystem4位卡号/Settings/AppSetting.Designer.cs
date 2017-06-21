@@ -49,7 +49,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("巡检管理系统")]
+        [global::System.Configuration.DefaultSettingValueAttribute("打卡计数管理系统")]
         public string SoftwareName {
             get {
                 return ((string)(this["SoftwareName"]));
@@ -61,7 +61,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(C) 2017 凯和电子")]
+        [global::System.Configuration.DefaultSettingValueAttribute("版权所有 2017 台州博世科技开发有限公司")]
         public string CopyrightInfo {
             get {
                 return ((string)(this["CopyrightInfo"]));
@@ -73,7 +73,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("福州凯和电子有限公司")]
+        [global::System.Configuration.DefaultSettingValueAttribute("台州博世科技开发有限公司")]
         public string CompanyName {
             get {
                 return ((string)(this["CompanyName"]));
@@ -85,7 +85,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("地址:  福建省福州市六一中路")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string CompanyAddress {
             get {
                 return ((string)(this["CompanyAddress"]));
@@ -97,7 +97,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("电话:  0591-88888888")]
+        [global::System.Configuration.DefaultSettingValueAttribute("13957632770")]
         public string CompanyTel {
             get {
                 return ((string)(this["CompanyTel"]));
@@ -109,7 +109,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("www.kai-he.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string CompanyWebsite {
             get {
                 return ((string)(this["CompanyWebsite"]));
@@ -121,7 +121,7 @@ namespace GuardTourSystem.Settings {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("版本号 2.1.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("版本号 2.4.1")]
         public string SoftwareVersion {
             get {
                 return ((string)(this["SoftwareVersion"]));
@@ -176,6 +176,30 @@ namespace GuardTourSystem.Settings {
             }
             set {
                 this["SharePassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsIgnore {
+            get {
+                return ((bool)(this["IsIgnore"]));
+            }
+            set {
+                this["IsIgnore"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int IgnoreTime {
+            get {
+                return ((int)(this["IgnoreTime"]));
+            }
+            set {
+                this["IgnoreTime"] = value;
             }
         }
     }

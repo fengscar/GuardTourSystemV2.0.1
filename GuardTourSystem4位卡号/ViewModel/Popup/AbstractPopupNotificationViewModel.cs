@@ -2,7 +2,7 @@
 using GuardTourSystem.View;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.Interactivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Input;
 namespace GuardTourSystem.ViewModel
 {
     //所有通过InteractionRequest的Raise方法触发的 弹出窗口的 ViewModel 
-    public abstract class AbstractPopupNotificationViewModel : ShowMetroDialogViewModel, INotification
+    public abstract class AbstractPopupNotificationViewModel : ShowMetroDialogViewModel
     {
         public DelegateCommand CConfirm { get; set; } //点击 确认
         public DelegateCommand CClose { get; set; } //点击 取消
@@ -51,7 +51,8 @@ namespace GuardTourSystem.ViewModel
             get { return errorInfo; }
             set
             {
-                SetProperty(ref this.errorInfo, value);
+                errorInfo = value;
+                RaisePropertyChanged("ErrorInfo");
             }
         }
         private string confirmButtonText;
@@ -60,7 +61,8 @@ namespace GuardTourSystem.ViewModel
             get { return confirmButtonText; }
             set
             {
-                SetProperty(ref this.confirmButtonText, value);
+                confirmButtonText = value;
+                RaisePropertyChanged("ConfirmButtonText");
             }
         }
     }

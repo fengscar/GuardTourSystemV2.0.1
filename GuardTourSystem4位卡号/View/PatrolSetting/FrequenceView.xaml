@@ -79,7 +79,7 @@
                 <telerik:GridViewDataColumn
                     Width="*"
                     DataMemberBinding="{Binding RouteName}"
-                    Header="巡检线路"
+                    Header="部门名称"
                     IsFilterable="False" />
                 <telerik:GridViewDataColumn
                     Width="*"
@@ -104,17 +104,17 @@
                 <telerik:GridViewDataColumn
                     Width="*"
                     DataMemberBinding="{Binding PatrolTime}"
-                    Header="巡检时间(分钟)"
+                    Header="工作时间(分钟)"
                     IsFilterable="False" />
                 <telerik:GridViewDataColumn
                     Width="*"
                     DataMemberBinding="{Binding RestTime}"
-                    Header="休息时间(分钟)"
+                    Header="间休时间(分钟)"
                     IsFilterable="False" />
                 <telerik:GridViewDataColumn
                     Width="*"
                     DataMemberBinding="{Binding PatrolCount}"
-                    Header="巡逻次数"
+                    Header="打卡次数"
                     IsFilterable="False" />
 
             </telerik:RadGridView.Columns>
@@ -126,7 +126,7 @@
             Orientation="Horizontal">
             <Button Style="{StaticResource CloseBtn}" />
             <Button Click="Export_Button_Click" Style="{StaticResource ExportExcelBtn}" />
-            <Button  Style="{StaticResource PrintBtn}" Click="Print_Button_Click" />
+            <Button Click="Print_Button_Click" Style="{StaticResource PrintBtn}" />
         </StackPanel>
     </Grid>
 </view:ShowContentView>

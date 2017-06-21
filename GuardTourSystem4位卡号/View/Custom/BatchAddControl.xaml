@@ -37,7 +37,7 @@
                 <Button
                     Width="90"
                     Command="{Binding CClearRecords}"
-                    Content="{DynamicResource Clear}"
+                    Content="清空列表"
                     Style="{StaticResource BlueBtn}" />
             </StackPanel>
         </StackPanel>
@@ -61,10 +61,25 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn
                     Width="Auto"
+                    Binding="{Binding Index}"
+                    ElementStyle="{StaticResource CardTextBlock}"
+                    Header="序号" />
+                <DataGridTextColumn
+                    Width="Auto"
                     Binding="{Binding Card}"
                     ElementStyle="{StaticResource CardTextBlock}"
                     Header="{DynamicResource Card}" />
-                <DataGridTemplateColumn Width="*" Header="{DynamicResource Name}">
+                <DataGridTemplateColumn Width="1*" Header="{DynamicResource Name}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox
+                                Grid.Column="0"
+                                MaxLength="16"
+                                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="2*" Header="工号">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -72,7 +87,11 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox
+                                    FontFamily="SimSun,Courier New,Lucida Console"
+                                    IsUndoEnabled="False"
+                                    MaxLength="6"
+                                    Text="{Binding EmployeeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <Label
                                     Grid.Column="1"
                                     HorizontalAlignment="Stretch"

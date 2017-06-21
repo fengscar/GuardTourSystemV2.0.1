@@ -18,9 +18,9 @@ namespace GuardTourSystem.Converter
             switch (type)
             {
                 case CardType.Worker:
-                    return "人员卡";
+                    return "管理卡";
                 case CardType.Place:
-                    return "地点卡";
+                    return "人员卡";
                 case CardType.Event:
                     return "事件卡";
                 case CardType.Unknown:

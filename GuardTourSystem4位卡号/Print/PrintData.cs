@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.Prism.Mvvm;
+﻿using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GuardTourSystem.Print
 {
-    public class PrintData : BindableBase
+    public class PrintData : NotificationObject
     {
         public string Title { get; set; }//打印内容
         //打印时间
@@ -18,7 +18,9 @@ namespace GuardTourSystem.Print
             get { return DateTime.Now; }
             set
             {
-                SetProperty(ref this.printTime, value);
+                printTime = value;
+                RaisePropertyChanged("PrintTime");
+                //SetProperty(ref this.printTime, value);
             }
         }
 
@@ -29,7 +31,9 @@ namespace GuardTourSystem.Print
             get { return dataCount; }
             set
             {
-                SetProperty(ref this.dataCount, value);
+                dataCount = value;
+                RaisePropertyChanged("DataCount");
+                //SetProperty(ref this.dataCount, value);
             }
         }
 

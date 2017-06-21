@@ -41,7 +41,6 @@ namespace GuardTourSystem.ViewModel.Query.ChartViewModel
         }
 
 
-
         private Brush brush;
         public Brush Brush
         {

@@ -26,13 +26,13 @@ namespace GuardTourSystem.Database.DAL
             object[] param = null;
             if (begin != null && end != null)
             {
-                //因为 巡检时间和指定时间段有重叠
+                //因为 计数时间和指定时间段有重叠
                 //所以 
-                //  巡检开始时间在指定时间段内 
+                //  计数开始时间在指定时间段内 
                 //或者 
-                //  巡检结束时间在指定时间段内
+                //  计数结束时间在指定时间段内
                 //或者
-                //  指定时间段被包含在某次巡检时间段之间
+                //  指定时间段被包含在某次计数时间段之间
                 sql += " where "
                       + "(PatrolBegin>=@begin and PatrolBegin<=@end ) "
                       + "or "

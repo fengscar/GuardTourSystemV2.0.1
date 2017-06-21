@@ -1,4 +1,5 @@
 ﻿using GuardTourSystem.Database.BLL;
+using GuardTourSystem.Database.DAL;
 using GuardTourSystem.Model;
 using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.DAL;
@@ -21,9 +22,12 @@ namespace GuardTourSystem.ViewModel
             get { return place; }
             set
             {
-                SetProperty(ref this.place, value);
+                place = value;
+                RaisePropertyChanged("Place");
             }
         }
+
+
         public List<Route> Routes { get; set; } // 作为ComboBox的选项
 
         private Route route;
@@ -33,7 +37,8 @@ namespace GuardTourSystem.ViewModel
             get { return route; }
             set
             {
-                SetProperty(ref this.route, value);
+                route = value;
+                RaisePropertyChanged("Route");
             }
         }
 
@@ -52,7 +57,7 @@ namespace GuardTourSystem.ViewModel
             {
                 Route = Routes[0];
 
-                Title = "新增地点";
+                Title = "新增人员";
                 Place = new Place() { ID = -1 };
                 ConfirmButtonText = LanLoader.Load(LanKey.Add);
                 this.CConfirm = new DelegateCommand(new Action(this.AddInfo));
@@ -62,7 +67,7 @@ namespace GuardTourSystem.ViewModel
             {
                 Route = Routes.Find(r => { return r.ID == place.RouteID; });
 
-                Title = "编辑地点信息";
+                Title = "编辑人员信息";
                 ConfirmButtonText = LanLoader.Load(LanKey.Edit);
                 this.CConfirm = new DelegateCommand(new Action(this.UpdateInfo));
             }
@@ -72,6 +77,8 @@ namespace GuardTourSystem.ViewModel
             int placeID,routeOrder;
             string errorInfo;
             Place.RouteID = Route.ID;
+
+
             if (DataService.AddPlace(Place, out placeID, out routeOrder,out errorInfo))
             {
                 Place.ID = placeID;
@@ -82,6 +89,14 @@ namespace GuardTourSystem.ViewModel
             {
                 this.ErrorInfo = errorInfo;
             }
+        }
+        public void CheckEmployeeNumnber(string employeeNumber)
+        {
+            //string 
+            //if (string.IsNullOrWhiteSpace(employeeNumber)){
+                
+            //}
+            //new PlaceDAO().ExistsEmployeeNumnber();
         }
 
         /// <summary>

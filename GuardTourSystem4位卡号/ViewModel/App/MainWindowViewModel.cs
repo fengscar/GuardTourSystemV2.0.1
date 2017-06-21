@@ -8,7 +8,7 @@ using GuardTourSystem.View;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -75,8 +75,9 @@ namespace GuardTourSystem.ViewModel
             get { return contentName; }
             set
             {
-                SetProperty(ref this.contentName, value);
-                OnPropertyChanged("WindowName");//提示WindowName改变
+                contentName = value;
+                RaisePropertyChanged("ContentName");
+                RaisePropertyChanged("WindowName");//提示WindowName改变
                 AppShortcutViewModel.Instance.ContentChange(value);
             }
         }
@@ -99,17 +100,17 @@ namespace GuardTourSystem.ViewModel
             //配置数据库初始化
             SettingManager.Init();
 
-            //巡检数据库初始化
+            //计数数据库初始化
             PatrolSQLiteManager.Init();
-            //将 值班表更新到 当天
-            IDutyService DutyService = new DutyBLL();
-            string error;
+            ////将 值班表更新到 当天
+            //IDutyService DutyService = new DutyBLL();
+            //string error;
             //DutyService.GenerateDuty(DateTime.Now.AddDays(-7),DateTime.Now);
-            DutyService.GenerateDuty(out error);
-            if (error != null)
-            {
-                AppStatusViewModel.Instance.ShowError("生成值班表失败: " + error, 10);
-            }
+            //DutyService.GenerateDuty(out error);
+            //if (error != null)
+            //{
+            //    AppStatusViewModel.Instance.ShowError("生成值班表失败: " + error, 10);
+            //}
         }
 
         public void ShowMainWindow(User user)
@@ -119,7 +120,7 @@ namespace GuardTourSystem.ViewModel
         }
         public void InitMainWindow()
         {
-            Task.Run(() =>
+            Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(2000);//延迟,等待LoginWindow显示完成后再进行初始化
                 Application.Current.Dispatcher.BeginInvoke(
@@ -135,7 +136,7 @@ namespace GuardTourSystem.ViewModel
         }
         public void CloseMainWindow(object sender, EventArgs e)
         {
-            //关闭巡检数据库
+            //关闭计数数据库
             SQLiteHelper.Instance.CloseDatabase();
             // 关闭所有窗口 ( 终止应用)
             Application.Current.Shutdown();

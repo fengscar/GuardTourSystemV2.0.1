@@ -66,9 +66,9 @@ namespace GuardTourSystem.Print
         public override List<TableColumnHeader> GetColumns()
         {
             var list = new List<TableColumnHeader>();
-            list.Add(new TableColumnHeader("地点序号", 100));
-            list.Add(new TableColumnHeader("地点名称", 200));
-            list.Add(new TableColumnHeader("地点钮号", 200));
+            list.Add(new TableColumnHeader("人员序号", 100));
+            list.Add(new TableColumnHeader("人员名称", 200));
+            list.Add(new TableColumnHeader("人员钮号", 200));
             return list;
         }
     }

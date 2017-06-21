@@ -166,7 +166,7 @@ namespace GuardTourSystem.ViewModel
                 }
                 else
                 {
-                    ShowMessageDialog("巡检员删除失败!", null);
+                    ShowMessageDialog("班次删除失败!", null);
                 };
             }
             //this.CSetAlarm.RaiseCanExecuteChanged();

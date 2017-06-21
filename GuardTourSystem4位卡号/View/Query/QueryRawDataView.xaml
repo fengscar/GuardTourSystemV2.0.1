@@ -2,6 +2,7 @@
     x:Class="GuardTourSystem.View.QueryRawDataView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:converer="clr-namespace:GuardTourSystem.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,9 +11,9 @@
     xmlns:vm="clr-namespace:GuardTourSystem.ViewModel"
     d:DesignWidth="600"
     mc:Ignorable="d">
-    <view:ShowContentView.Resources>
+    <!--<view:ShowContentView.Resources>
         <converer:CardTypeConverter x:Key="CardTypeConverter" />
-    </view:ShowContentView.Resources>
+    </view:ShowContentView.Resources>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,6 +30,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label
                 Grid.Column="0"
@@ -37,8 +39,9 @@
             <telerik:RadDateTimePicker
                 Grid.Column="1"
                 Margin="10,3,0,3"
-                SelectedDate="{Binding DateQueryInfo.Begin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy/MM/dd'}"
-                Style="{StaticResource RadDatePicker}" />
+                CalendarStyle="{StaticResource CalendarStyle}"
+                InputMode="DateTimePicker"
+                SelectedValue="{Binding DateQueryInfo.Begin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy/MM/dd  HH:mm:SS'}" />
             <Label
                 Grid.Column="2"
                 Content="{DynamicResource QueryDateTo}"
@@ -46,21 +49,31 @@
             <telerik:RadDateTimePicker
                 Grid.Column="3"
                 Margin="0,3,20,3"
-                SelectedDate="{Binding DateQueryInfo.End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy/MM/dd'}"
-                Style="{StaticResource RadDatePicker}" />
-            <Label
+                CalendarStyle="{StaticResource CalendarStyle}"
+                InputMode="DateTimePicker"
+                SelectedValue="{Binding DateQueryInfo.End, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='yyyy/MM/dd  HH:mm:SS'}" />
+            <TextBox
                 Grid.Column="4"
+                Width="200"
+                Margin="0,3,0,3"
+                VerticalAlignment="Center"
+                Controls:TextBoxHelper.Watermark="查询 名字/工号/钮号"
+                FontSize="14"
+                MaxLength="10"
+                Text="{Binding QueryText}" />
+            <Label
+                Grid.Column="5"
                 Margin="5,0,5,0"
                 Content="{Binding Error}"
                 Style="{StaticResource AlarmLabel}" />
             <Button
-                Grid.Column="5"
+                Grid.Column="6"
                 Width="80"
                 Command="{Binding CQuery}"
                 Content="{DynamicResource Query}"
                 Style="{StaticResource BlueBtn}" />
             <Button
-                Grid.Column="6"
+                Grid.Column="7"
                 Width="80"
                 Command="{Binding CReset}"
                 Content="{DynamicResource Reset}"

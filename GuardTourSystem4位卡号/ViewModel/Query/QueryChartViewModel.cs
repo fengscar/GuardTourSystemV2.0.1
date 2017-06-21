@@ -128,8 +128,8 @@ namespace GuardTourSystem.ViewModel
             //ChartTypes.Add(new ChartType() { ShowName = "柱形图", Type = "Bar" });
 
             CountTypes = new List<CountType>();
-            CountTypes.Add(new CountType() { ShowName = "人员", Type = "Worker" });
-            CountTypes.Add(new CountType() { ShowName = "线路", Type = "Route" });
+            CountTypes.Add(new CountType() { ShowName = "管理卡", Type = "Worker" });
+            CountTypes.Add(new CountType() { ShowName = "部门", Type = "Route" });
 
             //设置当前选项 为 表格
             //SelectChartType = ChartTypes.Find(type => { return type.Type.Equals("Table"); });

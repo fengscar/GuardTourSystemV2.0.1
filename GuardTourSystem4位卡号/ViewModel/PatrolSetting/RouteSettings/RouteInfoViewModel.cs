@@ -4,7 +4,7 @@ using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.DAL;
 using GuardTourSystem.Utils;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,9 @@ namespace GuardTourSystem.ViewModel
             get { return route; }
             set
             {
-                SetProperty(ref this.route, value);
+                route = value;
+                RaisePropertyChanged("Route");
+                //SetProperty(ref this.route, value);
             }
         }
         public IRouteService RouteService { get; set; }

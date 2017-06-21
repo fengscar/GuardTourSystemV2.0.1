@@ -1,10 +1,8 @@
 ﻿using GuardTourSystem.Database.BLL;
 using GuardTourSystem.Model;
-using GuardTourSystem.Model.Model;
 using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.DAL;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +20,7 @@ using GuardTourSystem.Print;
 namespace GuardTourSystem.ViewModel
 {
     /// <summary>
-    /// 查询原始数据 ( 数据查询 => 巡检记录)
+    /// 查询原始数据 ( 数据查询 => 计数记录)
     /// </summary>
     public class QueryRawDataViewModel : ShowContentViewModel
     {
@@ -34,9 +32,23 @@ namespace GuardTourSystem.ViewModel
             get { return rawdatas; }
             set
             {
-                SetProperty(ref this.rawdatas, value);
+                rawdatas = value;
+                RaisePropertyChanged("RawDatas");
+                //SetProperty(ref this.rawdatas, value);
             }
         }
+        private string queryText;
+        public string QueryText
+        {
+            get { return queryText; }
+            set
+            {
+                queryText = value;
+                RaisePropertyChanged("QueryText");
+                //SetProperty(ref this.queryText, value);
+            }
+        }
+
 
         public DateQueryInfo DateQueryInfo { get; set; }
 
@@ -58,7 +70,7 @@ namespace GuardTourSystem.ViewModel
             this.CReset = new DelegateCommand(this.Reset);
 
             var now = DateTime.Now;
-            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth(), now, () => { this.CQuery.RaiseCanExecuteChanged(); });
+            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth().SetBeginOfDay(), now.SetEndOfDay(), () => { this.CQuery.RaiseCanExecuteChanged(); });
 
             Query();
         }
@@ -73,7 +85,12 @@ namespace GuardTourSystem.ViewModel
 
         private void Query()
         {
-            this.RawDatas = new ObservableCollection<RawData>(DataService.GetAllRawData(this.DateQueryInfo.Begin, this.DateQueryInfo.End));
+            var result = DataService.GetAllRawData(this.DateQueryInfo.Begin, this.DateQueryInfo.End);
+            if (!string.IsNullOrWhiteSpace(QueryText))
+            {
+                result = result.Where(rawData => { return rawData.Place.Card.Contains(QueryText) || rawData.Place.EmployeeNumber.Contains(QueryText) || rawData.Place.Name.Contains(QueryText); }).ToList();
+            }
+            this.RawDatas = new ObservableCollection<RawData>(result);
             AppStatusViewModel.Instance.ShowInfo(LanLoader.Load(LanKey.QueryComplete), 2);
         }
 

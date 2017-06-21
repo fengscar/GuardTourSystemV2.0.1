@@ -34,7 +34,6 @@ namespace GuardTourSystem.View
             this.EndTime.SelectedValue = DateTime.Now.Subtract(DateTime.Now.TimeOfDay).AddDays(1);
         }
 
-
         //开始生成 随机数据
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -53,44 +52,20 @@ namespace GuardTourSystem.View
                    }
 
                    var random = new Random();
-                   var workers = new WorkerBLL().GetAllWorker();
                    var places = new PlaceBLL().GetAllPlace();
-                   var events = new EventBLL().GetAllEvent();
-
-                   if (workers.Count == 0 || places.Count == 0 || events.Count == 0)
-                   {
-                       MessageBox.Show("请先去编辑地点/事件/人员信息,确认每个类型都有数据");
-                       return;
-                   }
 
                    var deviceID = "ACDCACDCAC";
                    var result = new List<DevicePatrolRecord>();
                    for (int i = 0; i < count; i++)
                    {
-                       //随机生成 一个类型
-                       int type = random.Next(10);
                        //随机生成一个 时间
                        var seconds = endTime.Subtract(startTime).TotalSeconds;
                        DateTime ranTime = startTime.AddSeconds(random.Next((int)seconds));
                        //随机获取一个钮号
                        string cardByte;
-                       switch (type)
-                       {
-                           case 0://人员卡
-                               int index0 = random.Next(workers.Count);
-                               cardByte = workers[index0].Card;
-                               break;
-                           case 1: //事件卡
-                               int index1 = random.Next(events.Count);
-                               cardByte = events[index1].Card;
-                               break;
+                       int index2 = random.Next(places.Count);
+                       cardByte = places[index2].Card;
 
-                           case 2://地点卡
-                           default:
-                               int index2 = random.Next(places.Count);
-                               cardByte = places[index2].Card;
-                               break;
-                       }
                        //生成一个 MachineRecord
                        var machineRecord = new DevicePatrolRecord(deviceID, ranTime, cardByte);
                        result.Add(machineRecord);
@@ -174,7 +149,8 @@ namespace GuardTourSystem.View
                 var place = new Place();
                 place.RouteID = routes[routeIndex].ID;
                 place.Name = "随机" + random.Next(10000);
-                place.Card = "FFFFFF" + random.Next(10000).ToString();
+                place.Card = "" + random.Next(10000).ToString();
+                place.EmployeeNumber = random.Next(999999).ToString("{0}:N6");
                 if (!bll.AddPlace(place, out id, out id, out error))
                 {
                     i--;

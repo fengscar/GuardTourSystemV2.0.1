@@ -1,5 +1,5 @@
 ﻿using GuardTourSystem.Utils;
-using Microsoft.Practices.Prism.Mvvm;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GuardTourSystem.ViewModel
 {
     // 操作信息 
-    class InfoViewModel : BindableBase
+    class InfoViewModel : NotificationObject
     {
         private string title;
         public string Title
@@ -17,7 +17,8 @@ namespace GuardTourSystem.ViewModel
             get { return title; }
             set
             {
-                SetProperty(ref this.title, value);
+                title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
@@ -27,7 +28,8 @@ namespace GuardTourSystem.ViewModel
             get { return result; }
             set
             {
-                SetProperty(ref this.result, value);
+                result = value;
+                RaisePropertyChanged("Result");
             }
         }
 

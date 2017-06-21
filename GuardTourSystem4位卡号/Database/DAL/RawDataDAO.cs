@@ -30,25 +30,26 @@ namespace GuardTourSystem.Database.DAL
             foreach (DataRow item in ds.Tables[0].Rows)
             {
                 //获取员工信息
-                var worker = new Worker();
-                worker.Card = item["WorkerCard"].ToString();
-                worker.Name = item["WorkerInfo"].ToString();
+                //var worker = new Worker();
+                //worker.Card = item["WorkerCard"].ToString();
+                //worker.Name = item["WorkerInfo"].ToString();
                 //获取地点信息
                 var place = new Place();
                 place.Order = Convert.ToInt32(item["PlaceOrder"]);
                 place.Card = item["PlaceCard"].ToString();
                 place.Name = item["PlaceInfo"].ToString();
+                place.EmployeeNumber = item["EmployeeNumber"].ToString();
                 var placeTime = Convert.ToDateTime(item["PlaceTime"]);
                 //获取事件信息
-                Event evt = null;
-                DateTime? eventTime = null;
-                if (!(item["EventCard"] is DBNull))
-                {
-                    evt = new Event();
-                    evt.Card = item["EventCard"].ToString();
-                    evt.Name = item["EventInfo"].ToString();
-                    eventTime = Convert.ToDateTime(item["EventTime"]);
-                };
+                //Event evt = null;
+                //DateTime? eventTime = null;
+                //if (!(item["EventCard"] is DBNull))
+                //{
+                //    evt = new Event();
+                //    evt.Card = item["EventCard"].ToString();
+                //    evt.Name = item["EventInfo"].ToString();
+                //    eventTime = Convert.ToDateTime(item["EventTime"]);
+                //};
 
                 //初始化一条原始数据
                 var raw = new RawData()
@@ -57,11 +58,11 @@ namespace GuardTourSystem.Database.DAL
                     Device = item["Device"].ToString(),
                     RouteName = item["RouteInfo"].ToString(),
                 };
-                raw.Worker = worker;
+                //raw.Worker = worker;
                 raw.Place = place;
                 raw.PlaceTime = placeTime;
-                raw.Event = evt;
-                raw.EventTime = eventTime;
+                //raw.Event = evt;
+                //raw.EventTime = eventTime;
 
                 rawDatas.Add(raw);
             }
@@ -79,26 +80,27 @@ namespace GuardTourSystem.Database.DAL
         public bool AddRawData(List<RawData> rawDatas, out string errorInfo)
         {
             errorInfo = "";
-            var sql = "insert into T_RawData values(null,@Tread,@Device,@WCARD,@WNAME,@RNAME,@PORDER,@PCARD,@PTIME,@PNAME,@ECARD,@ETIME,@NAME)";
+            var sql = "insert into T_RawData values(null,@Tread,@Device,@RNAME,@PORDER,@PCARD,@PTIME,@PNAME,@EpNo)";
 
             var cmds = new List<SQLiteCommand>();
             foreach (var item in rawDatas)
             {
-                var param = new object[12];
+                var param = new object[8];
                 param[0] = item.TRead;
                 param[1] = item.Device;
-                param[2] = item.Worker != null ? item.Worker.Card : null;
-                param[3] = item.Worker != null ? item.Worker.Name : null;
-                param[4] = item.RouteName;
+                //param[2] = item.Worker != null ? item.Worker.Card : null;
+                //param[3] = item.Worker != null ? item.Worker.Name : null;
+                param[2] = item.RouteName;
 
-                param[5] = item.Place != null ? item.Place.Order : 0;
-                param[6] = item.Place != null ? item.Place.Card : null;
-                param[7] = item.PlaceTime;
-                param[8] = item.Place != null ? item.Place.Name : null;
+                param[3] = item.Place != null ? item.Place.Order : 0;
+                param[4] = item.Place != null ? item.Place.Card : null;
+                param[5] = item.PlaceTime;
+                param[6] = item.Place != null ? item.Place.Name : null;
+                param[7] = item.Place != null ? item.Place.EmployeeNumber : null;
 
-                param[9] = item.Event != null ? item.Event.Card : null;
-                param[10] = item.EventTime;
-                param[11] = item.Event != null ? item.Event.Name : null;
+                //param[10] = item.Event != null ? item.Event.Card : null;
+                //param[11] = item.EventTime;
+                //param[12] = item.Event != null ? item.Event.Name : null;
 
                 cmds.Add(SQLiteHelper.Instance.GetCommand(sql, param));
             }

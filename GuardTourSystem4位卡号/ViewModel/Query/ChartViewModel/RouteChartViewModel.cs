@@ -126,7 +126,7 @@ namespace GuardTourSystem.ViewModel.Query.ChartViewModel
         }
         public void Print()
         {
-            var printData = new PrintData() { ContentList = RouteCountInfos.ToList(), Title = "路线统计信息", DataCount = RouteCountInfos.Count };
+            var printData = new PrintData() { ContentList = RouteCountInfos.ToList(), Title = "部门统计信息", DataCount = RouteCountInfos.Count };
             var printer = new Printer(new RouteGridChartDocument(printData));
             printer.ShowPreviewWindow();
         }
