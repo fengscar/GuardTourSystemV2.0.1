@@ -69,7 +69,7 @@ namespace GuardTourSystem.Print
             {
                 if (pageNumber != 0)
                 {
-                    this.DrawHeader(ctx, page);
+                    DrawHeader(ctx, page);
                 }
             }
 
@@ -77,7 +77,7 @@ namespace GuardTourSystem.Print
             DrawingVisual footer = new DrawingVisual();
             using (DrawingContext ctx = footer.RenderOpen())
             {
-                FormattedText text = new FormattedText("第 " + (pageNumber + 1) + " 页 / 共 " + this.PageCount + " 页",
+                FormattedText text = new FormattedText("第 " + (pageNumber + 1) + " 页 / 共 " + PageCount + " 页",
                     System.Globalization.CultureInfo.CurrentCulture, FlowDirection.RightToLeft,
                     new Typeface("Courier New"), 14, Brushes.Black);
                 ctx.DrawText(text, new Point(page.ContentBox.Right, page.ContentBox.Bottom - 20));

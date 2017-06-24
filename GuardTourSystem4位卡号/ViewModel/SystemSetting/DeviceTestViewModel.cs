@@ -61,40 +61,40 @@ namespace GuardTourSystem.ViewModel
 
             public DeviceTestItemViewModel(ETestType key, Action onSelectChanged)
             {
-                this.OnSelectChange = onSelectChanged;
-                this.IsSelect = true;
-                this.TestType = key;
-                this.Result = null;
+                OnSelectChange = onSelectChanged;
+                IsSelect = true;
+                TestType = key;
+                Result = null;
                 InitTestItem();
             }
             private void InitTestItem()
             {
-                switch (this.TestType)
+                switch (TestType)
                 {
                     case ETestType.TEST_LED:
-                        this.Name = LanLoader.Load(LanKey.TEST_LED);
-                        this.TestFlow = new TestLed();
+                        Name = LanLoader.Load(LanKey.TEST_LED);
+                        TestFlow = new TestLed();
                         break;
                     case ETestType.TEST_BUZZER:
-                        this.Name = LanLoader.Load(LanKey.TEST_BUZZER);
-                        this.TestFlow = new TestBuzzer();
+                        Name = LanLoader.Load(LanKey.TEST_BUZZER);
+                        TestFlow = new TestBuzzer();
 
                         break;
                     case ETestType.TEST_DEVICE_TIME:
-                        this.Name = LanLoader.Load(LanKey.TEST_DEVICE_TIME);
-                        this.TestFlow = new GetDeviceTime();
+                        Name = LanLoader.Load(LanKey.TEST_DEVICE_TIME);
+                        TestFlow = new GetDeviceTime();
                         break;
                     case ETestType.TEST_DEVICE_ID:
-                        this.Name = LanLoader.Load(LanKey.TEST_DEVICE_ID);
-                        this.TestFlow = new GetDeviceID();
+                        Name = LanLoader.Load(LanKey.TEST_DEVICE_ID);
+                        TestFlow = new GetDeviceID();
                         break;
                     case ETestType.TEST_PATROL_COUNT:
-                        this.Name = LanLoader.Load(LanKey.TEST_PATROL_COUNT);
-                        this.TestFlow = new GetPatrolCount();
+                        Name = LanLoader.Load(LanKey.TEST_PATROL_COUNT);
+                        TestFlow = new GetPatrolCount();
                         break;
                     case ETestType.TEST_HIT_COUNT:
-                        this.Name = LanLoader.Load(LanKey.TEST_HIT_COUNT);
-                        this.TestFlow = new GetHitCount();
+                        Name = LanLoader.Load(LanKey.TEST_HIT_COUNT);
+                        TestFlow = new GetHitCount();
                         break;
                     default:
                         break;
@@ -150,7 +150,7 @@ namespace GuardTourSystem.ViewModel
                 deviceID = value;
                 RaisePropertyChanged("DeviceID");
                 //SetProperty(ref this.deviceID, value);
-                this.CSetDeviceID.RaiseCanExecuteChanged();
+                CSetDeviceID.RaiseCanExecuteChanged();
             }
         }
 
@@ -169,14 +169,14 @@ namespace GuardTourSystem.ViewModel
             SerialPortManager.Instance.AddListener(this);
             NotifyMode = 0;
 
-            this.InfoVM = new InfoViewModel();
-            this.Title = LanLoader.Load(LanKey.MenuSystemDeviceTest);
-            this.TestItems = new List<DeviceTestItemViewModel>();
+            InfoVM = new InfoViewModel();
+            Title = LanLoader.Load(LanKey.MenuSystemDeviceTest);
+            TestItems = new List<DeviceTestItemViewModel>();
 
-            this.CStartTest = new DelegateCommand(StartTest, this.CanStartTest);
-            this.CVerifyTime = new DelegateCommand(this.VerifyTime, () => !SerialPortManager.Instance.IsWritting);
-            this.CSetDeviceID = new DelegateCommand(this.SetDeviceID, () => { return CanSetDeviceID() && !SerialPortManager.Instance.IsWritting; });
-            this.CSetNotifyType = new DelegateCommand(this.SetNotifyType, () => !SerialPortManager.Instance.IsWritting);
+            CStartTest = new DelegateCommand(StartTest, CanStartTest);
+            CVerifyTime = new DelegateCommand(VerifyTime, () => !SerialPortManager.Instance.IsWritting);
+            CSetDeviceID = new DelegateCommand(SetDeviceID, () => { return CanSetDeviceID() && !SerialPortManager.Instance.IsWritting; });
+            CSetNotifyType = new DelegateCommand(SetNotifyType, () => !SerialPortManager.Instance.IsWritting);
 
             InitTestItems();
         }
@@ -240,20 +240,20 @@ namespace GuardTourSystem.ViewModel
 
         private void InitTestItems()
         {
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_LED, this.OnItemSelectChanged));
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_BUZZER, this.OnItemSelectChanged));
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_DEVICE_ID, this.OnItemSelectChanged));
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_DEVICE_TIME, this.OnItemSelectChanged));
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_PATROL_COUNT, this.OnItemSelectChanged));
-            this.TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_HIT_COUNT, this.OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_LED, OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_BUZZER, OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_DEVICE_ID, OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_DEVICE_TIME, OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_PATROL_COUNT, OnItemSelectChanged));
+            TestItems.Add(new DeviceTestItemViewModel(DeviceTestItemViewModel.ETestType.TEST_HIT_COUNT, OnItemSelectChanged));
         }
 
         private void OnItemSelectChanged()
         {
             selectAll = TestItems.All((item) => item.IsSelect == true);
-            this.RaisePropertyChanged("SelectAll");
+            RaisePropertyChanged("SelectAll");
 
-            this.CStartTest.RaiseCanExecuteChanged();
+            CStartTest.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -413,10 +413,10 @@ namespace GuardTourSystem.ViewModel
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 //在这里操作UI
-                this.CVerifyTime.RaiseCanExecuteChanged();
-                this.CStartTest.RaiseCanExecuteChanged();
-                this.CSetDeviceID.RaiseCanExecuteChanged();
-                this.CSetNotifyType.RaiseCanExecuteChanged();
+                CVerifyTime.RaiseCanExecuteChanged();
+                CStartTest.RaiseCanExecuteChanged();
+                CSetDeviceID.RaiseCanExecuteChanged();
+                CSetNotifyType.RaiseCanExecuteChanged();
                 //this.CClearDeviceWorker.RaiseCanExecuteChanged();
                 //this.CClearDeviceRoute.RaiseCanExecuteChanged();
             }), null);

@@ -24,7 +24,7 @@ namespace GuardTourSystem.View
         public AppShortcutView()
         {
             InitializeComponent();
-            this.DataContext = AppShortcutViewModel.Instance;
+            DataContext = AppShortcutViewModel.Instance;
         }
 
     }

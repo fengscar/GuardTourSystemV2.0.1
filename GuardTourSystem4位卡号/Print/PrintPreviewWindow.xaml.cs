@@ -32,9 +32,9 @@ namespace GuardTourSystem.Print
         {
             InitializeComponent();
 
-            this.Document = document;
-            this.Document.Render();
-            this.Printer = new Printer(document);
+            Document = document;
+            Document.Render();
+            Printer = new Printer(document);
 
             Dispatcher.BeginInvoke(new LoadXpsMethod(LoadXps), DispatcherPriority.ApplicationIdle);
         }
@@ -63,7 +63,7 @@ namespace GuardTourSystem.Print
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void PrintSetting_Click(object sender, RoutedEventArgs e)

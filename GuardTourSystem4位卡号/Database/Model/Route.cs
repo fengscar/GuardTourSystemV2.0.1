@@ -44,13 +44,13 @@ namespace GuardTourSystem.Model
         public Route()
         {
             //this.Frequences = new List<Frequence>();
-            this.Places = new ObservableCollection<Place>();
+            Places = new ObservableCollection<Place>();
         }
 
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

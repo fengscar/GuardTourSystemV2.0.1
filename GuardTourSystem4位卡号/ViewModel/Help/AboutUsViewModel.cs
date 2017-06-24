@@ -21,15 +21,15 @@ namespace GuardTourSystem.ViewModel.Popup
 
         public AboutUsViewModel()
         {
-            this.Title = "关于我们";
+            Title = "关于我们";
 
-            this.AppName = AppSetting.Default.SoftwareName;
-            this.AppVersion = AppSetting.Default.SoftwareVersion;
-            this.CompanyCopyright = AppSetting.Default.CopyrightInfo;
-            this.CompanyName = AppSetting.Default.CompanyName;
-            this.CompanyAddress = AppSetting.Default.CompanyAddress;
-            this.CompanyTel = AppSetting.Default.CompanyTel;
-            this.CompanyWebsite = AppSetting.Default.CompanyWebsite;
+            AppName = AppSetting.Default.SoftwareName;
+            AppVersion = AppSetting.Default.SoftwareVersion;
+            CompanyCopyright = AppSetting.Default.CopyrightInfo;
+            CompanyName = AppSetting.Default.CompanyName;
+            CompanyAddress = AppSetting.Default.CompanyAddress;
+            CompanyTel = AppSetting.Default.CompanyTel;
+            CompanyWebsite = AppSetting.Default.CompanyWebsite;
         }
     }
 }

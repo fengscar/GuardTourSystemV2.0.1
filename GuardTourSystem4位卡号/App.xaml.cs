@@ -56,7 +56,8 @@ namespace GuardTourSystem
             //串口初始化
             SerialPortDebug.DEBUG = false;
             DBug.DEBUG = false;
-            SerialPortManager.Instance.ChangeBautRate(460800);
+            //SerialPortManager.Instance.ChangeBautRate(460800);
+            SerialPortManager.Instance.ChangeBautRate(9600);
             ////Task.Run(() => SerialPortManager.Instance.InitKaiHeDevices()); //初始化放在后台完成
 
         }
@@ -81,7 +82,7 @@ namespace GuardTourSystem
             catch
             {
                 MessageBox.Show("错误!配置文件被损坏. \nSorry,Config file error.");
-                this.Shutdown();
+                Shutdown();
             }
         }
 

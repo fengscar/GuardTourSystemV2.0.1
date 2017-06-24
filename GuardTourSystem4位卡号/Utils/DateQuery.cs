@@ -58,9 +58,9 @@ namespace GuardTourSystem.Utils
 
         public DateQueryInfo(DateTime begin, DateTime end, Action onDateChange)
         {
-            this.Begin = begin;
-            this.End = end;
-            this.OnDateChange = onDateChange;
+            Begin = begin;
+            End = end;
+            OnDateChange = onDateChange;
         }
 
         public bool CanQuery(out string error)
@@ -75,7 +75,7 @@ namespace GuardTourSystem.Utils
                 error = LanLoader.Load(LanKey.QueryDateErrorEnd);
                 return false;
             }
-            if (this.End.ToNotNullable().Subtract(this.Begin.ToNotNullable()).TotalSeconds < 0)
+            if (End.ToNotNullable().Subtract(Begin.ToNotNullable()).TotalSeconds < 0)
             {
                 error = LanLoader.Load(LanKey.QueryDateErrorDate);
                 return false;
@@ -86,7 +86,7 @@ namespace GuardTourSystem.Utils
 
         public string GetQueryTime()
         {
-            return this.Begin.ToNotNullable().ToShortDateString() + " " + LanLoader.Load(LanKey.QueryDateTo) + " " + this.End.ToNotNullable().ToShortDateString();
+            return Begin.ToNotNullable().ToShortDateString() + " " + LanLoader.Load(LanKey.QueryDateTo) + " " + End.ToNotNullable().ToShortDateString();
         }
     }
 }

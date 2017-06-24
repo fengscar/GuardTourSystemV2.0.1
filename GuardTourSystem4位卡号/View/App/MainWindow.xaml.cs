@@ -48,7 +48,7 @@ namespace GuardTourSystem.View
             InitializeComponent();
             instance = this;
 
-            this.DataContext = MainWindowViewModel.Instance;
+            DataContext = MainWindowViewModel.Instance;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -63,7 +63,7 @@ namespace GuardTourSystem.View
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            this.Closed += MainWindowViewModel.Instance.CloseMainWindow;
+            Closed += MainWindowViewModel.Instance.CloseMainWindow;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -71,7 +71,7 @@ namespace GuardTourSystem.View
             //拖动
             try
             {
-                this.DragMove();
+                DragMove();
             }
             catch (Exception)
             {
@@ -83,7 +83,7 @@ namespace GuardTourSystem.View
         public void SaveWindowSize()
         {
             //窗口关闭时 保存窗口的大小
-            if (this.WindowState == WindowState.Maximized)
+            if (WindowState == WindowState.Maximized)
             {
                 return;
             }

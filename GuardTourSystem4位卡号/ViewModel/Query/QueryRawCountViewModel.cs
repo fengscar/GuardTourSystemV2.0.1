@@ -59,12 +59,12 @@ namespace GuardTourSystem.ViewModel
 
         public QueryRawCountViewModel()
         {
-            this.CCount = new DelegateCommand(this.Count, this.CanQuery);
+            CCount = new DelegateCommand(Count, CanQuery);
 
-            this.CReset = new DelegateCommand(this.Reset);
+            CReset = new DelegateCommand(Reset);
 
             var now = DateTime.Now;
-            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth().SetBeginOfDay(), now.SetEndOfDay(), () => { this.CCount.RaiseCanExecuteChanged(); });
+            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth().SetBeginOfDay(), now.SetEndOfDay(), () => { CCount.RaiseCanExecuteChanged(); });
 
             //Count();
         }
@@ -76,17 +76,17 @@ namespace GuardTourSystem.ViewModel
             if (AppSetting.Default.IsIgnore && AppSetting.Default.IgnoreTime > 0)
             {
                 var it = AppSetting.Default.IgnoreTime;
-                result = await Task.Factory.StartNew(() => CountBLL.GetRawCountInfo(this.DateQueryInfo.Begin, this.DateQueryInfo.End, it));
+                result = await Task.Factory.StartNew(() => CountBLL.GetRawCountInfo(DateQueryInfo.Begin, DateQueryInfo.End, it));
             }
             else
             {
-                result = await Task.Factory.StartNew(() => CountBLL.GetRawCountInfo(this.DateQueryInfo.Begin, this.DateQueryInfo.End, null));
+                result = await Task.Factory.StartNew(() => CountBLL.GetRawCountInfo(DateQueryInfo.Begin, DateQueryInfo.End, null));
             }
             if (!string.IsNullOrWhiteSpace(QueryText))
             {
                 result = result.Where(countInfo => { return countInfo.PlaceName.Contains(QueryText) || countInfo.EmployeeNumber.Contains(QueryText); }).ToList();
             }
-            this.RawCounts = new ObservableCollection<RawCountInfo>(result);
+            RawCounts = new ObservableCollection<RawCountInfo>(result);
             //增加一条总计
             var total = new RawCountInfo() { RouteName = "-----总计-----", PlaceName = "", EmployeeNumber = "" };
             foreach (var item in result)
@@ -112,12 +112,12 @@ namespace GuardTourSystem.ViewModel
             string error = null;
             if (DateQueryInfo.CanQuery(out error))
             {
-                this.Error = null;
+                Error = null;
                 return true;
             }
             else
             {
-                this.Error = error;
+                Error = error;
                 return false;
             }
         }

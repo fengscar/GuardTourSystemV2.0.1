@@ -48,7 +48,7 @@ namespace GuardTourSystem.ViewModel
         public PlaceInfoViewModel(List<Route> routes, Place place)
             : base()
         {
-            this.DataService = new PlaceBLL();
+            DataService = new PlaceBLL();
             Routes = routes;
 
             Place = place;
@@ -60,7 +60,7 @@ namespace GuardTourSystem.ViewModel
                 Title = "新增人员";
                 Place = new Place() { ID = -1 };
                 ConfirmButtonText = LanLoader.Load(LanKey.Add);
-                this.CConfirm = new DelegateCommand(new Action(this.AddInfo));
+                CConfirm = new DelegateCommand(new Action(AddInfo));
             }
             // 更新人员
             else
@@ -69,7 +69,7 @@ namespace GuardTourSystem.ViewModel
 
                 Title = "编辑人员信息";
                 ConfirmButtonText = LanLoader.Load(LanKey.Edit);
-                this.CConfirm = new DelegateCommand(new Action(this.UpdateInfo));
+                CConfirm = new DelegateCommand(new Action(UpdateInfo));
             }
         }
         public override void AddInfo()
@@ -83,11 +83,11 @@ namespace GuardTourSystem.ViewModel
             {
                 Place.ID = placeID;
                 Place.Order = routeOrder;
-                this.Finish();
+                Finish();
             }
             else
             {
-                this.ErrorInfo = errorInfo;
+                ErrorInfo = errorInfo;
             }
         }
         public void CheckEmployeeNumnber(string employeeNumber)
@@ -108,11 +108,11 @@ namespace GuardTourSystem.ViewModel
             Place.RouteID = Route.ID;
             if (DataService.UpdatePlace(Place, out errorInfo)) // 更新地点到新线路 
             {
-                this.Finish();
+                Finish();
             }
             else
             {
-                this.ErrorInfo = errorInfo;
+                ErrorInfo = errorInfo;
             }
         }
     }

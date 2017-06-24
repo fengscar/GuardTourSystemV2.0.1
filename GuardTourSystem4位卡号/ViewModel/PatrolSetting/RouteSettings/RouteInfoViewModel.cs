@@ -39,15 +39,15 @@ namespace GuardTourSystem.ViewModel
             if (Route == null)
             {
                 Route = new Route();
-                this.Title = LanLoader.Load(LanKey.RouteSettingAddRoute); 
+                Title = LanLoader.Load(LanKey.RouteSettingAddRoute); 
                 ConfirmButtonText = LanLoader.Load(LanKey.Add);
-                this.CConfirm = new DelegateCommand(this.AddInfo);
+                CConfirm = new DelegateCommand(AddInfo);
             }
             else
             {
-                this.Title = LanLoader.Load(LanKey.RouteSettingEditRoute);
+                Title = LanLoader.Load(LanKey.RouteSettingEditRoute);
                 ConfirmButtonText = LanLoader.Load(LanKey.Edit);
-                this.CConfirm = new DelegateCommand(this.UpdateInfo);
+                CConfirm = new DelegateCommand(UpdateInfo);
             }
         }
 
@@ -59,11 +59,11 @@ namespace GuardTourSystem.ViewModel
             if (RouteService.AddRoute(Route, out routeID, out errorInfo))
             {
                 Route.ID = routeID;
-                this.Finish();
+                Finish();
             }
             else
             {
-                this.ErrorInfo = errorInfo;
+                ErrorInfo = errorInfo;
             }
         }
 
@@ -73,11 +73,11 @@ namespace GuardTourSystem.ViewModel
             string errorInfo;
             if (RouteService.UpdateRoute(Route, out errorInfo))
             {
-                this.Finish(); 
+                Finish(); 
             }
             else
             {
-                this.ErrorInfo = "更新失败!";
+                ErrorInfo = "更新失败!";
             }
         }
     }

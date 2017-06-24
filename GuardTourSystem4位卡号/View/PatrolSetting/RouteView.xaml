@@ -15,20 +15,20 @@
     d:DesignWidth="1500"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
-        <!--<prism:InteractionRequestTrigger SourceObject="{Binding RouteInfoPopupRequest, Mode=OneWay}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+        <prism:InteractionRequestTrigger SourceObject="{Binding RouteInfoPopupRequest, Mode=OneWay}">
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:RouteInfoView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PlaceInfoPopupRequest, Mode=OneWay}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:PlaceInfoView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>-->
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>

@@ -108,22 +108,22 @@ namespace GuardTourSystem.ViewModel
             //ToolTip = "获取当前用户默认密码." + "\n\n" + "管理员的默认密码为 " + User.DEF_PWD_ADMIN + "\n" + "操作员的默认密码为 " + User.DEF_PWD_OPERATOR;
 
             // Commands
-            this.CLogin = new DelegateCommand(this.Login);
-            this.CQuit = new DelegateCommand(this.Quit);
-            this.CDefaultPassword = new DelegateCommand(this.DefaultPassword);
+            CLogin = new DelegateCommand(Login);
+            CQuit = new DelegateCommand(Quit);
+            CDefaultPassword = new DelegateCommand(DefaultPassword);
         }
 
 
         //在密码栏 填入 默认密码
         private void DefaultPassword()
         {
-            switch (this.User.UserRole)
+            switch (User.UserRole)
             {
                 case Role.Manager:
-                    this.Password = User.DEF_PWD_ADMIN;
+                    Password = User.DEF_PWD_ADMIN;
                     break;
                 case Role.Operator:
-                    this.Password = User.DEF_PWD_OPERATOR;
+                    Password = User.DEF_PWD_OPERATOR;
                     break;
             }
         }
@@ -131,25 +131,25 @@ namespace GuardTourSystem.ViewModel
 
         private void Login()
         {
-            if (string.IsNullOrEmpty(this.Password))
+            if (string.IsNullOrEmpty(Password))
             {
                 ErrorInfo = LanLoader.Load(LanKey.LoginWindowErrorEmptyPassword);
                 return;
             }
-            if (!this.User.Password.Equals(this.Password))
+            if (!User.Password.Equals(Password))
             {
                 ErrorInfo = LanLoader.Load(LanKey.LoginWindowErrorWrongPassword);
                 return;
             }
             //验证通过,保存信息
-            AppSetting.Default.LoginUser = this.User.UserRole == Role.Manager ? 0 : 1;
+            AppSetting.Default.LoginUser = User.UserRole == Role.Manager ? 0 : 1;
             AppSetting.Default.Save();
 
             //关闭登录窗口,并打开 主界面
-            MainWindowViewModel.Instance.ShowMainWindow(this.User);
+            MainWindowViewModel.Instance.ShowMainWindow(User);
             AppMenuViewModel.Instance.InitMenu();
             AppStatusViewModel.Instance.InitUser();
-            this.CloseLoginWindow();
+            CloseLoginWindow();
         }
 
         private void Quit()
@@ -161,7 +161,7 @@ namespace GuardTourSystem.ViewModel
         {
             // 载入 已有用戶的数据
             IUserService ds = new UserBLL();
-            this.UserList = ds.GetAllUser();
+            UserList = ds.GetAllUser();
 
             // 载入上次登录的用户
             var lastuser = AppSetting.Default.LoginUser;

@@ -12,10 +12,10 @@ namespace GuardTourSystem.ViewModel
     {
         public AppErrorViewModel(string errorInfo)
         {
-            this.Title = "系统错误...";
-            this.ErrorInfo = errorInfo;
-            this.CConfirm = new DelegateCommand(this.Cancel);
-            this.CClose = new DelegateCommand(this.ShutdownApplication);
+            Title = "系统错误...";
+            ErrorInfo = errorInfo;
+            CConfirm = new DelegateCommand(Cancel);
+            CClose = new DelegateCommand(ShutdownApplication);
         }
 
         private void ShutdownApplication()// 退出程序

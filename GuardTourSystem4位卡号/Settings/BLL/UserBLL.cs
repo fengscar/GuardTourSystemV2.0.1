@@ -36,7 +36,7 @@ namespace GuardTourSystem.Services.Database.BLL
         public bool UpdatePassword(Role role,string oldPassword ,string newPassword, out string errorInfo)
         {
             errorInfo = "";
-            var curUser = this.GetUser((int)role);
+            var curUser = GetUser((int)role);
             if (curUser == null)
             {
                 throw new Exception("未找到指定用户");

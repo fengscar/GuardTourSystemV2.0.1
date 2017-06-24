@@ -24,7 +24,7 @@ namespace GuardTourSystem.View
         public AppStatusControl()
         {
             InitializeComponent();
-            this.DataContext = AppStatusViewModel.Instance;
+            DataContext = AppStatusViewModel.Instance;
         }
     }
 }

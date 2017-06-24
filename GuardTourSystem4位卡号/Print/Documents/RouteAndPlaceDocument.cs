@@ -53,9 +53,9 @@ namespace GuardTourSystem.Print
                 foreach (var place in route.Places)
                 {
                     TableRow placeRow = new TableRow();
-                    placeRow.Cells.Add(this.GetStyleCell(index.ToString()));
-                    placeRow.Cells.Add(this.GetStyleCell(place.Name));
-                    placeRow.Cells.Add(this.GetStyleCell(place.Card));
+                    placeRow.Cells.Add(GetStyleCell(index.ToString()));
+                    placeRow.Cells.Add(GetStyleCell(place.Name));
+                    placeRow.Cells.Add(GetStyleCell(place.Card));
 
                     ContentTableGroup.Rows.Add(placeRow);
                     index++;

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace GuardTourSystem.ViewModel
-{
+{ 
     //所有通过InteractionRequest的Raise方法触发的 弹出窗口的 ViewModel 
     public abstract class AbstractPopupNotificationViewModel : ShowMetroDialogViewModel
     {
@@ -24,27 +24,25 @@ namespace GuardTourSystem.ViewModel
         public virtual void Cancel() //点击取消
         {
             IsCancel = true;
-            if (this.Close != null)
+            if (Close != null)
             {
-                this.Close();
+                Close();
             }
         }
         public void Finish()  //点击确认后
         {
             IsCancel = false;
-            if (this.Close != null)
+            if (Close != null)
             {
-                this.Close();
+                Close();
             }
         }
         public AbstractPopupNotificationViewModel()
         {
             IsCancel = true;
-            this.CClose = new DelegateCommand(this.Cancel);
+            CClose = new DelegateCommand(Cancel);
         }
 
-        public object Content { get; set; }
-        public string Title { get; set; }
         private string errorInfo;
         public string ErrorInfo
         {

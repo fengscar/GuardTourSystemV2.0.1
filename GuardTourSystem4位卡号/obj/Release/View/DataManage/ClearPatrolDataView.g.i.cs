@@ -12,7 +12,6 @@
 using GuardTourSystem.Utils;
 using GuardTourSystem.View;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.Regions.Behaviors;
 using Microsoft.Practices.Prism.ViewModel;

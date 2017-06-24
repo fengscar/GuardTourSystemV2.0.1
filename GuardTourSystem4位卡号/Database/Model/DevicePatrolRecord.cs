@@ -64,10 +64,10 @@ namespace GuardTourSystem.Model
 
         public DevicePatrolRecord(string device, DateTime dt, string card, DateTime? readTime = null)
         {
-            this.ReadTime = readTime ?? DateTime.Now;
-            this.Device = device;
-            this.Time = dt;
-            this.Card = card;
+            ReadTime = readTime ?? DateTime.Now;
+            Device = device;
+            Time = dt;
+            Card = card;
         }
     }
 }

@@ -77,8 +77,8 @@ namespace GuardTourSystem.ViewModel
 
             public CompanyViewModel()
             {
-                this.User = MainWindowViewModel.Instance.User;
-                this.CopyRight = AppSetting.Default.CopyrightInfo;
+                User = MainWindowViewModel.Instance.User;
+                CopyRight = AppSetting.Default.CopyrightInfo;
             }
         }
 
@@ -207,10 +207,10 @@ namespace GuardTourSystem.ViewModel
             ShowTimer.Elapsed += new ElapsedEventHandler(timeout_event);
 
             // 初始化 ViewModel
-            this.CompanyVM = new CompanyViewModel();
-            this.ProgressVM = new ProgressViewModel();
-            this.ErrorVM = new ErrorViewModel();
-            this.InfoVM = new InfoViewModel();
+            CompanyVM = new CompanyViewModel();
+            ProgressVM = new ProgressViewModel();
+            ErrorVM = new ErrorViewModel();
+            InfoVM = new InfoViewModel();
 
             ShowCompany();
         }
@@ -302,7 +302,7 @@ namespace GuardTourSystem.ViewModel
 
         public void InitUser()
         {
-            this.CompanyVM.User = MainWindowViewModel.Instance.User;
+            CompanyVM.User = MainWindowViewModel.Instance.User;
         }
     }
 }

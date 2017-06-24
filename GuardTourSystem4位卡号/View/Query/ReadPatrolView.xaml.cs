@@ -26,16 +26,16 @@ namespace GuardTourSystem.View
         public ReadPatrolView()
         {
             InitializeComponent();
-            this.DataContext = new ReadPatrolViewModel();
+            DataContext = new ReadPatrolViewModel();
         }
 
         private void Export_Button_Click(object sender, RoutedEventArgs e)
         {
-            ExcelExporter.TelerikControlExport(this.RawDataControl.GridView, LanLoader.Load(LanKey.MenuQueryReadPatrol));
+            ExcelExporter.TelerikControlExport(RawDataControl.GridView, LanLoader.Load(LanKey.MenuQueryReadPatrol));
         }
         private void Print_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.RawDataControl.GridView.Print(null, Telerik.Windows.Documents.Model.PageOrientation.Landscape);
+            RawDataControl.GridView.Print(null, Telerik.Windows.Documents.Model.PageOrientation.Landscape);
         }
     }
 }

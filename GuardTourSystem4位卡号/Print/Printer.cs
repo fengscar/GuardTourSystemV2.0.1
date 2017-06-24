@@ -23,7 +23,7 @@ namespace GuardTourSystem.Print
     {
         public new void PrintDocument(DocumentPaginator doc, string desp)
         {
-            if (this.PageRangeSelection == PageRangeSelection.AllPages)
+            if (PageRangeSelection == PageRangeSelection.AllPages)
             {
                 base.PrintDocument(doc, desp);
             }
@@ -41,14 +41,14 @@ namespace GuardTourSystem.Print
                         xpsDocumentWriter.Write(doc);
                         var fdsCopy = xpsDoc.GetFixedDocumentSequence();
 
-                        var xdw = System.Printing.PrintQueue.CreateXpsDocumentWriter(this.PrintQueue);
+                        var xdw = System.Printing.PrintQueue.CreateXpsDocumentWriter(PrintQueue);
                         var vtxd = (VisualsToXpsDocument)xdw.CreateVisualsCollator();
-                        for (int i = this.PageRange.PageFrom - 1; i < this.PageRange.PageTo; i++)
+                        for (int i = PageRange.PageFrom - 1; i < PageRange.PageTo; i++)
                         {
                             var v = fdsCopy.DocumentPaginator.GetPage(i).Visual;
                             var cv = new ContainerVisual();
                             cv.Children.Add(v);
-                            vtxd.Write(cv, this.PrintTicket);
+                            vtxd.Write(cv, PrintTicket);
                             cv.Children.Remove(v);
                         }
                         vtxd.EndBatchWrite();

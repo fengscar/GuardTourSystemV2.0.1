@@ -18,15 +18,15 @@ namespace GuardTourSystem.View
     {
         public ShowMetroDialogView()
         {
-            this.Loaded += ShowMetroDialogView_Loaded;
+            Loaded += ShowMetroDialogView_Loaded;
         }
 
         void ShowMetroDialogView_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as ShowMetroDialogViewModel;
+            var vm = DataContext as ShowMetroDialogViewModel;
             if (vm != null && (vm.ShowConfirmDialog == null || vm.ShowMessageDialog == null))
             {
-                DBug.w("正在Loaded: " + this.DataContext);
+                DBug.w("正在Loaded: " + DataContext);
 
                 MainWindow mainWindow = MainWindow.Instance;
                 vm.ShowMessageDialog = new Action<string, string>(mainWindow.ShowMetroMessageDialog);

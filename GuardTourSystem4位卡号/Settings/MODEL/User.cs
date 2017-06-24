@@ -21,26 +21,26 @@ namespace GuardTourSystem.Model
 
         public User(int roleID)
         {
-            this.UserRole = roleID == 0 ? Role.Manager : Role.Operator;
+            UserRole = roleID == 0 ? Role.Manager : Role.Operator;
         }
         public User(string password, Role role)
         {
             //this.Name = username;
-            this.Password = password;
-            this.UserRole = role;
+            Password = password;
+            UserRole = role;
         }
         public User(string password, int roleID)
         {
             //this.Name = username;
-            this.Password = password;
-            this.UserRole = roleID == 0 ? Role.Manager : Role.Operator;
+            Password = password;
+            UserRole = roleID == 0 ? Role.Manager : Role.Operator;
         }
 
         public string UserName
         {
             get
             {
-                return LanLoader.Load(this.UserRole == Role.Manager ? LanKey.RoleManager : LanKey.RoleOperator);
+                return LanLoader.Load(UserRole == Role.Manager ? LanKey.RoleManager : LanKey.RoleOperator);
             }
         }
     }

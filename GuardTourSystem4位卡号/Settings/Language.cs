@@ -18,8 +18,8 @@ namespace GuardTourSystem.Model.Settings
 
         private Language(string name,string code)
         {
-            this.Name=name;
-            this.Code=code;
+            Name = name;
+            Code = code;
         }
 
         public static Language Lan_ZH_CN = new Language("中文(简体)", ZH_CN);

@@ -15,7 +15,6 @@ using GuardTourSystem.ViewModel;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.Prism.Commands;
-using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.Regions.Behaviors;
 using Microsoft.Practices.Prism.ViewModel;

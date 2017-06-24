@@ -57,15 +57,15 @@ namespace GuardTourSystem.ViewModel
             {
                 backupInfo = value;
                 RaisePropertyChanged("SelectBackup");
-                this.CRecovery.RaiseCanExecuteChanged();
+                CRecovery.RaiseCanExecuteChanged();
             }
         }
 
         public DataManageViewModel()
         {
-            this.CBackUp = new DelegateCommand(this.BackUp);
-            this.CRecovery = new DelegateCommand(() => { this.Recovery(); }, () => { return SelectBackup != null; });
-            this.CSelectRecoveryFile = new DelegateCommand(this.SelectRecoveryFile);
+            CBackUp = new DelegateCommand(BackUp);
+            CRecovery = new DelegateCommand(() => { Recovery(); }, () => { return SelectBackup != null; });
+            CSelectRecoveryFile = new DelegateCommand(SelectRecoveryFile);
 
             InitInfo();
         }

@@ -28,67 +28,11 @@ namespace GuardTourSystem.ViewModel.Popup
                 //    InitPlan = true;
                 //}
                 initPlace = value;
-                this.CConfirm.RaiseCanExecuteChanged();
+                CConfirm.RaiseCanExecuteChanged();
                 RaisePropertyChanged("InitPlace");
                 //SetProperty(ref this.initPlace, value);
             }
         }
-        //private bool initFrequence;
-        //public bool InitFrequence
-        //{
-        //    get { return initFrequence; }
-        //    set
-        //    {
-        //        if (!value && InitPlace)
-        //        {
-        //            return;
-        //        }
-        //        if (value)
-        //        {
-        //            InitPlan = true;
-        //        }
-        //        this.CConfirm.RaiseCanExecuteChanged();
-        //        SetProperty(ref this.initFrequence, value);
-        //    }
-        //}
-
-        //private bool initPlan;
-        //public bool InitPlan
-        //{
-        //    get { return initPlan; }
-        //    set
-        //    {
-        //        if (!value && (InitPlace || InitFrequence))
-        //        {
-        //            return;
-        //        }
-        //        this.CConfirm.RaiseCanExecuteChanged();
-        //        SetProperty(ref this.initPlan, value);
-        //    }
-        //}
-
-        //private bool initEvent;
-
-        //public bool InitEvent
-        //{
-        //    get { return initEvent; }
-        //    set
-        //    {
-        //        this.CConfirm.RaiseCanExecuteChanged();
-        //        SetProperty(ref this.initEvent, value);
-        //    }
-        //}
-        //private bool initWorker;
-
-        //public bool InitWorker
-        //{
-        //    get { return initWorker; }
-        //    set
-        //    {
-        //        this.CConfirm.RaiseCanExecuteChanged();
-        //        SetProperty(ref this.initWorker, value);
-        //    }
-        //}
 
         private bool initData;
         public bool InitData
@@ -96,7 +40,7 @@ namespace GuardTourSystem.ViewModel.Popup
             get { return initData; }
             set
             {
-                this.CConfirm.RaiseCanExecuteChanged();
+                CConfirm.RaiseCanExecuteChanged();
                 initData = value;
                 RaisePropertyChanged("InitData");
             }
@@ -107,15 +51,15 @@ namespace GuardTourSystem.ViewModel.Popup
         public SystemInitViewModel()
         {
             Title = "系统初始化";
-            this.ConfirmButtonText = "开始";
-            this.CConfirm = new DelegateCommand(ReInit,
+            ConfirmButtonText = "开始";
+            CConfirm = new DelegateCommand(ReInit,
                 () => { return  InitPlace || InitData; });
                  //() => { return InitPlan || InitPlace || InitFrequence || InitWorker || InitEvent || InitData; });
         }
 
         public async void ReInit()
         {
-            this.Finish();
+            Finish();
             //弹出确认框,让用户点击确定
             var confirmMessage = new StringBuilder("将初始化以下数据:\n");
             int index = 1;
@@ -151,7 +95,7 @@ namespace GuardTourSystem.ViewModel.Popup
             }
             confirmMessage.Append("该操作无法撤销!");
 
-            var result = await this.ShowConfirmDialog("确定要进行系统初始化吗?", confirmMessage.ToString());
+            var result = await ShowConfirmDialog("确定要进行系统初始化吗?", confirmMessage.ToString());
             if (result == MessageDialogResult.Negative) //用户取消
             {
                 return;

@@ -100,15 +100,15 @@ namespace GuardTourSystem.ViewModel
         }
         private AppShortcutViewModel()
         {
-            this.CReadData = new DelegateCommand(() => { UnCheckAll(); ReadDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.ReadPatrol); });
-            this.CQueryRawData = new DelegateCommand(() => { UnCheckAll(); QueryRawDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawData); });
-            this.CQueryRawCount = new DelegateCommand(() => { UnCheckAll(); QueryRawCountCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawCount); });
+            CReadData = new DelegateCommand(() => { UnCheckAll(); ReadDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.ReadPatrol); });
+            CQueryRawData = new DelegateCommand(() => { UnCheckAll(); QueryRawDataCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawData); });
+            CQueryRawCount = new DelegateCommand(() => { UnCheckAll(); QueryRawCountCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryRawCount); });
             //this.CQueryResult = new DelegateCommand(() => { UnCheckAll(); QueryResultCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryResult); });
             //this.CQueryChart = new DelegateCommand(() => { UnCheckAll(); QueryChartCheck = true; AppContentViewModel.Instance.ShowView(ViewEnum.QueryChart); });
             //这个是弹窗
-            this.CTestMachine = new DelegateCommand(() => { UnCheckAll(); TestDeviceCheck = true; AppContentViewModel.Instance.PopupWindow(PopupEnum.DeviceTest); });
+            CTestMachine = new DelegateCommand(() => { UnCheckAll(); TestDeviceCheck = true; AppContentViewModel.Instance.PopupWindow(PopupEnum.DeviceTest); });
             //退出系统
-            this.CQuit = new DelegateCommand(() => { Application.Current.Shutdown(); });
+            CQuit = new DelegateCommand(() => { Application.Current.Shutdown(); });
         }
         private void UnCheckAll()
         {

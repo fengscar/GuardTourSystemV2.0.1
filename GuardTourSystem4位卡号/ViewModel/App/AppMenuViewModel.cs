@@ -38,7 +38,7 @@ namespace GuardTourSystem.ViewModel
 
         private AppMenuViewModel()
         {
-            this.MainMenuItems = new ObservableCollection<MenuItem>();
+            MainMenuItems = new ObservableCollection<MenuItem>();
             //this.InitMenu();
         }
 
@@ -146,7 +146,7 @@ namespace GuardTourSystem.ViewModel
 
         public class MenuItem
         {
-            public MenuItem() { this.SubItems = new ObservableCollection<MenuItem>(); }
+            public MenuItem() { SubItems = new ObservableCollection<MenuItem>(); }
             public string Text { get; set; }
             public Uri IconUrl { get; set; }
             public ObservableCollection<MenuItem> SubItems { get; set; }
@@ -160,7 +160,7 @@ namespace GuardTourSystem.ViewModel
             /// <param name="iconPath">icon路径</param>
             public MenuItem(string text, DelegateCommand cmd = null, string iconPath = null, bool enable = true)
             {
-                this.Text = text;
+                Text = text;
                 if (iconPath != null)
                 {
                     IconUrl = new Uri(iconPath, UriKind.Relative);
@@ -169,7 +169,7 @@ namespace GuardTourSystem.ViewModel
                 {
                     ClickCommand = cmd;
                 }
-                this.Enable = enable;
+                Enable = enable;
             }
             //public void SetClickCommand(DelegateCommand cmd)
             //{

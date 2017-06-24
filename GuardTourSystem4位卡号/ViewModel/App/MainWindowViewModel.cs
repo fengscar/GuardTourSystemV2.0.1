@@ -115,7 +115,7 @@ namespace GuardTourSystem.ViewModel
 
         public void ShowMainWindow(User user)
         {
-            this.User = user;
+            User = user;
             MainWindow.Instance.Show();
         }
         public void InitMainWindow()

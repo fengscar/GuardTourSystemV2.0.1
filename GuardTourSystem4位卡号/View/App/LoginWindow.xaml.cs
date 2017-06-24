@@ -48,9 +48,9 @@ namespace GuardTourSystem.View
             InitializeComponent();
             instance = this;//APP启动该窗口时,是调用构造函数,而不是Instance
 
-            this.DataContext = ViewModel = LoginWindowViewModel.Instance;
+            DataContext = ViewModel = LoginWindowViewModel.Instance;
             // 获取焦点
-            this.PasswordBox.Focus();
+            PasswordBox.Focus();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -83,14 +83,14 @@ namespace GuardTourSystem.View
             }
             else if (e.Key == Key.Escape) //点击Escape,退出
             {
-                this.Close();
+                Close();
             }
         }
 
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.PasswordBox.Focus();
+            PasswordBox.Focus();
         }
     }
 }

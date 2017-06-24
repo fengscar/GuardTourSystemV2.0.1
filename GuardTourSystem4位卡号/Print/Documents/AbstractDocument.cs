@@ -15,8 +15,8 @@ namespace GuardTourSystem.Print
         public double Width;
         public TableColumnHeader(string text, double width)
         {
-            this.Text = text;
-            this.Width = width;
+            Text = text;
+            Width = width;
         }
     }
     /// <summary>
@@ -38,10 +38,10 @@ namespace GuardTourSystem.Print
 
         public AbstractDocument(PrintData data, FlowDocument doc = null)
         {
-            this.Data = data;
-            this.FlowDocument = doc != null ? doc : (FlowDocument)Application.LoadComponent(new Uri("/Print/FlowDocument.xaml", UriKind.RelativeOrAbsolute));
-            this.FlowDocument.PagePadding = new Thickness(50, 50, 50, 30);
-            this.FlowDocument.DataContext = data;
+            Data = data;
+            FlowDocument = doc != null ? doc : (FlowDocument)Application.LoadComponent(new Uri("/Print/FlowDocument.xaml", UriKind.RelativeOrAbsolute));
+            FlowDocument.PagePadding = new Thickness(50, 50, 50, 30);
+            FlowDocument.DataContext = data;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace GuardTourSystem.Print
         {
             InitTableAndStyle();
 
-            AddCustemTitle(this.TitleTableGroup);
+            AddCustemTitle(TitleTableGroup);
 
             AddTableColumn();
             AddColumnHeader();
@@ -100,7 +100,7 @@ namespace GuardTourSystem.Print
                 TableRow headerRow = new TableRow();
                 foreach (var tableColumn in columns)
                 {
-                    headerRow.Cells.Add(this.GetStyleHeader(tableColumn.Text));
+                    headerRow.Cells.Add(GetStyleHeader(tableColumn.Text));
                 }
                 ContentTableGroup.Rows.Add(headerRow);
             }
@@ -155,7 +155,7 @@ namespace GuardTourSystem.Print
         public TableCell GetStyleHeader(string text = null)
         {
             TableCell cell = text == null ? new TableCell() : new TableCell(new Paragraph(new Run(text)));
-            if (this.HeaderStyle != null)
+            if (HeaderStyle != null)
             {
                 cell.Style = HeaderStyle;
             }
@@ -167,8 +167,8 @@ namespace GuardTourSystem.Print
         /// <returns></returns>
         public TableCell GetStyleCell(string text = null)
         {
-            var cell = this.GetDefaultCell(text);
-            if (this.CellStyle != null)
+            var cell = GetDefaultCell(text);
+            if (CellStyle != null)
             {
                 cell.Style = CellStyle;
             }

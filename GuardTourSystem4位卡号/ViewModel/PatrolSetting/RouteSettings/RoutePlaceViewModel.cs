@@ -46,7 +46,7 @@ namespace GuardTourSystem.ViewModel
             get { return queryText; }
             set
             {
-                this.CFilter.RaiseCanExecuteChanged();
+                CFilter.RaiseCanExecuteChanged();
                 queryText = value;
                 RaisePropertyChanged("QueryText");
                 //SetProperty(ref this.queryText, value);
@@ -59,10 +59,10 @@ namespace GuardTourSystem.ViewModel
             get { return selectItem; }
             set
             {
-                this.CDelete.RaiseCanExecuteChanged();
-                this.CUpdate.RaiseCanExecuteChanged();
-                this.CShiftUp.RaiseCanExecuteChanged();
-                this.CShiftDown.RaiseCanExecuteChanged();
+                CDelete.RaiseCanExecuteChanged();
+                CUpdate.RaiseCanExecuteChanged();
+                CShiftUp.RaiseCanExecuteChanged();
+                CShiftDown.RaiseCanExecuteChanged();
                 selectItem = value;
                 RaisePropertyChanged("SelectItem");
                 //SetProperty(ref this.selectItem, value);
@@ -83,10 +83,8 @@ namespace GuardTourSystem.ViewModel
 
         public DelegateCommand CPrint { get; set; } // 下移 地点
 
-        //public InteractionRequest<INotification> RouteInfoPopupRequest { get; private set; }
-        //public InteractionRequest<INotification> PlaceInfoPopupRequest { get; private set; }
-
-        //public PlaceViewModel PlaceViewModel { get; set; }　//包含对地点的增删改
+        public InteractionRequest<Notification> RouteInfoPopupRequest { get; private set; }
+        public InteractionRequest<Notification> PlaceInfoPopupRequest { get; private set; }
 
         public RoutePlaceViewModel()
         {
@@ -97,31 +95,31 @@ namespace GuardTourSystem.ViewModel
 
             RouteService = new RouteBLL();
             PlaceService = new PlaceBLL();
-            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-            this.RefreshBatchAddRoute();
+            Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+            RefreshBatchAddRoute();
 
-            this.CAddRoute = new DelegateCommand(this.AddRoute);
-            this.CAddPlace = new DelegateCommand(this.AddPlace, () => { return Routes.Count != 0; });
+            CAddRoute = new DelegateCommand(AddRoute);
+            CAddPlace = new DelegateCommand(AddPlace, () => { return Routes.Count != 0; });
 
-            this.CDelete = new DelegateCommand(this.Delete, () => { return SelectItem != null; });
-            this.CUpdate = new DelegateCommand(this.Update, () => { return SelectItem != null; });
+            CDelete = new DelegateCommand(Delete, () => { return SelectItem != null; });
+            CUpdate = new DelegateCommand(Update, () => { return SelectItem != null; });
             //this.CSendMap = new DelegateCommand(this.SendMap, () => { return Routes.Count != 0 && !SerialPortManager.Instance.IsWritting; });
-            this.CFilter = new DelegateCommand(this.Filter, () => !string.IsNullOrWhiteSpace(QueryText));
-            this.CReset = new DelegateCommand(this.Reset);
+            CFilter = new DelegateCommand(Filter, () => !string.IsNullOrWhiteSpace(QueryText));
+            CReset = new DelegateCommand(Reset);
 
-            this.CShiftUp = new DelegateCommand(this.ShiftUp, this.CanShiftUp);
-            this.CShiftDown = new DelegateCommand(this.ShiftDown, this.CanShiftDown);
+            CShiftUp = new DelegateCommand(ShiftUp, CanShiftUp);
+            CShiftDown = new DelegateCommand(ShiftDown, CanShiftDown);
 
-            this.CPrint = new DelegateCommand(this.Print);
+            CPrint = new DelegateCommand(Print);
 
-            //this.RouteInfoPopupRequest = new InteractionRequest<INotification>();
-            //this.PlaceInfoPopupRequest = new InteractionRequest<INotification>();
+            this.RouteInfoPopupRequest = new InteractionRequest<Notification>();
+            this.PlaceInfoPopupRequest = new InteractionRequest<Notification>();
         }
 
         private void Reset()
         {
-            this.QueryText = "";
-            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+            QueryText = "";
+            Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
         }
 
         private void Filter()
@@ -165,37 +163,35 @@ namespace GuardTourSystem.ViewModel
         public void AddRoute()
         {
             var infoVM = new RouteInfoViewModel(null);
-            //this.RouteInfoPopupRequest.Raise(infoVM,
-            //    notification =>
-            //    {
-            //        var routeInfoViewModel = notification as RouteInfoViewModel;
-            //        if (!routeInfoViewModel.IsCancel)
-            //        {
-            //            routes.Add(routeInfoViewModel.Route);
-            //            //通知 线路已发生改变
-            //            PatrolSettingViewModel.Instance.PublishDataChange(ChangeEvent.RoutesChange);
-            //        }
-            //    });
+            this.RouteInfoPopupRequest.Raise(infoVM,
+                notification =>
+                {
+                    var routeInfoViewModel = notification as RouteInfoViewModel;
+                    if (!routeInfoViewModel.IsCancel)
+                    {
+                        Routes.Add(routeInfoViewModel.Route);
+                    }
+                });
             // 刷新按键状态
-            this.CAddPlace.RaiseCanExecuteChanged();
+            CAddPlace.RaiseCanExecuteChanged();
             //this.CSendMap.RaiseCanExecuteChanged();
-            this.CAddPlace.RaiseCanExecuteChanged();
+            CAddPlace.RaiseCanExecuteChanged();
         }
 
         public void UpdateRoute(Route route)
         {
-            //this.RouteInfoPopupRequest.Raise(new RouteInfoViewModel(route.Clone() as Route),
-            //      notification =>
-            //      {
-            //          var routeInfoViewModel = notification as RouteInfoViewModel;
-            //          if (!routeInfoViewModel.IsCancel)
-            //          {
-            //              var newRoute = routeInfoViewModel.Route;
-            //              var updatedRoute = Routes.First(r => { return r.ID == newRoute.ID; });
-            //              updatedRoute.RouteName = newRoute.RouteName;
-            //              //SelectItem = newRoute;//重新选中该 线路
-            //          }
-            //      });
+            this.RouteInfoPopupRequest.Raise(new RouteInfoViewModel(route.Clone() as Route),
+                  notification =>
+                  {
+                      var routeInfoViewModel = notification as RouteInfoViewModel;
+                      if (!routeInfoViewModel.IsCancel)
+                      {
+                          var newRoute = routeInfoViewModel.Route;
+                          var updatedRoute = Routes.First(r => { return r.ID == newRoute.ID; });
+                          updatedRoute.RouteName = newRoute.RouteName;
+                          //SelectItem = newRoute;//重新选中该 线路
+                      }
+                  });
         }
         public async void DelRoute(Route route)
         {
@@ -212,7 +208,7 @@ namespace GuardTourSystem.ViewModel
             {
                 if (RouteService.DelRoute(route)) // 删除成功 (数据库中 Deleted设置为 1)
                 {
-                    this.Routes.Remove(route);
+                    Routes.Remove(route);
                     route = null;
                     //PatrolSettingViewModel.Instance.PublishDataChange(ChangeEvent.RoutesChange);
                 }
@@ -224,62 +220,62 @@ namespace GuardTourSystem.ViewModel
             // 刷新按键状态
 
             //this.CSendMap.RaiseCanExecuteChanged();
-            this.CAddPlace.RaiseCanExecuteChanged();
-            this.RefreshBatchAddRoute();
+            CAddPlace.RaiseCanExecuteChanged();
+            RefreshBatchAddRoute();
         }
         #endregion
 
         #region 对 地点的增删改
         public void AddPlace()
         {
-            var infoVM = new PlaceInfoViewModel(this.Routes.ToList(), null);
-            //默认选中第一个线路
-            //this.PlaceInfoPopupRequest.Raise(infoVM,
-            //    notification =>
-            //    {
-            //        var placeInfoViewModel = notification as PlaceInfoViewModel;
-            //        if (!placeInfoViewModel.IsCancel)
-            //        {
-            //            var newPlace = placeInfoViewModel.Place;
-            //            var route = Routes.First(r => { return r.ID == newPlace.RouteID; });
-            //            route.Places.Add(newPlace);
-            //        }
-            //    });
+            var infoVM = new PlaceInfoViewModel(Routes.ToList(), null);
+           // 默认选中第一个线路
+            this.PlaceInfoPopupRequest.Raise(infoVM,
+                notification =>
+                {
+                    var placeInfoViewModel = notification as PlaceInfoViewModel;
+                    if (!placeInfoViewModel.IsCancel)
+                    {
+                        var newPlace = placeInfoViewModel.Place;
+                        var route = Routes.First(r => { return r.ID == newPlace.RouteID; });
+                        route.Places.Add(newPlace);
+                    }
+                });
         }
 
         public void UpdatePlace(Place place)
         {
-            var infoVM = new PlaceInfoViewModel(this.Routes.ToList(), place.Clone() as Place);
-            //this.PlaceInfoPopupRequest.Raise(infoVM,
-            //    notification =>
-            //    {
-            //        var placeInfoViewModel = notification as PlaceInfoViewModel;
-            //        if (!placeInfoViewModel.IsCancel)
-            //        {
-            //            var newPlace = placeInfoViewModel.Place; //更新后的地点 
-            //            int updatedRouteIndex = 0, updatedPlaceIndex = 0;
-            //            for (int i = 0; i < Routes.Count; i++)
-            //            {
-            //                updatedPlaceIndex = Routes[i].Places.ToList().FindIndex(p => { return p.ID == newPlace.ID; });//根据ID 寻找该地点
-            //                if (updatedPlaceIndex != -1)
-            //                {
-            //                    updatedRouteIndex = i;
-            //                    break;
-            //                }
-            //            }
-            //            //如果线路没有改变,只要修改Place 属性
-            //            if (Routes[updatedRouteIndex].Places[updatedPlaceIndex].RouteID == newPlace.RouteID)
-            //            {
-            //                Routes[updatedRouteIndex].Places[updatedPlaceIndex] = newPlace;
-            //            }
-            //            else //否则要重新获取所有线路 (方便一点)
-            //            {
-            //                this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-            //                RefreshBatchAddRoute();
-            //            }
-            //            //SelectItem = newPlace;//重新选中该 地点
-            //        }
-            //    });
+            var infoVM = new PlaceInfoViewModel(Routes.ToList(), place.Clone() as Place);
+            this.PlaceInfoPopupRequest.Raise(infoVM,
+                notification =>
+                {
+                    var placeInfoViewModel = notification as PlaceInfoViewModel;
+                    if (!placeInfoViewModel.IsCancel)
+                    {
+                        var newPlace = placeInfoViewModel.Place; //更新后的地点 
+                        int updatedRouteIndex = 0, updatedPlaceIndex = 0;
+                        for (int i = 0; i < Routes.Count; i++)
+                        {
+                            updatedPlaceIndex = Routes[i].Places.ToList().FindIndex(p => { return p.ID == newPlace.ID; });//根据ID 寻找该地点
+                            if (updatedPlaceIndex != -1)
+                            {
+                                updatedRouteIndex = i;
+                                break;
+                            }
+                        }
+                        //如果线路没有改变,只要修改Place 属性
+                        if (Routes[updatedRouteIndex].Places[updatedPlaceIndex].RouteID == newPlace.RouteID)
+                        {
+                            Routes[updatedRouteIndex].Places[updatedPlaceIndex] = newPlace;
+                        }
+                        else //否则要重新获取所有线路 (方便一点)
+                        {
+                            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+                            RefreshBatchAddRoute();
+                        }
+                        //SelectItem = newPlace;//重新选中该 地点
+                    }
+                });
         }
 
         public async void DelPlace(Place place)
@@ -302,8 +298,8 @@ namespace GuardTourSystem.ViewModel
                     //routes.Places.Remove(place);
                     //place = null;
                     // 重新获取, 因为order已经改变
-                    this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-                    this.RefreshBatchAddRoute();
+                    Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+                    RefreshBatchAddRoute();
                 }
                 else
                 {
@@ -311,7 +307,7 @@ namespace GuardTourSystem.ViewModel
                 };
             }
             // 刷新按键状态
-            this.CAddPlace.RaiseCanExecuteChanged();
+            CAddPlace.RaiseCanExecuteChanged();
         }
         #endregion
 
@@ -332,10 +328,10 @@ namespace GuardTourSystem.ViewModel
             PlaceService.UpdatePlace(upPlace, out error);
 
             //刷新UI
-            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-            this.RefreshBatchAddRoute();
+            Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+            RefreshBatchAddRoute();
             //重新选中该地点,方便继续上下移动操作
-            var findPlace = this.Routes.SelectMany(r => r.Places).First(p => p.Card.Equals(selectPlace.Card));
+            var findPlace = Routes.SelectMany(r => r.Places).First(p => p.Card.Equals(selectPlace.Card));
             if (findPlace != null)
             {
                 //重新选中该地点
@@ -360,10 +356,10 @@ namespace GuardTourSystem.ViewModel
             PlaceService.UpdatePlace(selectPlace, out error);
             PlaceService.UpdatePlace(downPlace, out error);
             //刷新UI
-            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-            this.RefreshBatchAddRoute();
+            Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+            RefreshBatchAddRoute();
             //重新选中该地点,方便继续上下移动操作
-            var findPlace = this.Routes.SelectMany(r => r.Places).First(p => p.Card.Equals(selectPlace.Card));
+            var findPlace = Routes.SelectMany(r => r.Places).First(p => p.Card.Equals(selectPlace.Card));
             if (findPlace != null)
             {
                 //重新选中该地点
@@ -386,7 +382,7 @@ namespace GuardTourSystem.ViewModel
             if (SelectItem is Place)
             {
                 var place = SelectItem as Place;
-                var route = this.Routes.First(r => { return r.ID == place.RouteID; });
+                var route = Routes.First(r => { return r.ID == place.RouteID; });
                 var index = route.Places.IndexOf(place);
                 return route.Places.Count != index + 1; //如果已经是最后一个,则不能下移
             }
@@ -415,9 +411,9 @@ namespace GuardTourSystem.ViewModel
         }
         private void RefreshBatchAddRoute()
         {
-            if (this.Routes != null && Routes.Count != 0)
+            if (Routes != null && Routes.Count != 0)
             {
-                this.BatchAddRoute = Routes[0];
+                BatchAddRoute = Routes[0];
             }
         }
 
@@ -425,7 +421,7 @@ namespace GuardTourSystem.ViewModel
         public BatchAddViewModel BatchAddVM { get; set; }
         private void InitBatchAdd()
         {
-            this.BatchAddVM = new BatchAddViewModel(LanLoader.Load(LanKey.BatchAddReadPlace), OnBatchAdd, OnGetRecords);
+            BatchAddVM = new BatchAddViewModel(LanLoader.Load(LanKey.BatchAddReadPlace), OnBatchAdd, OnGetRecords);
         }
         public bool OnBatchAdd(List<AddItem> selectItems)
         {
@@ -459,8 +455,8 @@ namespace GuardTourSystem.ViewModel
             string errorInfo;
             places.ForEach((place) => { PlaceService.AddPlace(place, out id, out routeID, out errorInfo); });
             //添加完成,刷新界面 
-            this.Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
-            this.RefreshBatchAddRoute();
+            Routes = new ObservableCollection<Route>(RouteService.GetAllRoute());
+            RefreshBatchAddRoute();
 
             return true;
         }

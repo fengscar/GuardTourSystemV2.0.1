@@ -9,76 +9,55 @@
     xmlns:view="clr-namespace:GuardTourSystem.View"
     mc:Ignorable="d">
     <i:Interaction.Triggers>
-        <!--<prism:InteractionRequestTrigger SourceObject="{Binding PopupReanalysis}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
-                    <view:ReanalysisView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupSystemInit}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:SystemInitView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupAboutUs}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:AboutUsView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>
-        <prism:InteractionRequestTrigger SourceObject="{Binding PopupLanguage}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
-                    <view:LanguageView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupDeviceTest}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:DeviceTestView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupError}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:AppErrorView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupChangePassword}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:ModityPasswordView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>
-        <prism:InteractionRequestTrigger SourceObject="{Binding PopupManageUser}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
-                    <view:UserManageView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupClearPatrol}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:ClearPatrolDataView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding PopupIgnore}">
-            <view:CustomPopupWindowAction>
-                <view:CustomPopupWindowAction.WindowContent>
+            <view:PopupWindowAction>
+                <view:PopupWindowAction.WindowContent>
                     <view:IgnoreRepeatView />
-                </view:CustomPopupWindowAction.WindowContent>
-            </view:CustomPopupWindowAction>
-        </prism:InteractionRequestTrigger>-->
+                </view:PopupWindowAction.WindowContent>
+            </view:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
 
     <Border

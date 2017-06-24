@@ -60,16 +60,16 @@ namespace GuardTourSystem.ViewModel
         #endregion
 
         #region 弹窗请求(交互请求)
-        //public InteractionRequest<INotification> PopupReanalysis { get; private set; }
-        //public InteractionRequest<INotification> PopupClearPatrol { get; private set; }
-        //public InteractionRequest<INotification> PopupSystemInit { get; private set; }
-        //public InteractionRequest<INotification> PopupManageUser { get; private set; }
-        //public InteractionRequest<INotification> PopupChangePassword { get; private set; }
-        //public InteractionRequest<INotification> PopupLanguage { get; private set; }
-        //public InteractionRequest<INotification> PopupDeviceTest { get; private set; }
-        //public InteractionRequest<INotification> PopupAboutUs { get; private set; }
-        //public InteractionRequest<INotification> PopupIgnore { get; private set; }
-        //public InteractionRequest<INotification> PopupError { get; private set; }
+        public InteractionRequest<Notification> PopupReanalysis { get; private set; }
+        public InteractionRequest<Notification> PopupClearPatrol { get; private set; }
+        public InteractionRequest<Notification> PopupSystemInit { get; private set; }
+        public InteractionRequest<Notification> PopupManageUser { get; private set; }
+        public InteractionRequest<Notification> PopupChangePassword { get; private set; }
+        public InteractionRequest<Notification> PopupLanguage { get; private set; }
+        public InteractionRequest<Notification> PopupDeviceTest { get; private set; }
+        public InteractionRequest<Notification> PopupAboutUs { get; private set; }
+        public InteractionRequest<Notification> PopupIgnore { get; private set; }
+        public InteractionRequest<Notification> PopupError { get; private set; }
         #endregion
 
         private const string BACKGROUND_IMAGE_PATH = "/Resource/Img/Background.jpg";
@@ -113,18 +113,18 @@ namespace GuardTourSystem.ViewModel
         //InteractionRequest 必须提前初始化, 否则不能弹窗??
         private AppContentViewModel()
         {
-            this.Content = null;
+            Content = null;
 
-            //this.PopupReanalysis = new InteractionRequest<INotification>();
-            //this.PopupClearPatrol = new InteractionRequest<INotification>();
-            //this.PopupSystemInit = new InteractionRequest<INotification>();
-            //this.PopupManageUser = new InteractionRequest<INotification>();
-            //this.PopupChangePassword = new InteractionRequest<INotification>();
-            //this.PopupLanguage = new InteractionRequest<INotification>();
-        //    this.PopupDeviceTest = new InteractionRequest<INotification>();
-        //    this.PopupAboutUs = new InteractionRequest<INotification>();
-        //    this.PopupIgnore = new InteractionRequest<INotification>();
-        //    this.PopupError = new InteractionRequest<INotification>();
+            this.PopupReanalysis = new InteractionRequest<Notification>();
+            this.PopupClearPatrol = new InteractionRequest<Notification>();
+            this.PopupSystemInit = new InteractionRequest<Notification>();
+            this.PopupManageUser = new InteractionRequest<Notification>();
+            this.PopupChangePassword = new InteractionRequest<Notification>();
+            this.PopupLanguage = new InteractionRequest<Notification>();
+            this.PopupDeviceTest = new InteractionRequest<Notification>();
+            this.PopupAboutUs = new InteractionRequest<Notification>();
+            this.PopupIgnore = new InteractionRequest<Notification>();
+            this.PopupError = new InteractionRequest<Notification>();
         }
 
         /// <summary>
@@ -134,66 +134,61 @@ namespace GuardTourSystem.ViewModel
         /// <param name="param"></param>
         public void PopupWindow(PopupEnum pe, object param = null)
         {
-            this.Content = null;//关闭当前内容
+            Content = null;//关闭当前内容
             MainWindowViewModel.Instance.ContentName = pe.GetContentName();
             switch (pe)
             {
-                //case PopupEnum.Reanalysis:
-                //    this.PopupReanalysis.Raise(new ReanalysisViewModel());
-                //    break;
+                case PopupEnum.ClearPatrolData:
+                    new ClearPatrolDataView();
 
-                //case PopupEnum.ClearPatrolData:
-                //    new ClearPatrolDataView();
-
-
-                //    this.PopupClearPatrol.Raise(new ClearPatrolDataViewModel());
-                //    break;
+                    this.PopupClearPatrol.Raise(new ClearPatrolDataViewModel());
+                    break;
 
 
-                //case PopupEnum.SystemInit:
-                //    this.PopupSystemInit.Raise(new SystemInitViewModel());
-                //    break;
+                case PopupEnum.SystemInit:
+                    this.PopupSystemInit.Raise(new SystemInitViewModel());
+                    break;
 
-                //case PopupEnum.ChangePassword:
-                //    this.PopupChangePassword.Raise(new ModifyPasswordViewModel());
-                //    break;
-
-
-                //case PopupEnum.DeviceTest:
-                //    this.PopupDeviceTest.Raise(new DeviceTestViewModel());
-                //    break;
+                case PopupEnum.ChangePassword:
+                    this.PopupChangePassword.Raise(new ModifyPasswordViewModel());
+                    break;
 
 
-                //case PopupEnum.Help:
-                //    if (!ChmHelper.OpenHelp())
-                //    {
-                //        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
-                //    };
-                //    break;
+                case PopupEnum.DeviceTest:
+                    PopupDeviceTest.Raise(new DeviceTestViewModel());
+                    break;
 
-                //case PopupEnum.HowToStart:
-                //    if (!ChmHelper.OpenHelp(""))
-                //    {
-                //        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
-                //    };
-                //    break;
 
-                //case PopupEnum.AboutUs:
-                //    this.PopupAboutUs.Raise(new AboutUsViewModel());
-                //    break;
+                case PopupEnum.Help:
+                    if (!ChmHelper.OpenHelp())
+                    {
+                        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
+                    };
+                    break;
 
-                //case PopupEnum.Error:
-                //    string errorInfo = "NULL";
-                //    if (param != null)
-                //    {
-                //        errorInfo = (string)param;
-                //    }
-                //    this.PopupError.Raise(new AppErrorViewModel(errorInfo));
-                //    break;
+                case PopupEnum.HowToStart:
+                    if (!ChmHelper.OpenHelp(""))
+                    {
+                        AppStatusViewModel.Instance.ShowError("未能打开帮助,文件已丢失");
+                    };
+                    break;
 
-                //case PopupEnum.IgnoreRepeat:
-                //    this.PopupIgnore.Raise(new IgnoreRepeatViewModel());
-                //    break;
+                case PopupEnum.AboutUs:
+                    this.PopupAboutUs.Raise(new AboutUsViewModel());
+                    break;
+
+                case PopupEnum.Error:
+                    string errorInfo = "NULL";
+                    if (param != null)
+                    {
+                        errorInfo = (string)param;
+                    }
+                    this.PopupError.Raise(new AppErrorViewModel(errorInfo));
+                    break;
+
+                case PopupEnum.IgnoreRepeat:
+                    this.PopupIgnore.Raise(new IgnoreRepeatViewModel());
+                    break;
                 default:
                     break;
             }
@@ -208,14 +203,14 @@ namespace GuardTourSystem.ViewModel
         /// <param name="contentEnum"></param>
         public void ShowView(ViewEnum contentEnum)
         {
-            if (this.Content != null && contentEnum.GetContentName().Equals(MainWindowViewModel.Instance.ContentName))
+            if (Content != null && contentEnum.GetContentName().Equals(MainWindowViewModel.Instance.ContentName))
             {
                 return;
             }
             var view = GetView(contentEnum);
             if (view != null)
             {
-                this.Content = view;
+                Content = view;
                 MainWindowViewModel.Instance.ContentName = contentEnum.GetContentName();
             }
             else
@@ -228,7 +223,7 @@ namespace GuardTourSystem.ViewModel
         /// </summary>
         public void CloseView()
         {
-            this.Content = null;
+            Content = null;
             MainWindowViewModel.Instance.ContentName = null;
         }
 

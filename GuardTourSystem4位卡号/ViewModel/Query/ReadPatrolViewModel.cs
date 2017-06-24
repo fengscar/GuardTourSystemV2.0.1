@@ -1,7 +1,5 @@
 ﻿using GuardTourSystem.Database.BLL;
 using GuardTourSystem.Model;
-using GuardTourSystem.Print;
-using GuardTourSystem.Services;
 using GuardTourSystem.Services.Database.DAL;
 using GuardTourSystem.Utils;
 using KaiheSerialPortLibrary;
@@ -10,12 +8,8 @@ using Microsoft.Practices.Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace GuardTourSystem.ViewModel
 {
@@ -35,11 +29,11 @@ namespace GuardTourSystem.ViewModel
         {
             SerialPortManager.Instance.AddListener(this);
 
-            this.RawDatas = new ObservableCollection<RawData>();
-            this.InfoVM = new InfoViewModel();
-            this.CReadRecord = new DelegateCommand(this.ReadRecord, () => !SerialPortManager.Instance.IsWritting); //,() => { return !MainWindowViewModel.Instance.IsWriting; });
-            this.CClearRecord = new DelegateCommand(this.ClearRecordWithAsk, () => !SerialPortManager.Instance.IsWritting);//, () => { return !MainWindowViewModel.Instance.IsWriting; });
-            this.CPrint = new DelegateCommand(this.Print);
+            RawDatas = new ObservableCollection<RawData>();
+            InfoVM = new InfoViewModel();
+            CReadRecord = new DelegateCommand(ReadRecord, () => !SerialPortManager.Instance.IsWritting); //,() => { return !MainWindowViewModel.Instance.IsWriting; });
+            CClearRecord = new DelegateCommand(ClearRecordWithAsk, () => !SerialPortManager.Instance.IsWritting);//, () => { return !MainWindowViewModel.Instance.IsWriting; });
+            CPrint = new DelegateCommand(Print);
         }
 
         ///<summary>
@@ -81,7 +75,7 @@ namespace GuardTourSystem.ViewModel
                 return;
             }
             //3. 处理完再删除计数机数据
-            await this.ClearRecord();
+            await ClearRecord();
 
             //校准计数机时间
             InfoVM.Append(LanLoader.Load(LanKey.DeviceTestVerifingTime));
@@ -158,7 +152,7 @@ namespace GuardTourSystem.ViewModel
         }
         public async void ClearRecordWithAsk()
         {
-            var result = await this.ShowConfirmDialog("确定要清空设备中的打卡数据吗?", "清空后将无法恢复!");
+            var result = await ShowConfirmDialog("确定要清空设备中的打卡数据吗?", "清空后将无法恢复!");
             if (result == MessageDialogResult.Negative) //用户取消
             {
                 return;
@@ -206,8 +200,8 @@ namespace GuardTourSystem.ViewModel
             new Action(() =>
                 {
                     //在这里操作UI
-                    this.CReadRecord.RaiseCanExecuteChanged();
-                    this.CClearRecord.RaiseCanExecuteChanged();
+                    CReadRecord.RaiseCanExecuteChanged();
+                    CClearRecord.RaiseCanExecuteChanged();
                 })
             , null);
         }

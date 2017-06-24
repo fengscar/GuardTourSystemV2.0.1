@@ -25,7 +25,7 @@ namespace GuardTourSystem.ViewModel
     {
         // 标题 ( 比如批量添加地点)
         private string title;
-        public string Title
+        public new string Title
         {
             get { return title; }
             set
@@ -92,9 +92,9 @@ namespace GuardTourSystem.ViewModel
         {
             // 使用手动触发...(改变selectAll的值,然后OnPropertyChanged,避免触发 SelectAll中 Set的For循环)
             selectAll = AddItems.All((item) => { return item.Select == true; });
-            this.RaisePropertyChanged("SelectAll");
+            RaisePropertyChanged("SelectAll");
 
-            this.CBatchAdd.RaiseCanExecuteChanged();
+            CBatchAdd.RaiseCanExecuteChanged();
         }
 
         // 是否隐藏已存在的卡 2017年3月15日12:54:04 默认就是隐藏
@@ -152,20 +152,20 @@ namespace GuardTourSystem.ViewModel
             {
                 throw new Exception("未定义批量添加方法");
             }
-            this.BatchAddFunc = OnBatchAdd;
+            BatchAddFunc = OnBatchAdd;
 
             if (OnGetRecords != null)
             {
-                this.GetRecordsAction = OnGetRecords;
+                GetRecordsAction = OnGetRecords;
             }
 
-            this.Title = title;
-            this.AddItems = new ObservableCollection<AddItem>();
-            this.ClearAfterRead = true;
+            Title = title;
+            AddItems = new ObservableCollection<AddItem>();
+            ClearAfterRead = true;
 
-            this.CReadRecords = new DelegateCommand(this.GetRecords, () => !SerialPortManager.Instance.IsWritting);
-            this.CClearRecords = new DelegateCommand(this.ClearRecords);
-            this.CBatchAdd = new DelegateCommand(this.BatchAdd, () => { return AddItems.Any((item) => { return item.Select == true; }); });
+            CReadRecords = new DelegateCommand(GetRecords, () => !SerialPortManager.Instance.IsWritting);
+            CClearRecords = new DelegateCommand(ClearRecords);
+            CBatchAdd = new DelegateCommand(BatchAdd, () => { return AddItems.Any((item) => { return item.Select == true; }); });
             //this.CSingleRead = new DelegateCommand(this.SingleRead, () => !SerialPortManager.Instance.IsWritting);
         }
 
@@ -178,7 +178,7 @@ namespace GuardTourSystem.ViewModel
         /// </summary>
         private async void GetRecords()
         {
-            this.ClearRecords();
+            ClearRecords();
 
             //获取计数机的计数数据
             var flow = await AppSerialPortUtil.GetAllPatrolRecord();
@@ -207,7 +207,7 @@ namespace GuardTourSystem.ViewModel
                 int index = 1;
                 foreach (var record in patrolRecords)
                 {
-                    var Item = new AddItem(this.OnAddItemSelectChanged);
+                    var Item = new AddItem(OnAddItemSelectChanged);
                     Item.Index = index++;
                     Item.Card = record.Card;
                     Item.Select = true;//默认是选中的
@@ -241,7 +241,7 @@ namespace GuardTourSystem.ViewModel
         private void ClearRecords()
         {
             AddItems.Clear();
-            this.CBatchAdd.RaiseCanExecuteChanged();
+            CBatchAdd.RaiseCanExecuteChanged();
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace GuardTourSystem.ViewModel
           new Action(() =>
           {
               //在这里操作UI
-              this.CReadRecords.RaiseCanExecuteChanged();
+              CReadRecords.RaiseCanExecuteChanged();
               //this.CSingleRead.RaiseCanExecuteChanged();
           })
           , null);
@@ -457,7 +457,7 @@ namespace GuardTourSystem.ViewModel
 
         public AddItem(Action onSelectChange)
         {
-            this.SelectChangedAction = onSelectChange;
+            SelectChangedAction = onSelectChange;
         }
     }
 }

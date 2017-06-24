@@ -80,7 +80,7 @@ namespace GuardTourSystem.Database.BLL
             }
             //保存原始数据
             string error;
-            if (!this.AddRawData(rawDatas, out error))
+            if (!AddRawData(rawDatas, out error))
             {
                 AppStatusViewModel.Instance.ShowError("生成原始数据时出错:" + error);
             }

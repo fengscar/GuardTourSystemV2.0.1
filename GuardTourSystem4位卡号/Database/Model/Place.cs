@@ -79,7 +79,7 @@ namespace GuardTourSystem.Model
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
 
     }

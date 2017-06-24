@@ -29,15 +29,15 @@ namespace GuardTourSystem.View
         public QueryRawDataView()
         {
             InitializeComponent();
-            this.DataContext = new QueryRawDataViewModel();
+            DataContext = new QueryRawDataViewModel();
         }
         private void Export_Button_Click(object sender, RoutedEventArgs e)
         {
-            ExcelExporter.TelerikControlExport(this.RawDataControl.GridView, LanLoader.Load(LanKey.MenuQueryRawData));
+            ExcelExporter.TelerikControlExport(RawDataControl.GridView, LanLoader.Load(LanKey.MenuQueryRawData));
         }
         private void Print_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.RawDataControl.GridView.Print(null,Telerik.Windows.Documents.Model.PageOrientation.Landscape);
+            RawDataControl.GridView.Print(null,Telerik.Windows.Documents.Model.PageOrientation.Landscape);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace GuardTourSystem.ViewModel
             Title = "修改密码";
             ConfirmButtonText = "确定";
             // 初始化语言菜单栏
-            this.CConfirm = new DelegateCommand(ChangePassword);
+            CConfirm = new DelegateCommand(ChangePassword);
         }
 
         private void ChangePassword()
@@ -97,7 +97,7 @@ namespace GuardTourSystem.ViewModel
             string error;
             if (bll.UpdatePassword(CurrentUserRole, OldPassword, NewPassword1, out error))
             {
-                this.Finish();
+                Finish();
             }
             else
             {

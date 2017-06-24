@@ -41,8 +41,7 @@ namespace GuardTourSystem.Services.Database.DAL
         public User GetUser(int roleID)
         {
             string sql = "select * from T_User where RoleID=@RoleID";
-            DataSet ds;
-            if (ConstantSQLiteHelper.Instance.ExecuteDataSet(sql, new object[] { roleID }, out ds))
+            if (ConstantSQLiteHelper.Instance.ExecuteDataSet(sql, new object[] { roleID }, out DataSet ds))
             {
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
@@ -77,9 +76,11 @@ namespace GuardTourSystem.Services.Database.DAL
 
         private static User InitUser(DataRow row)
         {
-            User user = new User(Convert.ToInt32(row["RoleID"]));
-            user.ID = Convert.ToInt32(row["ID"]);
-            user.Password = row["Password"].ToString();
+            User user = new User(Convert.ToInt32(row["RoleID"]))
+            {
+                ID = Convert.ToInt32(row["ID"]),
+                Password = row["Password"].ToString()
+            };
             return user;
         }
 

@@ -24,7 +24,7 @@ namespace GuardTourSystem.View
         public AppMenuView()
         {
             InitializeComponent();
-            this.DataContext = AppMenuViewModel.Instance;
+            DataContext = AppMenuViewModel.Instance;
         }
     }
 }

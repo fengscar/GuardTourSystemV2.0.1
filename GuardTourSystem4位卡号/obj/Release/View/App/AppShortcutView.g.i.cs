@@ -10,6 +10,10 @@
 //------------------------------------------------------------------------------
 
 using GuardTourSystem.View;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Prism.Regions.Behaviors;
+using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -20,6 +24,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;

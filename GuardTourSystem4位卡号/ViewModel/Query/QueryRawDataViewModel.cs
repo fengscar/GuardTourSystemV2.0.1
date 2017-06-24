@@ -64,13 +64,13 @@ namespace GuardTourSystem.ViewModel
         public QueryRawDataViewModel()
         {
             DataService = new RawDataBLL();
-            this.CQuery = new DelegateCommand(this.Query, this.CanQuery);
-            this.CPrint = new DelegateCommand(this.Print);
+            CQuery = new DelegateCommand(Query, CanQuery);
+            CPrint = new DelegateCommand(Print);
 
-            this.CReset = new DelegateCommand(this.Reset);
+            CReset = new DelegateCommand(Reset);
 
             var now = DateTime.Now;
-            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth().SetBeginOfDay(), now.SetEndOfDay(), () => { this.CQuery.RaiseCanExecuteChanged(); });
+            DateQueryInfo = new DateQueryInfo(now.SetBeginOfMonth().SetBeginOfDay(), now.SetEndOfDay(), () => { CQuery.RaiseCanExecuteChanged(); });
 
             Query();
         }
@@ -85,12 +85,12 @@ namespace GuardTourSystem.ViewModel
 
         private void Query()
         {
-            var result = DataService.GetAllRawData(this.DateQueryInfo.Begin, this.DateQueryInfo.End);
+            var result = DataService.GetAllRawData(DateQueryInfo.Begin, DateQueryInfo.End);
             if (!string.IsNullOrWhiteSpace(QueryText))
             {
                 result = result.Where(rawData => { return rawData.Place.Card.Contains(QueryText) || rawData.Place.EmployeeNumber.Contains(QueryText) || rawData.Place.Name.Contains(QueryText); }).ToList();
             }
-            this.RawDatas = new ObservableCollection<RawData>(result);
+            RawDatas = new ObservableCollection<RawData>(result);
             AppStatusViewModel.Instance.ShowInfo(LanLoader.Load(LanKey.QueryComplete), 2);
         }
 
@@ -109,12 +109,12 @@ namespace GuardTourSystem.ViewModel
             string error = null;
             if (DateQueryInfo.CanQuery(out error))
             {
-                this.Error = null;
+                Error = null;
                 return true;
             }
             else
             {
-                this.Error = error;
+                Error = error;
                 return false;
             }
         }

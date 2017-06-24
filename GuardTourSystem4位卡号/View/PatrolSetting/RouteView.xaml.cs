@@ -32,13 +32,13 @@ namespace GuardTourSystem.View
             InitializeComponent();
 
             vm = new RoutePlaceViewModel();
-            this.DataContext = vm;
+            DataContext = vm;
 
         }
 
         private void Export_Button_Click(object sender, RoutedEventArgs e)
         {
-            ExcelExporter.TelerikControlExport(this.TreeListView, LanLoader.Load(LanKey.Export_RouteAndPlace));
+            ExcelExporter.TelerikControlExport(TreeListView, LanLoader.Load(LanKey.Export_RouteAndPlace));
         }
     }
 }

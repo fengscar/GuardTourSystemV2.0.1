@@ -45,10 +45,10 @@ namespace GuardTourSystem.ViewModel
         {
             Title = "忽略重复打卡记录";
             ConfirmButtonText = "确定";
-            this.IsIgnore = AppSetting.Default.IsIgnore;
-            this.IgnoreTime = AppSetting.Default.IgnoreTime;
+            IsIgnore = AppSetting.Default.IsIgnore;
+            IgnoreTime = AppSetting.Default.IgnoreTime;
             // 初始化语言菜单栏
-            this.CConfirm = new DelegateCommand(this.Ignore);
+            CConfirm = new DelegateCommand(Ignore);
         }
 
         private void Ignore()
@@ -64,7 +64,7 @@ namespace GuardTourSystem.ViewModel
             AppSetting.Default.IsIgnore = IsIgnore;
             AppSetting.Default.IgnoreTime = IgnoreTime;
             AppSetting.Default.Save();
-            this.Finish();
+            Finish();
         }
 
     }

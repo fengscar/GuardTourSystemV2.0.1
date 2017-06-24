@@ -31,7 +31,7 @@ namespace GuardTourSystem.View
         {
             try
             {
-                Process.Start(new ProcessStartInfo(this.HyperLink.Content.ToString()));
+                Process.Start(new ProcessStartInfo(HyperLink.Content.ToString()));
             }
             catch (Exception ex)
             {

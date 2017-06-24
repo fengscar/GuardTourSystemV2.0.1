@@ -1,8 +1,10 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Prism.Interactivity.InteractionRequest;
 using Microsoft.Practices.Prism.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 namespace GuardTourSystem.ViewModel
 {
     //所有支持显示 Metro Dialog 的ViewModel
-    public class ShowMetroDialogViewModel : NotificationObject
+    public class ShowMetroDialogViewModel : Notification, INotifyPropertyChanged
     {
         /// <summary>
         /// 显示Metro对话框 ,必须在主线程调用,因为View中调用了GetWindow();
@@ -19,5 +21,12 @@ namespace GuardTourSystem.ViewModel
         public Action<string, string> ShowMessageDialog { get; set; }
         //显示确认对话框
         public Func<string, string, Task<MessageDialogResult>> ShowConfirmDialog { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaisePropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

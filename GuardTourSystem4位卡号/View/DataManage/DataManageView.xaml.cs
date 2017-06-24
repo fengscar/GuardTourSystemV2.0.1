@@ -24,7 +24,7 @@ namespace GuardTourSystem.View
         public DataManageView()
         {
             InitializeComponent();
-            this.DataContext = new DataManageViewModel();
+            DataContext = new DataManageViewModel();
         }
     }
 }

@@ -1,15 +1,12 @@
 ﻿using GuardTourSystem.ViewModel;
 using KaiheSerialPortLibrary;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GuardTourSystem
 {
     //当获取计数数据和敲击记录时,将显示预设的进度条
-    public class AppSerialPortUtil : KaiheSerialPortLibrary.SerialPortUtil
+    public class AppSerialPortUtil : SerialPortUtil
     {
         //#region 单例模式
         //private static readonly object locker = new object();

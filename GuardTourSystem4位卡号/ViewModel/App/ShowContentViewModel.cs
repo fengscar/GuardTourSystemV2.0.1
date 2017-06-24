@@ -55,8 +55,8 @@ namespace GuardTourSystem.ViewModel
 
         public ShowContentViewModel()
         {
-            this.CClose = new DelegateCommand(this.Close);
-            this.CExport = new DelegateCommand<Control>(this.Export);
+            CClose = new DelegateCommand(Close);
+            CExport = new DelegateCommand<Control>(Export);
         }
 
 
